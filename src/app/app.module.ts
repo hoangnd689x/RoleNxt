@@ -14,6 +14,7 @@ import { PositionComponent } from './components/position/position.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { HomeItComponent } from './components/home-it/home-it.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatButtonModule} from '@angular/material/button';
     NavbarComponent,
     HomeComponent,
     MainComponent,
-    PositionComponent
+    PositionComponent,
+    HomeItComponent
   ],
   imports: [
     BrowserModule,
