@@ -1,0 +1,23 @@
+ul.legend {
+    margin: 20px;
+    list-style-type: none;
+    width: fit-content;
+}
+
+div.legend {
+    position: relative;
+}
+.input-color{
+    padding-left: 20px;
+}
+li.legend{
+    border: black solid 1px;
+    width: 250px;
+}
+.legend .color-box {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #ccc;
+    margin-right: 5px;
+}

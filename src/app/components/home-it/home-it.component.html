@@ -1,3 +1,13 @@
+<ul class="legend">
+  <li class="legend" *ngFor = "let cluster of clusters">
+    <div class="input-color">
+      <div>
+        <div class="color-box" [ngStyle]="{'background-color': cluster.data.color}"></div>
+        <span>{{cluster.label}}</span>
+      </div>
+    </div>
+  </li>
+</ul>
 <ngx-graph class="chart-container" [view]="[900, 600]" [links]="links" [nodes]="nodes" [autoCenter]="autoCenter"
   [autoZoom]="autoZoom" [draggingEnabled]="draggingEnabled" [panningEnabled]="panningEnabled" [enableZoom]="zoomEnabled"
   [layoutSettings]="layoutSettings" [clusters]="clusters"
