@@ -4,21 +4,37 @@ import { Promotion } from './promotion';
 
 
 export const clusters: ClusterNode[] = [
-    // {
-    //   id: 'c1',
-    //   label: 'Level 2',
-    //   childNodeIds: ['3', '4','5']
-    // },
-    // {
-    //     id: 'c2',
-    //     label: 'Level 3',
-    //     childNodeIds: ['1']
-    // },
-    // {
-    //     id: 'c3',
-    //     label: 'Level 1',
-    //     childNodeIds: ['2']
-    // }
+    {
+      id: 'c1',
+      label: 'Level 1',
+      childNodeIds: ['1']
+    },
+    {
+        id: 'c2',
+        label: 'Level 2',
+        childNodeIds: ['3','4']
+    },
+    {
+        id: 'c3',
+        label: 'Level 3',
+        childNodeIds: ['5','8','2']
+    },
+    {
+        id: 'c4',
+        label: 'Level 4',
+        childNodeIds: ['10','9','6']
+    }
+    ,
+    {
+        id: 'c5',
+        label: 'Level 5',
+        childNodeIds: ['11','7']
+    },
+    {
+        id: 'c6',
+        label: 'Level 6',
+        childNodeIds: ['12']
+    }
   ];
 
   
