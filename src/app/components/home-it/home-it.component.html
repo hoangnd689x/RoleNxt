@@ -1,5 +1,5 @@
 <ul class="legend">
-  <li class="legend" *ngFor = "let cluster of clusters">
+  <li class="legend" *ngFor = "let cluster of clusters | reverse">
     <div class="input-color">
       <div>
         <div class="color-box" [ngStyle]="{'background-color': cluster.data.color}"></div>

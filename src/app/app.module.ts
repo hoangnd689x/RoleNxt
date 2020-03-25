@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { HomeItComponent } from './components/home-it/home-it.component';
+import { ReversePipePipe } from './reverse-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeItComponent } from './components/home-it/home-it.component';
     HomeComponent,
     MainComponent,
     PositionComponent,
-    HomeItComponent
+    HomeItComponent,
+    ReversePipePipe
   ],
   imports: [
     BrowserModule,
