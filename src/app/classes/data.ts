@@ -2,73 +2,21 @@ import { Edge, Node, ClusterNode } from '@swimlane/ngx-graph';
 import { Position } from './position';
 import { Promotion } from './promotion';
 
-export const nodes: Node[] = [
-    {
-        id: '1',
-        label: 'Financial Manager',
-    }, {
-        id: '2',
-        label: 'Brokerage Clerk'
-    }, {
-        id: '3',
-        label: 'Stock Broker'
-    }, {
-        id: '4',
-        label: 'Financial Advisor'
-    },
-    {
-        id: '5',
-        label: 'Financial Analyst'
-    }
-];
-
-export const links: Edge[] = [
-    {
-        id: 'e1',
-        source: '2',
-        target: '4'
-    },
-    {
-        id: 'e2',
-        source: '2',
-        target: '3',
-
-    }, {
-        id: 'e3',
-        source: '2',
-        target: '5',
-    }, {
-        id: 'e4',
-        source: '4',
-        target: '1',
-    }, {
-        id: 'e5',
-        source: '3',
-        target: '1',
-    },
-    {
-        id: 'e6',
-        source: '5',
-        target: '1',
-    },
-
-
-];
 
 export const clusters: ClusterNode[] = [
     {
       id: 'c1',
-      label: 'Cluster node',
+      label: 'Level 2',
       childNodeIds: ['3', '4','5']
     },
     {
         id: 'c2',
-        label: 'Cluster node 2',
+        label: 'Level 3',
         childNodeIds: ['1']
     },
     {
         id: 'c3',
-        label: 'Cluster node 3',
+        label: 'Level 1',
         childNodeIds: ['2']
     }
   ];

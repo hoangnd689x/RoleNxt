@@ -12,6 +12,8 @@ import { MainComponent } from "./components/main/main.component";
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { PositionComponent } from './components/position/position.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxGraphModule
+    NgxGraphModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

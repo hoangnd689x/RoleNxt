@@ -5,13 +5,17 @@ import { PositionComponent } from './components/position/position.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "engineering",
     component: HomeComponent,
-    data: { capabilityTitle: "All capabilities", familyID: "0" }
   },
   {
-    path: "position/:id",
-    component: PositionComponent
+    path: "it",
+    component: HomeComponent
+  },
+  {
+    path: '',
+    redirectTo: '/engineering',
+    pathMatch: 'full'
   }
 ];
 
@@ -19,7 +23,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 
 // ,
 //   {

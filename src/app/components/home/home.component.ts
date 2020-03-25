@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from "@angular/core";
-import { nodes, links, clusters, positions, promotions } from "../../classes/data";
+import { clusters, positions, promotions } from "../../classes/data";
 import { Edge, Node, ClusterNode, Layout } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
 import { Subject } from 'rxjs';

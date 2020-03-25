@@ -2,10 +2,13 @@
 
 <div class="container-fluid">
   <div class="row">
-    <main
-      role="main"
-      class="col-sm-12 col-md-12 ml-sm-auto col-lg-12 pt-3 px-5 mainContent"
-    >
+    <div class="col-md-6">
+      <a routerLink="/engineering"><button mat-raised-button color="primary" class="nav-button">Engineering</button></a></div>
+    <div class="col-md-6">
+      <a routerLink="/it"><button mat-raised-button color="primary" class="nav-button">IT</button></a></div>
+  </div>
+  <div class="row">
+    <main role="main" class="col-sm-12 col-md-12 ml-sm-auto col-lg-12 pt-3 px-5 mainContent">
       <router-outlet></router-outlet>
     </main>
   </div>
