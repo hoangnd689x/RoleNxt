@@ -1,50 +1,17 @@
-#navcss{
-  background-color: #003471;
-  padding: 1rem;
-  color: #ffffff;
+.header-img{
+  background-image: url("../../../assets/header-background.png");
+  height: 10px;
+  width: auto;
 }
 
-.navbar {
-  height:14px;
+.header-main{
+  background-color: white;
+  height: 80px;
+  border-bottom: 1px #80808040 solid;
 }
 
-.logo {
-  z-index: 10;
-}
-
-#CLtitle {
-  text-align: center;
-  position: absolute;
-  color: #ffffff;
-  font-size: 18px;
-  width: 100%;
-  padding-right: 5%;
-}
-
-.mainHeader {
-  z-index: 100;
-  background-color: #003471;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  box-shadow: 0 1px 2px 1px hsla(0, 0%, 0%, 0.1);
-  border: 0;
-}
-
-.usernameDisplay {
-  float: right;
-}
-
-.profileInfo {
-  z-index: 10;
-  text-decoration: none;
-}
-
-.userInfo {
-  padding-right: 0.5rem;
-  font-size: 15px;
-}
-
-.profileIcon {
-  padding-right: 1.5rem;
+.title{
+  color: #EA0016;
+  font-size: 30px;
+  font-weight: bold;
 }
