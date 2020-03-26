@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
 import { PositionComponent } from './components/position/position.component';
-import { HomeItComponent } from './components/home-it/home-it.component';
+import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: "it",
-    component: HomeItComponent
+    component: CareerLatticeItComponent
   },
   {
     path: '',

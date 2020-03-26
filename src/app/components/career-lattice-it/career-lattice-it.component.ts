@@ -11,10 +11,10 @@ import { Promotion } from 'src/app/classes/promotion';
 
 @Component({
   selector: 'app-home-it',
-  templateUrl: './home-it.component.html',
-  styleUrls: ['./home-it.component.css']
+  templateUrl: './career-lattice-it.component.html',
+  styleUrls: ['./career-lattice-it.component.css']
 })
-export class HomeItComponent implements OnInit {
+export class CareerLatticeItComponent implements OnInit {
 
   name = 'NGX-Graph Demo';
   data: DataService;

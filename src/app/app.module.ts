@@ -14,7 +14,7 @@ import { PositionComponent } from './components/position/position.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import { HomeItComponent } from './components/home-it/home-it.component';
+import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
 import { ReversePipePipe } from './reverse-pipe.pipe';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { ReversePipePipe } from './reverse-pipe.pipe';
     HomeComponent,
     MainComponent,
     PositionComponent,
-    HomeItComponent,
+    CareerLatticeItComponent,
     ReversePipePipe
   ],
   imports: [
