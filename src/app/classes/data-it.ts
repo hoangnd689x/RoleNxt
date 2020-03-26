@@ -88,7 +88,7 @@ export const clusters: ClusterNode[] = [
     },
     {
         promotion_id: '6',
-        start_position_id: '5',
-        next_position_id: '1'
+        start_position_id: '1',
+        next_position_id: '5'
     },
   ];
