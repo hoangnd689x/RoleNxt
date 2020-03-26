@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { CareerLatticeEngineeringComponent } from "./components/career-lattice-engineering/career-lattice-engineering.component";
 import { PositionComponent } from './components/position/position.component';
 import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/engineering',
-    pathMatch: 'full'
+    component: HomeComponent
   }
 ];
 
