@@ -2,6 +2,7 @@
   background-image: url("../../../assets/header-background.png");
   height: 10px;
   width: auto;
+  margin-bottom: 10px;
 }
 
 .header-main{
@@ -13,5 +14,5 @@
 .title{
   color: #EA0016;
   font-size: 30px;
-  font-weight: bold;
+  font-weight: bolder;
 }
