@@ -14,10 +14,10 @@ import { Promotion } from 'src/app/classes/promotion';
 
 @Component({
   selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  templateUrl: "./career-lattice-engineering.component.html",
+  styleUrls: ["./career-lattice-engineering.component.css"]
 })
-export class HomeComponent implements OnInit {
+export class CareerLatticeEngineeringComponent implements OnInit {
 
   name = 'NGX-Graph Demo';
   data: DataService;

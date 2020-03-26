@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./components/home/home.component";
+import { CareerLatticeEngineeringComponent } from "./components/career-lattice-engineering/career-lattice-engineering.component";
 import { PositionComponent } from './components/position/position.component';
 import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
 
 const routes: Routes = [
   {
     path: "engineering",
-    component: HomeComponent,
+    component: CareerLatticeEngineeringComponent,
   },
   {
     path: "it",
@@ -25,10 +25,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-// ,
-//   {
-//     path: "home/:username",
-//     component: HomeComponent,
-//     data: { capabilityTitle: "All capabilities", familyID: "0" }
-//   },

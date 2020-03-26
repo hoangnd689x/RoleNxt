@@ -7,7 +7,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { HomeComponent } from "./components/home/home.component";
+import { CareerLatticeEngineeringComponent } from "./components/career-lattice-engineering/career-lattice-engineering.component";
 import { MainComponent } from "./components/main/main.component";
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { PositionComponent } from './components/position/position.component';
@@ -22,7 +22,7 @@ import { ReversePipePipe } from './reverse-pipe.pipe';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    HomeComponent,
+    CareerLatticeEngineeringComponent,
     MainComponent,
     PositionComponent,
     CareerLatticeItComponent,

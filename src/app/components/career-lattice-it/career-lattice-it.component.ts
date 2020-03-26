@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Promotion } from 'src/app/classes/promotion';
 
 @Component({
-  selector: 'app-home-it',
+  selector: 'app-career-lattice-it',
   templateUrl: './career-lattice-it.component.html',
   styleUrls: ['./career-lattice-it.component.css']
 })
