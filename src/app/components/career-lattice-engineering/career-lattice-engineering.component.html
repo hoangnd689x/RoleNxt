@@ -1,71 +1,68 @@
-<ul class="legend">
-  <li class="legend" *ngFor = "let cluster of clusters | reverse">
-    <div class="input-color">
-      <div>
-        <div class="color-box" [ngStyle]="{'background-color': cluster.data.color}"></div>
-        <span>{{cluster.label}}</span>
-      </div>
-    </div>
-  </li>
-</ul>
-<ngx-graph class="chart-container" [view]="[900, 600]" [links]="links" [nodes]="nodes" [autoCenter]="autoCenter"
-  [autoZoom]="autoZoom" [draggingEnabled]="draggingEnabled" [panningEnabled]="panningEnabled" [enableZoom]="zoomEnabled"
-  [layoutSettings]="layoutSettings" [clusters]="clusters"
-  [layout]="layout">
-  <ng-template #defsTemplate>
-    <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
-      <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
-    </svg:marker>
-  </ng-template>
-  <ng-template #nodeTemplate let-node>
-    <svg:g (click)="openModal(content,node.id)">
-        <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
-          style="fill:rgb(255, 255, 255);stroke-width:3;stroke:rgb(0,0,0)" />
-        <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">{{node.label}}
-        </svg:text>
-    </svg:g>
-  </ng-template>
-  <ng-template #linkTemplate let-link>
-    <svg:g class="edge">
-      <svg:path class="line" stroke-width="2" marker-end="url(#arrow)">
-      </svg:path>
-    </svg:g>
-  </ng-template>
-  <ng-template #clusterTemplate let-cluster>
-    <svg:g
-    >
-      <svg:rect
-        rx="5"
-        ry="5"
-        [attr.width]="cluster.dimension.width"
-        [attr.height]="cluster.dimension.height"
-        [attr.fill]="cluster.data.color"
-      />
-    </svg:g>
-  </ng-template>
-</ngx-graph>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
 
-<!-- JOB SPEC MODAL -->
-<ng-template #content let-modal>
-  <div class="modal-header" style="background-color: #003471;">
-    <h4 class="modal-title" id="modal-basic-title" style="color: #ffffff">
-      {{ selectedPosition.position_name }}
-    </h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
-      <span aria-hidden="true" style="color: #ffffff">&times;</span>
-    </button>
+      <ngx-graph class="chart-container" [view]="[900, 600]" [links]="links" [nodes]="nodes" [autoCenter]="autoCenter"
+        [autoZoom]="autoZoom" [draggingEnabled]="draggingEnabled" [panningEnabled]="panningEnabled"
+        [enableZoom]="zoomEnabled" [layoutSettings]="layoutSettings" [clusters]="clusters" [layout]="layout">
+        <ng-template #defsTemplate>
+          <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
+            <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+          </svg:marker>
+        </ng-template>
+        <ng-template #nodeTemplate let-node>
+          <svg:g (click)="openModal(content,node.id)">
+            <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
+              style="fill:rgb(255, 255, 255);stroke-width:3;stroke:rgb(0,0,0)" />
+            <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">{{node.label}}
+            </svg:text>
+          </svg:g>
+        </ng-template>
+        <ng-template #linkTemplate let-link>
+          <svg:g class="edge">
+            <svg:path class="line" stroke-width="2" marker-end="url(#arrow)">
+            </svg:path>
+          </svg:g>
+        </ng-template>
+        <ng-template #clusterTemplate let-cluster>
+          <svg:g>
+            <svg:rect rx="5" ry="5" [attr.width]="cluster.dimension.width" [attr.height]="cluster.dimension.height"
+              [attr.fill]="cluster.data.color" />
+          </svg:g>
+        </ng-template>
+      </ngx-graph>
+
+      <!-- JOB SPEC MODAL -->
+      <ng-template #content let-modal>
+        <div class="modal-header" style="background-color: #003471;">
+          <h4 class="modal-title" id="modal-basic-title" style="color: #ffffff">
+            {{ selectedPosition.position_name }}
+          </h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true" style="color: #ffffff">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <h5 class="jobSpec">Job Specification</h5>
+              <p class="roleSummary">{{ selectedPosition.position_summary }}</p>
+            </div>
+          </form>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-md-3">
+      <ul class="legend">
+        <li class="legend" *ngFor="let cluster of clusters | reverse">
+          <div class="input-color">
+            <div>
+              <div class="color-box" [ngStyle]="{'background-color': cluster.data.color}"></div>
+              <span>{{cluster.label}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <h5 class="jobSpec">Job Specification</h5>
-        <p class="roleSummary">{{ selectedPosition.position_summary }}</p>
-      </div>
-    </form>
-  </div>
-</ng-template>
+</div>
