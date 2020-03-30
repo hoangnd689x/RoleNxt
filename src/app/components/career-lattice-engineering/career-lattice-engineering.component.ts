@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from "@angular/core";
-import { clusters, positions, promotions } from "../../classes/data";
+import { clusters, positions, promotions,careerPaths } from "../../classes/data";
 import { Edge, Node, ClusterNode, Layout } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
 import { Subject } from 'rxjs';
@@ -8,9 +8,12 @@ import { DataService } from 'src/app/data.service';
 import { Position } from 'src/app/classes/position';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Promotion } from 'src/app/classes/promotion';
+import { CareerPath } from 'src/app/classes/career-path';
 
 
-
+export interface IHash {
+  [id:string] : CareerPath;
+}
 
 @Component({
   selector: "app-home",
@@ -28,6 +31,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   positions: Position[] = positions;
   promotions: Promotion[] = promotions;
   selectedPosition: Position;
+  careerPaths: CareerPath[] = careerPaths;
+  private careerMap: IHash = {};
 
   public layoutSettings = {
     orientation: "BT"
@@ -60,6 +65,9 @@ export class CareerLatticeEngineeringComponent implements OnInit {
         dimension:{
           width: 1000,
           height:250
+        },
+        data:{
+          customColor: this.careerMap[position.career_path_id].color_code
         }
       }
       return newNode;
@@ -76,7 +84,14 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     });
   }
 
+  generateHashMap(): void{
+    this.careerPaths.forEach(element => {
+      this.careerMap[element.career_path_id] = element;
+    });
+  }
+
   ngOnInit() {
+    this.generateHashMap();
     this.getPositions();
 
     this.getPromotions();

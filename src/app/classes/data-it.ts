@@ -36,27 +36,32 @@ export const clusters: ClusterNode[] = [
     {
         position_id: '1',
         position_name: 'Member Engineering',
-        position_summary: 'Implement task with supervision'
+        position_summary: 'Implement task with supervision',
+        career_path_id:''
     },
     {
         position_id: '2',
         position_name: 'Principal Technologist',
-        position_summary: "Principal Technologist: Role Detail"
+        position_summary: "Principal Technologist: Role Detail",
+        career_path_id:''
     },
     {
         position_id: '3',
         position_name: 'Principle consultant',
-        position_summary: 'Principle consultant: Role Detail'
+        position_summary: 'Principle consultant: Role Detail',
+        career_path_id:''
     },
     {
         position_id: '4',
         position_name: 'Program Manager',
-        position_summary: 'Program Manager: Role Detail'
+        position_summary: 'Program Manager: Role Detail',
+        career_path_id:''
     },
     {
         position_id: '5',
         position_name: 'Engineering Manager',
-        position_summary: 'Engineering Manager: Role Detail'
+        position_summary: 'Engineering Manager: Role Detail',
+        career_path_id:''
     }
   ];
 
