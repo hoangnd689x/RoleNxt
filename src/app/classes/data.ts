@@ -7,7 +7,7 @@ export const clusters: ClusterNode[] = [
     {
       id: 'c1',
       label: 'Level 1',
-      childNodeIds: ['1']
+      childNodeIds: ['1'],
     },
     {
         id: 'c2',

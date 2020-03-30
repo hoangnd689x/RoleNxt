@@ -53,7 +53,11 @@ export class CareerLatticeItComponent implements OnInit {
       let newNode: Node = {
         // id: position.position_id,
         id: position.position_id.toString(),
-        label: position.position_name
+        label: position.position_name,
+        dimension:{
+          width: 1000,
+          height:250
+        }
       }
       return newNode;
     });
