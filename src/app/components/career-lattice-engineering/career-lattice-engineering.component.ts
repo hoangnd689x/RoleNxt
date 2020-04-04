@@ -196,11 +196,11 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       }
 
       //
-      let index = 0;
+      // let index = 0;
       for (let i = 0; i < tmp.length - 1; i++) {
         let tmpObj = {};
         if (tmp[i] == "" || tmp[i + 1] == "") continue;
-        tmpObj["promotion_id"] = ++index;
+        // tmpObj["promotion_id"] = ++index;
         tmpObj["start_position_id"] = tmp[i];
         tmpObj["next_position_id"] = tmp[i + 1];
         tmpPair.push(tmpObj)
@@ -216,8 +216,11 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       )
         (new Set)
     );
-
-    return filtered;
+    let addedID=filtered.map((e,index)=>{
+      e["promotion_id"] = index+1;
+      return e;
+    })
+    return addedID;
 
   }
 }
