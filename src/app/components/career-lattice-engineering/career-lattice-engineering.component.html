@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="isLoaded" class="container-fluid">
   <div class="row">
     <div class="col-md-8">
       <ngx-graph class="chart-container" [view]="[800, 400]" [links]="links" [nodes]="nodes" [autoCenter]="autoCenter"
