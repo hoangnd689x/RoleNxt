@@ -1,13 +1,10 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3">
+  <div class="row" style="justify-content: center;">
+    <!-- <div class="col-md-2">
       <a routerLink="/it"><button mat-raised-button style="background-color: #A80163;"
-          class="nav-button">IT</button></a></div>
-    <div class="col-md-3">
-      <a routerLink="/engineering"><button mat-raised-button style="background-color: #3F136C;" class="nav-button">Engineering</button></a>
+          class="nav-button">IT</button></a></div> -->
+    <div *ngFor="let item of departmentNames" class="col-md-1">
+      <a routerLink="/engineering"><button mat-raised-button style="background-color: #3F136C;" class="nav-button">{{item}}</button></a>
     </div>
   </div>
-
-
 </div>

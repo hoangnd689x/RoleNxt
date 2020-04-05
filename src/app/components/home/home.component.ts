@@ -8,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor() { }
-
+  departmentNames = [
+    "ENG",
+    "EVH",
+    "EJV",
+    "ESS",
+    "EPS",
+    "EPS",
+    "EPS",
+    "ETI",
+    "ETM",
+  ];
   ngOnInit() {
   }
 
