@@ -14,6 +14,6 @@ export class DataService {
   positions = this.http.get<Position[]>("api/positions");
   promotions = this.http.get<Promotion[]>("api/promotions");
 
-  getPositions = () => this.http.get<JSON[]>("http://localhost:8080/orgchart/api/getAllStructures/");
+  getPositions = () => this.http.get<JSON[]>("http://hc1vm003:8123/orgchart/api/getAllStructures/");
   
 }

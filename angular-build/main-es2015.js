@@ -30,7 +30,29 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-login *ngIf=\"!isLoggedIn\"></app-login>\r\n\r\n<app-main *ngIf=\"isLoggedIn\" [isAdmin]=\"isAdmin\"></app-main>\r\n"
+module.exports = "<app-login *ngIf=\"!isLoggedIn\"></app-login>\r\n<app-main *ngIf=\"isLoggedIn\" [isAdmin]=\"isAdmin\"></app-main>\r\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/career-lattice-engineering/career-lattice-engineering.component.html":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/career-lattice-engineering/career-lattice-engineering.component.html ***!
+  \***************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"isLoaded\" class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-8\">\r\n      <ngx-graph class=\"chart-container\" [view]=\"[800, 400]\" [links]=\"links\" [nodes]=\"nodes\" [autoCenter]=\"autoCenter\"\r\n        [autoZoom]=\"autoZoom\" [draggingEnabled]=\"draggingEnabled\" [panningEnabled]=\"panningEnabled\"\r\n        [enableZoom]=\"zoomEnabled\" [layoutSettings]=\"layoutSettings\" [layout]=\"layout\" [clusters]=\"clusters\">\r\n        <ng-template #defsTemplate>\r\n          <svg:marker id=\"arrow\" viewBox=\"0 -5 10 10\" refX=\"8\" refY=\"0\" markerWidth=\"12\" markerHeight=\"14\"\r\n            orient=\"auto\">\r\n            <svg:path d=\"M0,-5L10,0L0,5\" class=\"arrow-head\" />\r\n          </svg:marker>\r\n        </ng-template>\r\n        <ng-template #nodeTemplate let-node>\r\n          <svg:g (click)=\"openModal(content,node.id)\">\r\n            <svg:rect [attr.width]=\"node.dimension.width\" [attr.height]=\"node.dimension.height\" [attr.fill]=\"node.data.customColor\" \r\n              style=\"stroke-width:3;stroke:rgb(0,0,0)\" />\r\n            <svg:text style=\"fill: white;\" alignment-baseline=\"central\" [attr.x]=\"100\" font-size=\"4em\" [attr.y]=\"node.dimension.height / 2\">\r\n              {{node.label}}\r\n            </svg:text>\r\n          </svg:g>\r\n        </ng-template>\r\n        <ng-template #linkTemplate let-link>\r\n          <svg:g class=\"edge\">\r\n            <svg:path class=\"line\" stroke-width=\"3\" marker-end=\"url(#arrow)\">\r\n            </svg:path>\r\n          </svg:g>\r\n        </ng-template>\r\n        <ng-template #clusterTemplate let-cluster>\r\n          <svg:g>\r\n            <svg:rect rx=\"5\" ry=\"5\" [attr.width]=\"cluster.dimension.width\" [attr.height]=\"cluster.dimension.height\"\r\n              [attr.fill]=\"cluster.data.color\" />\r\n          </svg:g>\r\n        </ng-template>\r\n      </ngx-graph>\r\n\r\n      <!-- JOB SPEC MODAL -->\r\n      <ng-template #content let-modal>\r\n        <div class=\"modal-header\" style=\"background-color: #003471;\">\r\n          <h4 class=\"modal-title\" id=\"modal-basic-title\" style=\"color: #ffffff\">\r\n            {{ selectedPosition.position_name }}\r\n          </h4>\r\n          <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss('Cross click')\">\r\n            <span aria-hidden=\"true\" style=\"color: #ffffff\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form>\r\n            <div class=\"form-group\">\r\n              <p>id = {{ selectedPosition.position_id}} </p>\r\n              <h5 class=\"jobSpec\">Job Specification</h5>\r\n              <p class=\"roleSummary\">{{ selectedPosition.position_summary }}</p>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </ng-template>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <p>Level</p>\r\n      <ul class=\"legend\">\r\n        <li class=\"legend\" *ngFor=\"let cluster of clusters | reverse\">\r\n          <div class=\"input-color\">\r\n            <div>\r\n              <div class=\"color-box\" [ngStyle]=\"{'background-color': cluster.data.color}\"></div>\r\n              <span>{{cluster.label}}</span>\r\n            </div>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n\r\n      <p>Career Path</p>\r\n      <ul class=\"legend\">\r\n        <li class=\"legend\" *ngFor=\"let careerPath of careerPaths\">\r\n          <div class=\"input-color\">\r\n            <div>\r\n              <div class=\"color-box\" [ngStyle]=\"{'background-color': careerPath.color_code}\"></div>\r\n              <span>{{careerPath.career_path_name}}</span>\r\n            </div>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/career-lattice-it/career-lattice-it.component.html":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/career-lattice-it/career-lattice-it.component.html ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-8\">\r\n\r\n      <ngx-graph class=\"chart-container\" [view]=\"[800, 400]\" [links]=\"links\" [nodes]=\"nodes\" [autoCenter]=\"autoCenter\"\r\n      [autoZoom]=\"autoZoom\" [draggingEnabled]=\"draggingEnabled\" [panningEnabled]=\"panningEnabled\" [enableZoom]=\"zoomEnabled\"\r\n      [layoutSettings]=\"layoutSettings\" [clusters]=\"clusters\"\r\n      [layout]=\"layout\">\r\n      <ng-template #defsTemplate>\r\n        <svg:marker id=\"arrow\" viewBox=\"0 -5 10 10\" refX=\"8\" refY=\"0\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto\">\r\n          <svg:path d=\"M0,-5L10,0L0,5\" class=\"arrow-head\" />\r\n        </svg:marker>\r\n      </ng-template>\r\n      <ng-template #nodeTemplate let-node>\r\n        <svg:g (click)=\"openModal(content,node.id)\">\r\n            <svg:rect [attr.width]=\"node.dimension.width\" [attr.height]=\"node.dimension.height\"\r\n              style=\"fill:rgb(255, 255, 255);stroke-width:3;stroke:rgb(0,0,0)\" />\r\n            <svg:text alignment-baseline=\"central\" [attr.x]=\"100\" font-size=\"4em\" [attr.y]=\"node.dimension.height / 2\">{{node.label}}\r\n            </svg:text>\r\n        </svg:g>\r\n      </ng-template>\r\n      <ng-template #linkTemplate let-link>\r\n        <svg:g class=\"edge\">\r\n          <svg:path class=\"line\" stroke-width=\"3\" marker-end=\"url(#arrow)\">\r\n          </svg:path>\r\n        </svg:g>\r\n      </ng-template>\r\n      <ng-template #clusterTemplate let-cluster>\r\n        <svg:g\r\n        >\r\n          <svg:rect\r\n            rx=\"5\"\r\n            ry=\"5\"\r\n            [attr.width]=\"cluster.dimension.width\"\r\n            [attr.height]=\"cluster.dimension.height\"\r\n            [attr.fill]=\"cluster.data.color\"\r\n          />\r\n        </svg:g>\r\n      </ng-template>\r\n    </ngx-graph>\r\n    \r\n    <!-- JOB SPEC MODAL -->\r\n    <ng-template #content let-modal>\r\n      <div class=\"modal-header\" style=\"background-color: #003471;\">\r\n        <h4 class=\"modal-title\" id=\"modal-basic-title\" style=\"color: #ffffff\">\r\n          {{ selectedPosition.position_name }}\r\n        </h4>\r\n        <button\r\n          type=\"button\"\r\n          class=\"close\"\r\n          aria-label=\"Close\"\r\n          (click)=\"modal.dismiss('Cross click')\"\r\n        >\r\n          <span aria-hidden=\"true\" style=\"color: #ffffff\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form>\r\n          <div class=\"form-group\">\r\n            <p>id = {{ selectedPosition.position_id}} </p>\r\n            <h5 class=\"jobSpec\">Job Specification</h5>\r\n            <p class=\"roleSummary\">{{ selectedPosition.position_summary }}</p>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </ng-template>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <ul class=\"legend\">\r\n        <li class=\"legend\" *ngFor=\"let cluster of clusters | reverse\">\r\n          <div class=\"input-color\">\r\n            <div>\r\n              <div class=\"color-box\" [ngStyle]=\"{'background-color': cluster.data.color}\"></div>\r\n              <span>{{cluster.label}}</span>\r\n            </div>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -41,7 +63,7 @@ module.exports = "<app-login *ngIf=\"!isLoggedIn\"></app-login>\r\n\r\n<app-main
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ngx-graph class=\"chart-container\" [view]=\"[900, 390]\" [links]=\"links\" [nodes]=\"nodes\" [autoCenter]=\"autoCenter\"\r\n  [autoZoom]=\"autoZoom\" [draggingEnabled]=\"draggingEnabled\" [panningEnabled]=\"panningEnabled\" [enableZoom]=\"zoomEnabled\"\r\n  [layoutSettings]=\"layoutSettings\" [clusters]=\"clusters\"\r\n  [layout]=\"layout\">\r\n  <ng-template #defsTemplate>\r\n    <svg:marker id=\"arrow\" viewBox=\"0 -5 10 10\" refX=\"8\" refY=\"0\" markerWidth=\"4\" markerHeight=\"4\" orient=\"auto\">\r\n      <svg:path d=\"M0,-5L10,0L0,5\" class=\"arrow-head\" />\r\n    </svg:marker>\r\n  </ng-template>\r\n  <ng-template #nodeTemplate let-node>\r\n    <svg:g (click)=\"openModal(content,node.id)\">\r\n        <svg:rect [attr.width]=\"node.dimension.width\" [attr.height]=\"node.dimension.height\"\r\n          style=\"fill:rgb(255, 255, 255);stroke-width:3;stroke:rgb(0,0,0)\" />\r\n        <svg:text alignment-baseline=\"central\" [attr.x]=\"10\" [attr.y]=\"node.dimension.height / 2\">{{node.label}}\r\n        </svg:text>\r\n    </svg:g>\r\n  </ng-template>\r\n  <ng-template #linkTemplate let-link>\r\n    <svg:g class=\"edge\">\r\n      <svg:path class=\"line\" stroke-width=\"2\" marker-end=\"url(#arrow)\">\r\n      </svg:path>\r\n    </svg:g>\r\n  </ng-template>\r\n  <ng-template #clusterTemplate let-cluster>\r\n    <svg:g\r\n    >\r\n      <svg:rect\r\n        rx=\"5\"\r\n        ry=\"5\"\r\n        [attr.width]=\"cluster.dimension.width\"\r\n        [attr.height]=\"cluster.dimension.height\"\r\n        [attr.fill]=\"cluster.data.color\"\r\n      />\r\n    </svg:g>\r\n  </ng-template>\r\n</ngx-graph>\r\n\r\n<!-- JOB SPEC MODAL -->\r\n<ng-template #content let-modal>\r\n  <div class=\"modal-header\" style=\"background-color: #003471;\">\r\n    <h4 class=\"modal-title\" id=\"modal-basic-title\" style=\"color: #ffffff\">\r\n      {{ selectedPosition.position_name }}\r\n    </h4>\r\n    <button\r\n      type=\"button\"\r\n      class=\"close\"\r\n      aria-label=\"Close\"\r\n      (click)=\"modal.dismiss('Cross click')\"\r\n    >\r\n      <span aria-hidden=\"true\" style=\"color: #ffffff\">&times;</span>\r\n    </button>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <form>\r\n      <div class=\"form-group\">\r\n        <h5 class=\"jobSpec\">Job Specification</h5>\r\n        <p class=\"roleSummary\">{{ selectedPosition.position_summary }}</p>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</ng-template>"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\" style=\"justify-content: center;\">\r\n    <!-- <div class=\"col-md-2\">\r\n      <a routerLink=\"/it\"><button mat-raised-button style=\"background-color: #A80163;\"\r\n          class=\"nav-button\">IT</button></a></div> -->\r\n    <div *ngFor=\"let item of departmentNames\" class=\"col-md-1\">\r\n      <a routerLink=\"/engineering\"><button mat-raised-button style=\"background-color: #3F136C;\" class=\"nav-button\">{{item}}</button></a>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -63,7 +85,7 @@ module.exports = "<div class=\"container login-container\">\r\n  <div class=\"ro
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <main\r\n      role=\"main\"\r\n      class=\"col-sm-12 col-md-12 ml-sm-auto col-lg-12 pt-3 px-5 mainContent\"\r\n    >\r\n      <router-outlet></router-outlet>\r\n    </main>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <main role=\"main\" class=\"col-sm-12 col-md-12 ml-sm-auto col-lg-12 pt-3 px-5 mainContent\">\r\n      <router-outlet></router-outlet>\r\n    </main>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -74,7 +96,7 @@ module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container-fluid\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"navcss\" class=\"mainHeader\">\r\n  <nav class=\"navbar flex-md-nowrap navbar-fixed-top\">\r\n    <img\r\n      class=\"image-responsive logo\"\r\n      src=\"../assets/Kainos-logo.svg\"\r\n      alt=\"Kainos logo\"\r\n      width=\"90\"\r\n      height=\"39\"\r\n    />\r\n    <h1 id=\"CLtitle\">{{ title }}</h1>\r\n\r\n    <form class=\"form-inline my-2 my-lg-0 profileInfo\">\r\n      <span class=\"navbar-text userInfo\"> \r\n        Hello, {{ username }} \r\n      </span>\r\n      <i class=\"material-icons profileIcon\">\r\n          account_circle\r\n        </i>\r\n    </form>\r\n  </nav>\r\n</div>\r\n"
+module.exports = "<header class=\"header-main\" >\r\n  <div class=\"header-img\"></div>\r\n  <div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-1\"></div>\r\n      <div class=\"col-md-3\">\r\n        <a [routerLink]=\"['']\">\r\n          <img src=\"./assets/bosch.svg\" width=\"150px\" height=\"50\">\r\n        </a>\r\n        \r\n      </div>\r\n      <div class=\"col-md-1\">\r\n\r\n      </div>\r\n      <div class=\"col-md-2 title\">\r\n        Role Nxt\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</header>"
 
 /***/ }),
 
@@ -85,7 +107,7 @@ module.exports = "<div id=\"navcss\" class=\"mainHeader\">\r\n  <nav class=\"nav
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>position works!</p>\n"
+module.exports = "<p>position works!</p>\r\n"
 
 /***/ }),
 
@@ -102,8 +124,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _components_position_position_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/position/position.component */ "./src/app/components/position/position.component.ts");
+/* harmony import */ var _components_career_lattice_engineering_career_lattice_engineering_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/career-lattice-engineering/career-lattice-engineering.component */ "./src/app/components/career-lattice-engineering/career-lattice-engineering.component.ts");
+/* harmony import */ var _components_career_lattice_it_career_lattice_it_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/career-lattice-it/career-lattice-it.component */ "./src/app/components/career-lattice-it/career-lattice-it.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+
 
 
 
@@ -111,14 +135,18 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     {
-        path: "",
-        component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"],
-        data: { capabilityTitle: "All capabilities", familyID: "0" }
+        path: "engineering",
+        component: _components_career_lattice_engineering_career_lattice_engineering_component__WEBPACK_IMPORTED_MODULE_3__["CareerLatticeEngineeringComponent"],
     },
     {
-        path: "position/:id",
-        component: _components_position_position_component__WEBPACK_IMPORTED_MODULE_4__["PositionComponent"]
-    }
+        path: "it",
+        component: _components_career_lattice_it_career_lattice_it_component__WEBPACK_IMPORTED_MODULE_4__["CareerLatticeItComponent"]
+    },
+    {
+        path: '',
+        component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"]
+    },
+    { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -129,12 +157,6 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
 ], AppRoutingModule);
 
-// ,
-//   {
-//     path: "home/:username",
-//     component: HomeComponent,
-//     data: { capabilityTitle: "All capabilities", familyID: "0" }
-//   },
 
 
 /***/ }),
@@ -237,11 +259,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_career_lattice_engineering_career_lattice_engineering_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/career-lattice-engineering/career-lattice-engineering.component */ "./src/app/components/career-lattice-engineering/career-lattice-engineering.component.ts");
 /* harmony import */ var _components_main_main_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/main/main.component */ "./src/app/components/main/main.component.ts");
 /* harmony import */ var _swimlane_ngx_graph__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @swimlane/ngx-graph */ "./node_modules/@swimlane/ngx-graph/fesm2015/swimlane-ngx-graph.js");
 /* harmony import */ var _components_position_position_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/position/position.component */ "./src/app/components/position/position.component.ts");
 /* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm2015/button.js");
+/* harmony import */ var _components_career_lattice_it_career_lattice_it_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/career-lattice-it/career-lattice-it.component */ "./src/app/components/career-lattice-it/career-lattice-it.component.ts");
+/* harmony import */ var _reverse_pipe_pipe__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./reverse-pipe.pipe */ "./src/app/reverse-pipe.pipe.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+
+
+
+
+
 
 
 
@@ -264,9 +296,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
             _components_login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"],
             _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_13__["NavbarComponent"],
-            _components_home_home_component__WEBPACK_IMPORTED_MODULE_9__["HomeComponent"],
+            _components_career_lattice_engineering_career_lattice_engineering_component__WEBPACK_IMPORTED_MODULE_9__["CareerLatticeEngineeringComponent"],
             _components_main_main_component__WEBPACK_IMPORTED_MODULE_10__["MainComponent"],
-            _components_position_position_component__WEBPACK_IMPORTED_MODULE_12__["PositionComponent"]
+            _components_position_position_component__WEBPACK_IMPORTED_MODULE_12__["PositionComponent"],
+            _components_career_lattice_it_career_lattice_it_component__WEBPACK_IMPORTED_MODULE_16__["CareerLatticeItComponent"],
+            _reverse_pipe_pipe__WEBPACK_IMPORTED_MODULE_17__["ReversePipePipe"],
+            _components_home_home_component__WEBPACK_IMPORTED_MODULE_18__["HomeComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -275,7 +310,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"],
-            _swimlane_ngx_graph__WEBPACK_IMPORTED_MODULE_11__["NgxGraphModule"]
+            _swimlane_ngx_graph__WEBPACK_IMPORTED_MODULE_11__["NgxGraphModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_14__["BrowserAnimationsModule"],
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_15__["MatButtonModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -286,114 +323,82 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/classes/data.ts":
-/*!*********************************!*\
-  !*** ./src/app/classes/data.ts ***!
-  \*********************************/
-/*! exports provided: nodes, links, clusters, positions, promotions */
+/***/ "./src/app/classes/data-it.ts":
+/*!************************************!*\
+  !*** ./src/app/classes/data-it.ts ***!
+  \************************************/
+/*! exports provided: clusters, positions, promotions */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nodes", function() { return nodes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "links", function() { return links; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clusters", function() { return clusters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "positions", function() { return positions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "promotions", function() { return promotions; });
-const nodes = [
-    {
-        id: '1',
-        label: 'Financial Manager',
-    }, {
-        id: '2',
-        label: 'Brokerage Clerk'
-    }, {
-        id: '3',
-        label: 'Stock Broker'
-    }, {
-        id: '4',
-        label: 'Financial Advisor'
-    },
-    {
-        id: '5',
-        label: 'Financial Analyst'
-    }
-];
-const links = [
-    {
-        id: 'e1',
-        source: '2',
-        target: '4'
-    },
-    {
-        id: 'e2',
-        source: '2',
-        target: '3',
-    }, {
-        id: 'e3',
-        source: '2',
-        target: '5',
-    }, {
-        id: 'e4',
-        source: '4',
-        target: '1',
-    }, {
-        id: 'e5',
-        source: '3',
-        target: '1',
-    },
-    {
-        id: 'e6',
-        source: '5',
-        target: '1',
-    },
-];
 const clusters = [
     {
         id: 'c1',
-        label: 'Cluster node',
-        childNodeIds: ['3', '4', '5']
-    },
-    {
-        id: 'c2',
-        label: 'Cluster node 2',
+        label: 'Level 1',
         childNodeIds: ['1']
     },
     {
-        id: 'c3',
-        label: 'Cluster node 3',
+        id: 'c2',
+        label: 'Level 2',
         childNodeIds: ['2']
+    },
+    {
+        id: 'c3',
+        label: 'Level 3',
+        childNodeIds: ['3']
+    },
+    {
+        id: 'c4',
+        label: 'Level 4',
+        childNodeIds: ['4']
+    },
+    {
+        id: 'c5',
+        label: 'Level 5',
+        childNodeIds: ['5']
     }
 ];
 const positions = [
     {
         position_id: '1',
-        position_name: 'Financial Manager',
-        position_summary: 'Financial managers are responsible for the financial health of an organization. They produce financial reports, direct investment activities, and develop strategies and plans for the long-term financial goals of their organization. Financial managers work in many places, including banks and insurance companies.'
-    }, {
+        position_name: 'Member Engineering',
+        position_summary: 'Implement task with supervision',
+        career_path_id: ''
+    },
+    {
         position_id: '2',
-        position_name: 'Brokerage clerks',
-        position_summary: 'Brokerage clerks work for securities or brokerage firms. They are responsible for preparing and maintaining the records of financial transactions involving stocks, bonds, and other types of investments. Purchase-and-sale clerks match orders to buy with orders to sell and balance and verify stock trades.'
-    }, {
+        position_name: 'Principal Technologist',
+        position_summary: "Principal Technologist: Role Detail",
+        career_path_id: ''
+    },
+    {
         position_id: '3',
-        position_name: 'Stock Broker',
-        position_summary: 'A stockbroker is a professional who executes buy and sell orders for stocks and other securities on behalf of clients. A stockbroker may also be known as a registered'
-    }, {
+        position_name: 'Principle consultant',
+        position_summary: 'Principle consultant: Role Detail',
+        career_path_id: ''
+    },
+    {
         position_id: '4',
-        position_name: 'Financial Advisor',
-        position_summary: "A financial advisor is a professional that provides expertise for clients' decisions around money matters, personal finances, and investments. Financial advisors may work as an independent agent, or may be employed by a larger financial firm. Advisors must be licensed to carry out business with clients."
+        position_name: 'Program Manager',
+        position_summary: 'Program Manager: Role Detail',
+        career_path_id: ''
     },
     {
         position_id: '5',
-        position_name: 'Financial Analyst',
-        position_summary: 'Financial analysts work in banks, pension funds, insurance companies, and other businesses. Financial analysts provide guidance to businesses and individuals making investment decisions. They assess the performance of stocks, bonds, and other types of investments'
+        position_name: 'Engineering Manager',
+        position_summary: 'Engineering Manager: Role Detail',
+        career_path_id: ''
     }
 ];
 const promotions = [
     {
         promotion_id: '1',
-        start_position_id: '2',
-        next_position_id: '4'
+        start_position_id: '1',
+        next_position_id: '2'
     },
     {
         promotion_id: '2',
@@ -403,49 +408,262 @@ const promotions = [
     {
         promotion_id: '3',
         start_position_id: '2',
-        next_position_id: '5'
+        next_position_id: '4'
     },
     {
         promotion_id: '4',
-        start_position_id: '4',
-        next_position_id: '1'
+        start_position_id: '3',
+        next_position_id: '4'
     },
     {
         promotion_id: '5',
-        start_position_id: '3',
-        next_position_id: '1'
+        start_position_id: '4',
+        next_position_id: '5'
     },
     {
         promotion_id: '6',
-        start_position_id: '5',
-        next_position_id: '1'
+        start_position_id: '1',
+        next_position_id: '5'
     },
 ];
 
 
 /***/ }),
 
-/***/ "./src/app/components/home/home.component.css":
-/*!****************************************************!*\
-  !*** ./src/app/components/home/home.component.css ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".jobBandText {\r\n  padding: 0.5rem;\r\n  color: #ffffff;\r\n  font-size: 12px;\r\n  text-align: center;\r\n  z-index: -1;\r\n}\r\n\r\n.jobBand {\r\n  margin: auto;\r\n}\r\n\r\n::ng-deep .card-body {\r\n  padding: 10px 15px 0px 15px;\r\n}\r\n\r\n.roleSummary {\r\n  padding-bottom: 2rem;\r\n}\r\n\r\n#leadName {\r\n  padding-bottom: 0.1rem;\r\n  text-align: center;\r\n}\r\n\r\n#capabilityLeadTitle{\r\n  font-weight: bold;\r\n}\r\n\r\n#leadMessage{\r\n  font-style: italic;\r\n}\r\n\r\n.leadSummary{\r\n  padding-left: 0.9rem;\r\n  font-size: 12px;\r\n\r\n}\r\n\r\n#noLeadSummary {\r\n  font-style: italic;\r\n}\r\n\r\n#capPhoto{\r\n  float: right;\r\n}\r\n\r\n#border{\r\n  display: block;\r\n  border-bottom:1pt solid black;\r\n\r\n}\r\n\r\n.roleCap {\r\n  padding: 5px 12px 5px 12px;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixjQUFjO0VBQ2QsZUFBZTtFQUNmLGtCQUFrQjtFQUNsQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSwyQkFBMkI7QUFDN0I7O0FBRUE7RUFDRSxvQkFBb0I7QUFDdEI7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0Usb0JBQW9CO0VBQ3BCLGVBQWU7O0FBRWpCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUNBO0VBQ0UsY0FBYztFQUNkLDZCQUE2Qjs7QUFFL0I7O0FBRUE7RUFDRSwwQkFBMEI7QUFDNUIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmpvYkJhbmRUZXh0IHtcclxuICBwYWRkaW5nOiAwLjVyZW07XHJcbiAgY29sb3I6ICNmZmZmZmY7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB6LWluZGV4OiAtMTtcclxufVxyXG5cclxuLmpvYkJhbmQge1xyXG4gIG1hcmdpbjogYXV0bztcclxufVxyXG5cclxuOjpuZy1kZWVwIC5jYXJkLWJvZHkge1xyXG4gIHBhZGRpbmc6IDEwcHggMTVweCAwcHggMTVweDtcclxufVxyXG5cclxuLnJvbGVTdW1tYXJ5IHtcclxuICBwYWRkaW5nLWJvdHRvbTogMnJlbTtcclxufVxyXG5cclxuI2xlYWROYW1lIHtcclxuICBwYWRkaW5nLWJvdHRvbTogMC4xcmVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuI2NhcGFiaWxpdHlMZWFkVGl0bGV7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuXHJcbiNsZWFkTWVzc2FnZXtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbn1cclxuLmxlYWRTdW1tYXJ5e1xyXG4gIHBhZGRpbmctbGVmdDogMC45cmVtO1xyXG4gIGZvbnQtc2l6ZTogMTJweDtcclxuXHJcbn1cclxuXHJcbiNub0xlYWRTdW1tYXJ5IHtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbn1cclxuXHJcbiNjYXBQaG90b3tcclxuICBmbG9hdDogcmlnaHQ7XHJcbn1cclxuI2JvcmRlcntcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBib3JkZXItYm90dG9tOjFwdCBzb2xpZCBibGFjaztcclxuXHJcbn1cclxuXHJcbi5yb2xlQ2FwIHtcclxuICBwYWRkaW5nOiA1cHggMTJweCA1cHggMTJweDtcclxufVxyXG4iXX0= */"
-
-/***/ }),
-
-/***/ "./src/app/components/home/home.component.ts":
-/*!***************************************************!*\
-  !*** ./src/app/components/home/home.component.ts ***!
-  \***************************************************/
-/*! exports provided: HomeComponent */
+/***/ "./src/app/classes/data.ts":
+/*!*********************************!*\
+  !*** ./src/app/classes/data.ts ***!
+  \*********************************/
+/*! exports provided: clusters, positions, promotions, careerPaths */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clusters", function() { return clusters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "positions", function() { return positions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "promotions", function() { return promotions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "careerPaths", function() { return careerPaths; });
+const clusters = [
+    {
+        id: 'c1',
+        label: 'Level 1',
+        childNodeIds: ['Member Engineering'],
+    },
+    {
+        id: 'c2',
+        label: 'Level 2',
+        childNodeIds: ['Architect', 'Principal Technologist']
+    },
+    {
+        id: 'c3',
+        label: 'Level 3',
+        childNodeIds: ['Principle consultant', 'DQA', 'Technical Lead']
+    },
+    {
+        id: 'c4',
+        label: 'Level 4',
+        childNodeIds: ['SW Delivery Manager', 'SQM', 'Program Manager']
+    },
+    {
+        id: 'c5',
+        label: 'Level 5',
+        childNodeIds: ['Product Manager', 'Engineering Manager']
+    },
+    {
+        id: 'c6',
+        label: 'Level 6',
+        childNodeIds: ['Team Lead']
+    }
+];
+const positions = [
+    {
+        position_id: '1',
+        position_name: 'Member Engineering',
+        position_summary: 'Implement task with supervision',
+        career_path_id: '1'
+    }, {
+        position_id: '2',
+        position_name: 'Technical Lead',
+        position_summary: 'Technical Lead is responsible review team member code',
+        career_path_id: '3'
+    }, {
+        position_id: '3',
+        position_name: 'Architect',
+        position_summary: 'Architect: Role detail',
+        career_path_id: '1'
+    }, {
+        position_id: '4',
+        position_name: 'Principal Technologist',
+        position_summary: "Principal Technologist: Role Detail",
+        career_path_id: '1'
+    },
+    {
+        position_id: '5',
+        position_name: 'Principle consultant',
+        position_summary: 'Principle consultant: Role Detail',
+        career_path_id: '1'
+    },
+    {
+        position_id: '6',
+        position_name: 'Program Manager',
+        position_summary: 'Program Manager: Role Detail',
+        career_path_id: '1'
+    },
+    {
+        position_id: '7',
+        position_name: 'Engineering Manager',
+        position_summary: 'Engineering Manager: Role Detail',
+        career_path_id: '1'
+    },
+    {
+        position_id: '8',
+        position_name: 'DQA',
+        position_summary: 'DQA',
+        career_path_id: '2'
+    },
+    {
+        position_id: '9',
+        position_name: 'SQM',
+        position_summary: 'SQM',
+        career_path_id: '2'
+    },
+    {
+        position_id: '10',
+        position_name: 'SW Delivery Manager',
+        position_summary: 'SW Delivery Manager',
+        career_path_id: '3'
+    },
+    {
+        position_id: '11',
+        position_name: 'Product Manager',
+        position_summary: 'Product Manager',
+        career_path_id: '3'
+    },
+    {
+        position_id: '12',
+        position_name: 'Team Lead',
+        position_summary: 'Team Lead',
+        career_path_id: '3'
+    }
+];
+const promotions = [
+    {
+        promotion_id: '1',
+        start_position_id: '1',
+        next_position_id: '2'
+    },
+    {
+        promotion_id: '2',
+        start_position_id: '1',
+        next_position_id: '3'
+    },
+    {
+        promotion_id: '3',
+        start_position_id: '1',
+        next_position_id: '4'
+    },
+    {
+        promotion_id: '4',
+        start_position_id: '1',
+        next_position_id: '5'
+    },
+    {
+        promotion_id: '5',
+        start_position_id: '2',
+        next_position_id: '9'
+    },
+    {
+        promotion_id: '6',
+        start_position_id: '2',
+        next_position_id: '10'
+    },
+    {
+        promotion_id: '7',
+        start_position_id: '2',
+        next_position_id: '11'
+    },
+    {
+        promotion_id: '8',
+        start_position_id: '3',
+        next_position_id: '2'
+    },
+    {
+        promotion_id: '9',
+        start_position_id: '3',
+        next_position_id: '8'
+    },
+    {
+        promotion_id: '10',
+        start_position_id: '4',
+        next_position_id: '5'
+    },
+    {
+        promotion_id: '11',
+        start_position_id: '5',
+        next_position_id: '6'
+    },
+    {
+        promotion_id: '12',
+        start_position_id: '6',
+        next_position_id: '7'
+    },
+    {
+        promotion_id: '13',
+        start_position_id: '8',
+        next_position_id: '9'
+    },
+    {
+        promotion_id: '14',
+        start_position_id: '10',
+        next_position_id: '11'
+    }, {
+        promotion_id: '15',
+        start_position_id: '11',
+        next_position_id: '12'
+    }
+];
+const careerPaths = [
+    {
+        career_path_id: '1',
+        career_path_name: 'TCP',
+        color_code: '#1399A0'
+    },
+    {
+        career_path_id: '2',
+        career_path_name: 'PCP',
+        color_code: '#0E78C5'
+    },
+    {
+        career_path_id: '3',
+        career_path_name: 'LCP',
+        color_code: '#67B419'
+    }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/components/career-lattice-engineering/career-lattice-engineering.component.css":
+/*!************************************************************************************************!*\
+  !*** ./src/app/components/career-lattice-engineering/career-lattice-engineering.component.css ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "ul.legend {\r\n  margin: 20px;\r\n  list-style-type: none;\r\n  width: -webkit-fit-content;\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n}\r\n\r\ndiv.legend {\r\n  position: relative;\r\n}\r\n\r\n.input-color{\r\n  padding-left: 20px;\r\n}\r\n\r\nli.legend{\r\n  border: black solid 1px;\r\n  width: 250px;\r\n}\r\n\r\n.legend .color-box {\r\n  width: 10px;\r\n  height: 10px;\r\n  display: inline-block;\r\n  background-color: #ccc;\r\n  margin-right: 5px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJlZXItbGF0dGljZS1lbmdpbmVlcmluZy9jYXJlZXItbGF0dGljZS1lbmdpbmVlcmluZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtFQUNaLHFCQUFxQjtFQUNyQiwwQkFBa0I7RUFBbEIsdUJBQWtCO0VBQWxCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFDQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0FBQ2Q7O0FBQ0E7RUFDRSxXQUFXO0VBQ1gsWUFBWTtFQUNaLHFCQUFxQjtFQUNyQixzQkFBc0I7RUFDdEIsaUJBQWlCO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYXJlZXItbGF0dGljZS1lbmdpbmVlcmluZy9jYXJlZXItbGF0dGljZS1lbmdpbmVlcmluZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidWwubGVnZW5kIHtcclxuICBtYXJnaW46IDIwcHg7XHJcbiAgbGlzdC1zdHlsZS10eXBlOiBub25lO1xyXG4gIHdpZHRoOiBmaXQtY29udGVudDtcclxufVxyXG5cclxuZGl2LmxlZ2VuZCB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcbi5pbnB1dC1jb2xvcntcclxuICBwYWRkaW5nLWxlZnQ6IDIwcHg7XHJcbn1cclxubGkubGVnZW5ke1xyXG4gIGJvcmRlcjogYmxhY2sgc29saWQgMXB4O1xyXG4gIHdpZHRoOiAyNTBweDtcclxufVxyXG4ubGVnZW5kIC5jb2xvci1ib3gge1xyXG4gIHdpZHRoOiAxMHB4O1xyXG4gIGhlaWdodDogMTBweDtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2NjYztcclxuICBtYXJnaW4tcmlnaHQ6IDVweDtcclxufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/career-lattice-engineering/career-lattice-engineering.component.ts":
+/*!***********************************************************************************************!*\
+  !*** ./src/app/components/career-lattice-engineering/career-lattice-engineering.component.ts ***!
+  \***********************************************************************************************/
+/*! exports provided: CareerLatticeEngineeringComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CareerLatticeEngineeringComponent", function() { return CareerLatticeEngineeringComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _classes_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../classes/data */ "./src/app/classes/data.ts");
@@ -458,13 +676,228 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let HomeComponent = class HomeComponent {
+let CareerLatticeEngineeringComponent = class CareerLatticeEngineeringComponent {
     constructor(dataService, modalService) {
         this.modalService = modalService;
         this.name = 'NGX-Graph Demo';
         this.clusters = _classes_data__WEBPACK_IMPORTED_MODULE_2__["clusters"];
-        this.positions = _classes_data__WEBPACK_IMPORTED_MODULE_2__["positions"];
-        this.promotions = _classes_data__WEBPACK_IMPORTED_MODULE_2__["promotions"];
+        // positions: Position[] = positions;
+        this.positions = [];
+        // promotions: Promotion[] = promotions;
+        this.promotions = [];
+        this.careerPaths = _classes_data__WEBPACK_IMPORTED_MODULE_2__["careerPaths"];
+        this.careerMap = {};
+        this.isLoaded = false;
+        this.layoutSettings = {
+            orientation: "BT"
+        };
+        this.layout = 'dagreCluster';
+        // line interpolation
+        this.curveType = 'Bundle';
+        this.curve = d3_shape__WEBPACK_IMPORTED_MODULE_3__["curveLinear"];
+        this.draggingEnabled = false;
+        this.panningEnabled = false;
+        this.zoomEnabled = false;
+        this.autoZoom = true;
+        this.autoCenter = true;
+        this.data = dataService;
+        dataService.getPositions().subscribe(result => {
+            let tmp = [];
+            result.forEach(e => {
+                if (e["departmentName"] == "ETM") {
+                    tmp.push(e);
+                }
+            });
+            //
+            this.positions = this.getTmpNodeArray(tmp);
+            this.promotions = this.getTmpLinkDataArray(tmp);
+            this.getPositions();
+            this.getPromotions();
+            console.log(this.nodes);
+            console.log(this.links);
+            this.isLoaded = true;
+        }, err => console.error(err), () => console.log('done loading positions'));
+    }
+    getPositions() {
+        this.nodes = this.positions.map(position => {
+            let newNode = {
+                // id: position.position_id,
+                id: position.position_id.toString(),
+                label: position.position_name,
+                dimension: {
+                    width: 1000,
+                    height: 250
+                },
+                data: {
+                    customColor: this.careerMap[position.career_path_id].color_code
+                }
+            };
+            return newNode;
+        });
+    }
+    getPromotions() {
+        this.links = this.promotions.map(promotion => {
+            let newEdge = {
+                id: 'e' + promotion.promotion_id.toString(),
+                source: promotion.start_position_id.toString(),
+                target: promotion.next_position_id.toString()
+            };
+            return newEdge;
+        });
+    }
+    generateHashMap() {
+        this.careerPaths.forEach(element => {
+            this.careerMap[element.career_path_id] = element;
+        });
+    }
+    ngOnInit() {
+        this.generateHashMap();
+        // this.getPositions();
+        this.getPromotions();
+    }
+    openModal(content, id) {
+        this.selectedPosition = this.positions.find(function (element, index, array) {
+            return (element.position_id.toString() === id.toString());
+        });
+        this.modalService.open(content, {
+            size: "lg",
+            ariaLabelledBy: "modal-basic-title"
+        });
+    }
+    getTmpNodeArray(structures) {
+        var temp = [];
+        // to reassign obj, remove id,departmentname & domain
+        var newStructure = structures.map(e => {
+            let tmp = {};
+            for (let i in e) {
+                if (i != "id" && i != "departmentName" && i != "domain") {
+                    tmp[i] = e[i];
+                }
+            }
+            return tmp;
+        });
+        var tmp = [];
+        var arr = newStructure.map(e => {
+            for (let i in e) {
+                if (e[i] != null && e[i] != undefined) {
+                    tmp.push(e[i]);
+                }
+            }
+        });
+        let filtered = [...new Set(tmp)];
+        // to convert into arr of obj
+        let result = [];
+        filtered.map((e, i) => {
+            let tmp = {};
+            tmp["position_id"] = e;
+            tmp["position_name"] = e;
+            tmp["position_summary"] = e;
+            // tmp["career_path_id"] = "1";
+            tmp["career_path_id"] = new Date().getMilliseconds() % 3;
+            if (e != "")
+                result.push(tmp);
+        });
+        return result;
+    }
+    getTmpLinkDataArray(structures) {
+        var temp = [];
+        // to reassign obj, remove id,departmentname & domain
+        var newStructure = structures.map(e => {
+            let tmp = {};
+            for (let i in e) {
+                if (i != "id" && i != "departmentName" && i != "domain") {
+                    tmp[i] = e[i];
+                }
+            }
+            return tmp;
+        });
+        var tmpPair = [];
+        var arr = newStructure.map(e => {
+            let tmp = [];
+            for (let i in e) {
+                if (e[i] != null && e[i] != undefined) {
+                    tmp.push(e[i]);
+                }
+            }
+            //
+            // let index = 0;
+            for (let i = 0; i < tmp.length - 1; i++) {
+                let tmpObj = {};
+                if (tmp[i] == "" || tmp[i + 1] == "")
+                    continue;
+                // tmpObj["promotion_id"] = ++index;
+                tmpObj["start_position_id"] = tmp[i];
+                tmpObj["next_position_id"] = tmp[i + 1];
+                tmpPair.push(tmpObj);
+            }
+        });
+        // to convert into new arr of obj
+        // obj: {from: ..., to: ..., color: ...}
+        let keys = ['start_position_id', 'next_position_id'];
+        let filtered = tmpPair.filter((s => o => (k => !s.has(k) && s.add(k))(keys.map(k => o[k]).join('|')))(new Set));
+        let addedID = filtered.map((e, index) => {
+            e["promotion_id"] = index + 1;
+            return e;
+        });
+        return addedID;
+    }
+};
+CareerLatticeEngineeringComponent.ctorParameters = () => [
+    { type: src_app_data_service__WEBPACK_IMPORTED_MODULE_4__["DataService"] },
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"] }
+];
+CareerLatticeEngineeringComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-home",
+        template: __webpack_require__(/*! raw-loader!./career-lattice-engineering.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/career-lattice-engineering/career-lattice-engineering.component.html"),
+        styles: [__webpack_require__(/*! ./career-lattice-engineering.component.css */ "./src/app/components/career-lattice-engineering/career-lattice-engineering.component.css")]
+    })
+], CareerLatticeEngineeringComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/career-lattice-it/career-lattice-it.component.css":
+/*!******************************************************************************!*\
+  !*** ./src/app/components/career-lattice-it/career-lattice-it.component.css ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "ul.legend {\r\n    margin: 20px;\r\n    list-style-type: none;\r\n    width: -webkit-fit-content;\r\n    width: -moz-fit-content;\r\n    width: fit-content;\r\n}\r\n\r\ndiv.legend {\r\n    position: relative;\r\n}\r\n\r\n.input-color{\r\n    padding-left: 20px;\r\n}\r\n\r\nli.legend{\r\n    border: black solid 1px;\r\n    width: 250px;\r\n}\r\n\r\n.legend .color-box {\r\n    width: 10px;\r\n    height: 10px;\r\n    display: inline-block;\r\n    background-color: #ccc;\r\n    margin-right: 5px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJlZXItbGF0dGljZS1pdC9jYXJlZXItbGF0dGljZS1pdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksWUFBWTtJQUNaLHFCQUFxQjtJQUNyQiwwQkFBa0I7SUFBbEIsdUJBQWtCO0lBQWxCLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGtCQUFrQjtBQUN0Qjs7QUFDQTtJQUNJLGtCQUFrQjtBQUN0Qjs7QUFDQTtJQUNJLHVCQUF1QjtJQUN2QixZQUFZO0FBQ2hCOztBQUNBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0lBQ3RCLGlCQUFpQjtBQUNyQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2FyZWVyLWxhdHRpY2UtaXQvY2FyZWVyLWxhdHRpY2UtaXQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbInVsLmxlZ2VuZCB7XHJcbiAgICBtYXJnaW46IDIwcHg7XHJcbiAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XHJcbiAgICB3aWR0aDogZml0LWNvbnRlbnQ7XHJcbn1cclxuXHJcbmRpdi5sZWdlbmQge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcbi5pbnB1dC1jb2xvcntcclxuICAgIHBhZGRpbmctbGVmdDogMjBweDtcclxufVxyXG5saS5sZWdlbmR7XHJcbiAgICBib3JkZXI6IGJsYWNrIHNvbGlkIDFweDtcclxuICAgIHdpZHRoOiAyNTBweDtcclxufVxyXG4ubGVnZW5kIC5jb2xvci1ib3gge1xyXG4gICAgd2lkdGg6IDEwcHg7XHJcbiAgICBoZWlnaHQ6IDEwcHg7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjY2NjO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XHJcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/career-lattice-it/career-lattice-it.component.ts":
+/*!*****************************************************************************!*\
+  !*** ./src/app/components/career-lattice-it/career-lattice-it.component.ts ***!
+  \*****************************************************************************/
+/*! exports provided: CareerLatticeItComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CareerLatticeItComponent", function() { return CareerLatticeItComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _classes_data_it__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../classes/data-it */ "./src/app/classes/data-it.ts");
+/* harmony import */ var d3_shape__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! d3-shape */ "./node_modules/d3-shape/src/index.js");
+/* harmony import */ var src_app_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/data.service */ "./src/app/data.service.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+
+
+
+
+
+
+let CareerLatticeItComponent = class CareerLatticeItComponent {
+    constructor(dataService, modalService) {
+        this.modalService = modalService;
+        this.name = 'NGX-Graph Demo';
+        this.clusters = _classes_data_it__WEBPACK_IMPORTED_MODULE_2__["clusters"];
+        this.positions = _classes_data_it__WEBPACK_IMPORTED_MODULE_2__["positions"];
+        this.promotions = _classes_data_it__WEBPACK_IMPORTED_MODULE_2__["promotions"];
         this.layoutSettings = {
             orientation: "BT"
         };
@@ -484,7 +917,11 @@ let HomeComponent = class HomeComponent {
             let newNode = {
                 // id: position.position_id,
                 id: position.position_id.toString(),
-                label: position.position_name
+                label: position.position_name,
+                dimension: {
+                    width: 1000,
+                    height: 250
+                }
             };
             return newNode;
         });
@@ -513,13 +950,67 @@ let HomeComponent = class HomeComponent {
         });
     }
 };
-HomeComponent.ctorParameters = () => [
+CareerLatticeItComponent.ctorParameters = () => [
     { type: src_app_data_service__WEBPACK_IMPORTED_MODULE_4__["DataService"] },
     { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"] }
 ];
+CareerLatticeItComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-career-lattice-it',
+        template: __webpack_require__(/*! raw-loader!./career-lattice-it.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/career-lattice-it/career-lattice-it.component.html"),
+        styles: [__webpack_require__(/*! ./career-lattice-it.component.css */ "./src/app/components/career-lattice-it/career-lattice-it.component.css")]
+    })
+], CareerLatticeItComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/home/home.component.css":
+/*!****************************************************!*\
+  !*** ./src/app/components/home/home.component.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".nav-button{\r\n    width: 100%;\r\n    margin: 20px 0px 0px 0px;\r\n    color: white;\r\n    height: 50px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFdBQVc7SUFDWCx3QkFBd0I7SUFDeEIsWUFBWTtJQUNaLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdi1idXR0b257XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIG1hcmdpbjogMjBweCAwcHggMHB4IDBweDtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIGhlaWdodDogNTBweDtcclxufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/home/home.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/components/home/home.component.ts ***!
+  \***************************************************/
+/*! exports provided: HomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let HomeComponent = class HomeComponent {
+    constructor() {
+        this.departmentNames = [
+            "ENG",
+            "EVH",
+            "EJV",
+            "ESS",
+            "EPS",
+            "EPS",
+            "EPS",
+            "ETI",
+            "ETM",
+        ];
+    }
+    ngOnInit() {
+    }
+};
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-home",
+        selector: 'app-home',
         template: __webpack_require__(/*! raw-loader!./home.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/home/home.component.html"),
         styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/components/home/home.component.css")]
     })
@@ -645,7 +1136,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbWFpbi9tYWluLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".nav-button{\r\n    width: 100%;\r\n    margin: 20px 0px 20px 10px ;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9tYWluL21haW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFdBQVc7SUFDWCwyQkFBMkI7QUFDL0IiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL21haW4vbWFpbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdi1idXR0b257XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIG1hcmdpbjogMjBweCAwcHggMjBweCAxMHB4IDtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -722,7 +1213,7 @@ MainComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#navcss{\r\n  background-color: #003471;\r\n  padding: 1rem;\r\n  color: #ffffff;\r\n}\r\n\r\n.navbar {\r\n  height:14px;\r\n}\r\n\r\n.logo {\r\n  z-index: 10;\r\n}\r\n\r\n#CLtitle {\r\n  text-align: center;\r\n  position: absolute;\r\n  color: #ffffff;\r\n  font-size: 18px;\r\n  width: 100%;\r\n  padding-right: 5%;\r\n}\r\n\r\n.mainHeader {\r\n  z-index: 100;\r\n  background-color: #003471;\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  width: 100%;\r\n  box-shadow: 0 1px 2px 1px hsla(0, 0%, 0%, 0.1);\r\n  border: 0;\r\n}\r\n\r\n.usernameDisplay {\r\n  float: right;\r\n}\r\n\r\n.profileInfo {\r\n  z-index: 10;\r\n  text-decoration: none;\r\n}\r\n\r\n.userInfo {\r\n  padding-right: 0.5rem;\r\n  font-size: 15px;\r\n}\r\n\r\n.profileIcon {\r\n  padding-right: 1.5rem;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7RUFDekIsYUFBYTtFQUNiLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxlQUFlO0VBQ2YsV0FBVztFQUNYLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLFlBQVk7RUFDWix5QkFBeUI7RUFDekIsd0JBQWdCO0VBQWhCLGdCQUFnQjtFQUNoQixNQUFNO0VBQ04sV0FBVztFQUNYLDhDQUE4QztFQUM5QyxTQUFTO0FBQ1g7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxXQUFXO0VBQ1gscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxxQkFBcUI7QUFDdkIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL25hdmJhci9uYXZiYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIiNuYXZjc3N7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzAwMzQ3MTtcclxuICBwYWRkaW5nOiAxcmVtO1xyXG4gIGNvbG9yOiAjZmZmZmZmO1xyXG59XHJcblxyXG4ubmF2YmFyIHtcclxuICBoZWlnaHQ6MTRweDtcclxufVxyXG5cclxuLmxvZ28ge1xyXG4gIHotaW5kZXg6IDEwO1xyXG59XHJcblxyXG4jQ0x0aXRsZSB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBjb2xvcjogI2ZmZmZmZjtcclxuICBmb250LXNpemU6IDE4cHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgcGFkZGluZy1yaWdodDogNSU7XHJcbn1cclxuXHJcbi5tYWluSGVhZGVyIHtcclxuICB6LWluZGV4OiAxMDA7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzAwMzQ3MTtcclxuICBwb3NpdGlvbjogc3RpY2t5O1xyXG4gIHRvcDogMDtcclxuICB3aWR0aDogMTAwJTtcclxuICBib3gtc2hhZG93OiAwIDFweCAycHggMXB4IGhzbGEoMCwgMCUsIDAlLCAwLjEpO1xyXG4gIGJvcmRlcjogMDtcclxufVxyXG5cclxuLnVzZXJuYW1lRGlzcGxheSB7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG59XHJcblxyXG4ucHJvZmlsZUluZm8ge1xyXG4gIHotaW5kZXg6IDEwO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxufVxyXG5cclxuLnVzZXJJbmZvIHtcclxuICBwYWRkaW5nLXJpZ2h0OiAwLjVyZW07XHJcbiAgZm9udC1zaXplOiAxNXB4O1xyXG59XHJcblxyXG4ucHJvZmlsZUljb24ge1xyXG4gIHBhZGRpbmctcmlnaHQ6IDEuNXJlbTtcclxufSJdfQ== */"
+module.exports = ".header-img{\r\n  background-image: url('header-background.png');\r\n  height: 10px;\r\n  width: auto;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.header-main{\r\n  background-color: white;\r\n  height: 80px;\r\n  border-bottom: 1px #80808040 solid;\r\n}\r\n\r\n.title{\r\n  color: #EA0016;\r\n  font-size: 30px;\r\n  font-weight: bolder;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSw4Q0FBOEQ7RUFDOUQsWUFBWTtFQUNaLFdBQVc7RUFDWCxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSx1QkFBdUI7RUFDdkIsWUFBWTtFQUNaLGtDQUFrQztBQUNwQzs7QUFFQTtFQUNFLGNBQWM7RUFDZCxlQUFlO0VBQ2YsbUJBQW1CO0FBQ3JCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9uYXZiYXIvbmF2YmFyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVyLWltZ3tcclxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCIuLi8uLi8uLi9hc3NldHMvaGVhZGVyLWJhY2tncm91bmQucG5nXCIpO1xyXG4gIGhlaWdodDogMTBweDtcclxuICB3aWR0aDogYXV0bztcclxuICBtYXJnaW4tYm90dG9tOiAxMHB4O1xyXG59XHJcblxyXG4uaGVhZGVyLW1haW57XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XHJcbiAgaGVpZ2h0OiA4MHB4O1xyXG4gIGJvcmRlci1ib3R0b206IDFweCAjODA4MDgwNDAgc29saWQ7XHJcbn1cclxuXHJcbi50aXRsZXtcclxuICBjb2xvcjogI0VBMDAxNjtcclxuICBmb250LXNpemU6IDMwcHg7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGRlcjtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -854,6 +1345,7 @@ let DataService = class DataService {
         this.loginDetails = this.http.get("api/user-details");
         this.positions = this.http.get("api/positions");
         this.promotions = this.http.get("api/promotions");
+        this.getPositions = () => this.http.get("http://hc1vm003:8123/orgchart/api/getAllStructures/");
     }
 };
 DataService.ctorParameters = () => [
@@ -864,6 +1356,35 @@ DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: "root"
     })
 ], DataService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/reverse-pipe.pipe.ts":
+/*!**************************************!*\
+  !*** ./src/app/reverse-pipe.pipe.ts ***!
+  \**************************************/
+/*! exports provided: ReversePipePipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReversePipePipe", function() { return ReversePipePipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let ReversePipePipe = class ReversePipePipe {
+    transform(value) {
+        return value.slice().reverse();
+    }
+};
+ReversePipePipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+        name: 'reverse'
+    })
+], ReversePipePipe);
 
 
 
@@ -927,19 +1448,22 @@ const environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm2015/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])()
-    .bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])()
+    .bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"])
     .catch(err => console.error(err));
 
 
@@ -952,7 +1476,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\APV1HC\Documents\Project\Plantect\Heroku2\new roku\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\RRA81HC\Desktop\WorkPlace\Repositories\bosch-git\role-nxt-heroku\src\main.ts */"./src/main.ts");
 
 
 /***/ })
