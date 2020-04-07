@@ -9,6 +9,7 @@ import { Position } from 'src/app/classes/position';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Promotion } from 'src/app/classes/promotion';
 import { CareerPath } from 'src/app/classes/career-path';
+import { ActivatedRoute } from '@angular/router';
 
 
 export interface IHash {
@@ -24,7 +25,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
 
   name = 'NGX-Graph Demo';
   data: DataService;
-
+  departmentName = "";
   links: Edge[];
   nodes: Node[];
   clusters: ClusterNode[] = clusters;
@@ -54,28 +55,9 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   autoZoom: boolean = true;
   autoCenter: boolean = true;
 
-  constructor(dataService: DataService, private modalService: NgbModal, ) {
-    this.data = dataService;
-    dataService.getPositions().subscribe(
-      result => {
-        let tmp = [];
-        result.forEach(e => {
-          if (e["departmentName"] == "ETM") {
-            tmp.push(e);
-          }
-        })
-        //
-        this.positions = this.getTmpNodeArray(tmp);
-        this.promotions = this.getTmpLinkDataArray(tmp);
-        this.getPositions();
-        this.getPromotions();
-        console.log(this.nodes);
-        console.log(this.links);
-        this.isLoaded = true;
-      },
-      err => console.error(err),
-      () => console.log('done loading positions')
-    );
+  constructor(private dataService: DataService, private modalService: NgbModal, private route: ActivatedRoute) {
+    // this.data = dataService;
+    
   }
 
   getPositions(): void {
@@ -89,7 +71,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
           height: 250
         },
         data: {
-          customColor: this.careerMap[position.career_path_id].color_code
+          customColor: this.careerMap[position.career_path_id].color_code || "#1399A0"
         }
       }
       return newNode;
@@ -114,10 +96,34 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.generateHashMap();
-    // this.getPositions();
+   
+    this.route.params.subscribe(params => {
+      this.departmentName = params['id'];
+    });
 
+    this.generateHashMap();
     this.getPromotions();
+    
+    /// 
+    this.dataService.getPositions().subscribe(
+      result => {
+        let tmp = [];
+        result.forEach(e => {
+          if (e["departmentName"] == this.departmentName) {
+            tmp.push(e);
+          }
+        })
+        //
+        this.positions = this.getTmpNodeArray(tmp);
+        this.promotions = this.getTmpLinkDataArray(tmp);
+        this.getPositions();
+        this.getPromotions();
+        this.isLoaded = true;
+      },
+      err => console.error(err),
+      () => console.log('done loading positions')
+    );
+
   }
 
   openModal(content, id: string) {
@@ -164,7 +170,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       tmp["position_name"] = e;
       tmp["position_summary"] = e;
       // tmp["career_path_id"] = "1";
-      tmp["career_path_id"] = new Date().getMilliseconds() % 3;
+      tmp["career_path_id"] = new Date().getMilliseconds() % 3 + 1;
+      console.log("career_path_id: "+new Date().getMilliseconds() % 3 + 1)
       if (e != "") result.push(tmp);
     })
 
@@ -216,8 +223,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       )
         (new Set)
     );
-    let addedID=filtered.map((e,index)=>{
-      e["promotion_id"] = index+1;
+    let addedID = filtered.map((e, index) => {
+      e["promotion_id"] = index + 1;
       return e;
     })
     return addedID;
