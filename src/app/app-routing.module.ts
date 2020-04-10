@@ -4,11 +4,16 @@ import { CareerLatticeEngineeringComponent } from "./components/career-lattice-e
 import { PositionComponent } from './components/position/position.component';
 import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
 import { HomeComponent } from './components/home/home.component';
+import { PositionDetailComponent } from './components/position-detail/position-detail.component';
 
 const routes: Routes = [
   {
     path: ":id/position",
     component: CareerLatticeEngineeringComponent,
+  },
+  {
+    path: "position-details/:id",
+    component: PositionDetailComponent,
   },
   {
     path: "it",

@@ -16,5 +16,7 @@ export class DataService {
 
   getPositions = () => this.http.get<JSON[]>("http://hc1vm003:8123/orgchart/api/getAllStructures/");
   getDepartment = () => this.http.get<JSON[]>("http://hc1vm003:8123/orgchart/api/getAllStructures/");
+  getCluster = () => this.http.get<JSON[]>("http://hc1vm003:8123/orgchart/api/getAllStructures/");
+  getAllPositionDetails = () => this.http.get<JSON[]>("http://hc1vm003:8123/orgchart/api/getAllPositionDetails/");
   
 }

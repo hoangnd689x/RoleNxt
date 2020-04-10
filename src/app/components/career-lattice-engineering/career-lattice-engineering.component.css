@@ -21,3 +21,9 @@ li.legend{
   background-color: #ccc;
   margin-right: 5px;
 }
+g.node rect,text {
+  cursor: pointer;
+}
+rect:hover{
+  cursor: pointer;
+}

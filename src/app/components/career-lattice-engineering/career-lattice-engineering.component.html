@@ -11,7 +11,8 @@
           </svg:marker>
         </ng-template>
         <ng-template #nodeTemplate let-node>
-          <svg:g (click)="openModal(content,node.id)">
+          <!-- <svg:g (click)="openModal(content,node.id)"> -->
+          <svg:g [routerLink]="['/position-details',node.id]" (click)="gotoDetails(content,node.id)">
             <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height" [attr.fill]="node.data.customColor" 
               style="stroke-width:3;stroke:rgb(0,0,0)" />
             <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="100" font-size="4em" [attr.y]="node.dimension.height / 2">

@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Promotion } from 'src/app/classes/promotion';
 import { CareerPath } from 'src/app/classes/career-path';
 import { ActivatedRoute } from '@angular/router';
+// import { Cluster } from 'cluster';
 
 
 export interface IHash {
@@ -22,13 +23,26 @@ export interface IHash {
   styleUrls: ["./career-lattice-engineering.component.css"]
 })
 export class CareerLatticeEngineeringComponent implements OnInit {
-
+  careerPathColorMap = [
+    {
+      TCP: '#1399A0'
+    },
+    {
+      PCP: '#0E78C5'
+    },
+    {
+      LCP: '#67B419'
+    },
+  ];
+  positionCareerPathMap = [];
   name = 'NGX-Graph Demo';
   data: DataService;
   departmentName = "";
   links: Edge[];
   nodes: Node[];
-  clusters: ClusterNode[] = clusters;
+  // clusters: ClusterNode[] = clusters;
+  clusters: ClusterNode[] = [];
+
   // positions: Position[] = positions;
   positions: Position[] = [];
   // promotions: Promotion[] = promotions;
@@ -57,11 +71,12 @@ export class CareerLatticeEngineeringComponent implements OnInit {
 
   constructor(private dataService: DataService, private modalService: NgbModal, private route: ActivatedRoute) {
     // this.data = dataService;
-    
+
   }
 
   getPositions(): void {
     this.nodes = this.positions.map(position => {
+      let color = "";
       let newNode: Node = {
         // id: position.position_id,
         id: position.position_id.toString(),
@@ -71,7 +86,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
           height: 250
         },
         data: {
-          customColor: this.careerMap[position.career_path_id].color_code || "#1399A0"
+          // customColor: this.careerMap[position.career_path_id].color_code || "#1399A0"
+          customColor: this.getColorByPosition(position.position_name) || "#1399A0"
         }
       }
       return newNode;
@@ -96,14 +112,21 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
     this.route.params.subscribe(params => {
       this.departmentName = params['id'];
     });
 
     this.generateHashMap();
-    this.getPromotions();
+    // to get career path
     
+    this.dataService.getAllPositionDetails().subscribe(data => {
+      data.forEach(position=>{
+        let tmp = {};
+        tmp[position["position"]] = position["careerPath"];
+        this.positionCareerPathMap.push(tmp);
+      })
+    })
     /// 
     this.dataService.getPositions().subscribe(
       result => {
@@ -116,6 +139,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
         //
         this.positions = this.getTmpNodeArray(tmp);
         this.promotions = this.getTmpLinkDataArray(tmp);
+        this.clusters = this.getTmpCluster(this.getTmpNodeArray(tmp));
         this.getPositions();
         this.getPromotions();
         this.isLoaded = true;
@@ -134,6 +158,12 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       size: "lg",
       ariaLabelledBy: "modal-basic-title"
     });
+  }
+  gotoDetails(content, id: string) {
+    this.selectedPosition = this.positions.find(function (element, index, array) {
+      return (element.position_id.toString() === id.toString());
+    })
+    console.log("gotoDetail == id: ", id);
   }
 
   getTmpNodeArray(structures) {
@@ -171,7 +201,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       tmp["position_summary"] = e;
       // tmp["career_path_id"] = "1";
       tmp["career_path_id"] = new Date().getMilliseconds() % 3 + 1;
-      console.log("career_path_id: "+new Date().getMilliseconds() % 3 + 1)
+      console.log("career_path_id: " + new Date().getMilliseconds() % 3 + 1)
       if (e != "") result.push(tmp);
     })
 
@@ -229,5 +259,27 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     })
     return addedID;
 
+  }
+
+  getTmpCluster(nodeArray) {
+    let hardCodeClusters = clusters;
+    let tmpCluster = [];
+    hardCodeClusters.forEach(cluster => {
+      let clusterNames = cluster["childNodeIds"];
+      nodeArray.forEach(node => {
+        let notExisted = tmpCluster.indexOf(cluster) == -1;
+        if (clusterNames.indexOf(node["position_name"]) != -1 && notExisted) {
+          tmpCluster.push(cluster);
+        };
+      });
+
+    })
+    return tmpCluster;
+  }
+  getColorByPosition(position){
+    let colorCode="";
+    let carrePath=this.positionCareerPathMap.filter(positionObj => positionObj.hasOwnProperty(position))[0][position];
+    colorCode=this.careerPathColorMap.filter(careerpathObj => careerpathObj.hasOwnProperty(carrePath))[0][carrePath];
+    return colorCode;
   }
 }

@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
 import { ReversePipePipe } from './reverse-pipe.pipe';
 import { HomeComponent } from './components/home/home.component';
+import { PositionDetailComponent } from './components/position-detail/position-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeComponent } from './components/home/home.component';
     PositionComponent,
     CareerLatticeItComponent,
     ReversePipePipe,
-    HomeComponent
+    HomeComponent,
+    PositionDetailComponent,
   ],
   imports: [
     BrowserModule,
