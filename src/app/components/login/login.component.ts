@@ -56,20 +56,20 @@ export class LoginComponent {
     this.headers = {
       'Content-Type': 'application/json'
     };
-    this.http
-      .post('/api/user-details', { params: params }, this.headers)
-      .subscribe(response => {
-        let rsp = JSON.stringify(response);
-        rsp = rsp.substring(11, 12);
-        if (rsp == 'a') {
-          this.successfulLogin(true, username);
-        } else if (rsp == 'e') {
-          this.successfulLogin(false, username);
-        } else if (rsp == 'f') {
-          alert('Failed');
-        }
-        window.location.reload();
-        this.signInStatus = rsp;
-      });
+    // this.http
+    //   .post('/api/user-details', { params: params }, this.headers)
+    //   .subscribe(response => {
+    //     let rsp = JSON.stringify(response);
+    //     rsp = rsp.substring(11, 12);
+    //     if (rsp == 'a') {
+    //       this.successfulLogin(true, username);
+    //     } else if (rsp == 'e') {
+    //       this.successfulLogin(false, username);
+    //     } else if (rsp == 'f') {
+    //       alert('Failed');
+    //     }
+    //     window.location.reload();
+    //     this.signInStatus = rsp;
+    //   });
   }
 }
