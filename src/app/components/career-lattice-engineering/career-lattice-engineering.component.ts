@@ -42,7 +42,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   nodes: Node[];
   // clusters: ClusterNode[] = clusters;
   clusters: ClusterNode[] = [];
-
+  clusterName = [];
   // positions: Position[] = positions;
   positions: Position[] = [];
   // promotions: Promotion[] = promotions;
@@ -117,15 +117,16 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       this.departmentName = params['id'];
     });
 
-    this.generateHashMap();
+
     // to get career path
-    
+
     this.dataService.getAllPositionDetails().subscribe(data => {
-      data.forEach(position=>{
+      data.forEach(position => {
         let tmp = {};
         tmp[position["position"]] = position["careerPath"];
         this.positionCareerPathMap.push(tmp);
-      })
+      });
+      console.log("done get all positions details");
     })
     /// 
     this.dataService.getPositions().subscribe(
@@ -139,7 +140,6 @@ export class CareerLatticeEngineeringComponent implements OnInit {
         //
         this.positions = this.getTmpNodeArray(tmp);
         this.promotions = this.getTmpLinkDataArray(tmp);
-        this.clusters = this.getTmpCluster(this.getTmpNodeArray(tmp));
         this.getPositions();
         this.getPromotions();
         this.isLoaded = true;
@@ -147,7 +147,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       err => console.error(err),
       () => console.log('done loading positions')
     );
-
+    this.generateHashMap();
   }
 
   openModal(content, id: string) {
@@ -179,12 +179,16 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       }
       return tmp;
     });
-
+    // to collect clusterName
+    for (let name in newStructure[0]) {
+      this.clusterName.push(name);
+    }
+    // to convert to clusterNode
+    this.convertClusterNode(newStructure);
     var tmp = [];
-    var arr = newStructure.map(e => {
-
+    newStructure.forEach(e => {
       for (let i in e) {
-        if (e[i] != null && e[i] != undefined) {
+        if (e[i] != null && e[i] != undefined && e[i] != "") {
           tmp.push(e[i]);
         }
       }
@@ -199,9 +203,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       tmp["position_id"] = e;
       tmp["position_name"] = e;
       tmp["position_summary"] = e;
-      // tmp["career_path_id"] = "1";
-      tmp["career_path_id"] = new Date().getMilliseconds() % 3 + 1;
-      console.log("career_path_id: " + new Date().getMilliseconds() % 3 + 1)
+      // tmp["career_path_id"] = this.mapPositionCareer(e);
       if (e != "") result.push(tmp);
     })
 
@@ -261,25 +263,61 @@ export class CareerLatticeEngineeringComponent implements OnInit {
 
   }
 
-  getTmpCluster(nodeArray) {
-    let hardCodeClusters = clusters;
-    let tmpCluster = [];
-    hardCodeClusters.forEach(cluster => {
-      let clusterNames = cluster["childNodeIds"];
-      nodeArray.forEach(node => {
-        let notExisted = tmpCluster.indexOf(cluster) == -1;
-        if (clusterNames.indexOf(node["position_name"]) != -1 && notExisted) {
-          tmpCluster.push(cluster);
-        };
-      });
+  // getTmpCluster(nodeArray) {
+
+  //   console.log("hardCodeClusters === clusterName : ", this.clusterName);
+  //   let hardCodeClusters = clusters;
+  //   let tmpCluster = [];
+  //   hardCodeClusters.forEach(cluster => {
+  //     let clusterNames = cluster["childNodeIds"];
+  //     nodeArray.forEach(node => {
+  //       let notExisted = tmpCluster.indexOf(cluster) == -1;
+  //       if (clusterNames.indexOf(node["position_name"]) != -1 && notExisted) {
+  //         tmpCluster.push(cluster);
+  //       };
+  //     });
+
+  //   })
+  //   return tmpCluster;
+  // }
+  convertClusterNode(newStructure){
+    // convert into clusterNode
+    // {
+    //     id: 'c1',
+    //     label: 'Level 1',
+    //     childNodeIds: ['Member Engineering'],
+    // }
+    let tmp={};
+    newStructure.forEach(e => {
+      for (let i in e) {
+        if (e[i] != null && e[i] != undefined && e[i] != "") {
+          if(!tmp[i]) tmp[i]=[];
+          tmp[i].push(e[i]);
+        }
+      }
 
     })
-    return tmpCluster;
+    let tmpArr=[];
+    for(let level in tmp){
+      let obj={};
+      obj["id"]=level;
+      obj["label"]=level;
+      obj["childNodeIds"]=tmp[level];
+      // this.clusters.push(obj);
+      tmpArr.push(obj);
+    }
+    this.clusters= tmpArr;
+    // console.log("convertClusterNode=== clusters: ",this.clusters)
   }
-  getColorByPosition(position){
-    let colorCode="";
-    let carrePath=this.positionCareerPathMap.filter(positionObj => positionObj.hasOwnProperty(position))[0][position];
-    colorCode=this.careerPathColorMap.filter(careerpathObj => careerpathObj.hasOwnProperty(carrePath))[0][carrePath];
+  getColorByPosition(position) {
+    // console.log("getColorByPosition === position : ", position);
+    let colorCode = "";
+    let carrePath = this.positionCareerPathMap.filter(positionObj => positionObj.hasOwnProperty(position))[0][position];
+    colorCode = this.careerPathColorMap.filter(careerpathObj => careerpathObj.hasOwnProperty(carrePath))[0][carrePath];
     return colorCode;
+  }
+  mapPositionCareer(positionName) {
+    // console.log("mapPositionCareer === positionName : ", positionName);
+    return this.positionCareerPathMap.filter(e => e.hasOwnProperty(positionName))[0][positionName];
   }
 }
