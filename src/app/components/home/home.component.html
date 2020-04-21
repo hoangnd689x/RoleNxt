@@ -1,10 +1,5 @@
-<div *ngIf="isLoaded" class="container-fluid">
-  <div class="row" style="justify-content: center;">
-    <!-- <div class="col-md-2">
-      <a routerLink="/it"><button mat-raised-button style="background-color: #A80163;"
-          class="nav-button">IT</button></a></div> -->
+<section *ngIf="isLoaded" class="home-container align-items-center">
     <div *ngFor="let item of department" class="col-md-1">
-      <a [routerLink]="[item.name,'position']"><button mat-raised-button [ngStyle]="{'background-color': item.color}" class="nav-button">{{item.name}}</button></a>
+      <a [routerLink]="['position',item.id]"><button mat-raised-button [ngStyle]="{'background-color': item.color}" class="nav-button">{{item.name}}</button></a>
     </div>
-  </div>
-</div>
+  </section>

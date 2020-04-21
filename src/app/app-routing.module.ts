@@ -5,10 +5,11 @@ import { PositionComponent } from './components/position/position.component';
 import { CareerLatticeItComponent } from './components/career-lattice-it/career-lattice-it.component';
 import { HomeComponent } from './components/home/home.component';
 import { PositionDetailComponent } from './components/position-detail/position-detail.component';
+import { LinksComponent } from './components/admin/links/links.component';
 
 const routes: Routes = [
   {
-    path: ":id/position",
+    path: "position/:id",
     component: CareerLatticeEngineeringComponent,
   },
   {
@@ -16,19 +17,18 @@ const routes: Routes = [
     component: PositionDetailComponent,
   },
   {
-    path: "it",
-    component: CareerLatticeItComponent
-  },
-  {
     path: '',
     component: HomeComponent
-  }
-  ,
+  },
+  {
+    path: "admin/links/:id", // manage links by department
+    component: LinksComponent,
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

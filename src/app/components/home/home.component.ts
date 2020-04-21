@@ -8,7 +8,6 @@ import { DataService } from 'src/app/data.service';
 })
 export class HomeComponent implements OnInit {
   isLoaded = false;
-  departmentNames = [];
   departmentColorCode = [
     "#e64179",
     "#f54d27",
@@ -21,20 +20,18 @@ export class HomeComponent implements OnInit {
     "#3140b3",
     "#fc4411",
   ]
-  department=[];
+  department = [];
 
-  constructor(dataService: DataService) {
-    dataService.getDepartment().subscribe(
+  constructor(private dataService: DataService) {
+
+  }
+
+  ngOnInit() {
+    this.dataService.getDepartment().subscribe(
       result => {
-        let tmp = [];
-        tmp=result.map(e => e["departmentName"]);
-        const uniSet = new Set(tmp);
-        this.departmentNames = [...uniSet];
-        this.departmentNames.forEach((name,index) => {
-          let tmp={};
-          tmp["name"]=name;
-          tmp["color"]=this.departmentColorCode[index] || "#555db7";
-          if(tmp["name"] && tmp["name"]!="") this.department.push(tmp)
+        result.forEach((department, index) => {
+          department["color"] = this.departmentColorCode[index] || "#555db7";
+          this.department.push(department);
         });
         this.isLoaded = true;
       },
@@ -42,9 +39,6 @@ export class HomeComponent implements OnInit {
         this.isLoaded = true;
       }
     );
-  }
-
-  ngOnInit() {
   }
 
 }

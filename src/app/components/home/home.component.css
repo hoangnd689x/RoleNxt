@@ -1,6 +1,6 @@
-.nav-button{
+.home-container{
+    justify-content: center;
+    height: 100%;
     width: 100%;
-    margin: 20px 0px 0px 0px;
-    color: white;
-    height: 50px;
+    display: flex;
 }

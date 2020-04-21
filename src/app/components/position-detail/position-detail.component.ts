@@ -9,7 +9,7 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./position-detail.component.css']
 })
 export class PositionDetailComponent implements OnInit {
-  positionName = "";
+  positionID = "";
   positionDetail: any;
   isLoaded: Boolean = false;
 
@@ -17,21 +17,14 @@ export class PositionDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.positionName = params['id'];
+      this.positionID = params['id'];
     });
     // let allPositions = this.getAllPositionDetails();
-    this.dataService.getAllPositionDetails().subscribe(data => {
-      this.positionDetail = this.getDetails(data);
+    this.dataService.getRoleById(this.positionID).subscribe(data => {
+      this.positionDetail = data;
+      console.log(this.positionDetail)
       this.isLoaded = true;
     })
-  }
-  getDetails = (allPositions) => {
-    let positionDetail;
-    allPositions.forEach(position => {
-      if (position["position"] == this.positionName)
-        positionDetail = position;
-    });
-    return positionDetail;
   }
   backToPositions(){
     this._location.back();

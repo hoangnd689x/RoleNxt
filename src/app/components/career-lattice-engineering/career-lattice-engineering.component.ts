@@ -1,15 +1,15 @@
 
 import { Component, OnInit } from "@angular/core";
-import { clusters, positions, promotions, careerPaths } from "../../classes/data";
+// import { clusters, positions, promotions, careerPaths } from "../../classes/data";
 import { Edge, Node, ClusterNode, Layout } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
 import { Subject } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { Position } from 'src/app/classes/position';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Promotion } from 'src/app/classes/promotion';
 import { CareerPath } from 'src/app/classes/career-path';
 import { ActivatedRoute } from '@angular/router';
+import { id } from '@swimlane/ngx-charts/release/utils';
 // import { Cluster } from 'cluster';
 
 
@@ -23,301 +23,127 @@ export interface IHash {
   styleUrls: ["./career-lattice-engineering.component.css"]
 })
 export class CareerLatticeEngineeringComponent implements OnInit {
-  careerPathColorMap = [
-    {
-      TCP: '#1399A0'
-    },
-    {
-      PCP: '#0E78C5'
-    },
-    {
-      LCP: '#67B419'
-    },
-  ];
+  zoomToFit$: Subject<boolean> = new Subject();
+  fitGraph() {
+    this.zoomToFit$.next(true)
+  }
+
   positionCareerPathMap = [];
   name = 'NGX-Graph Demo';
   data: DataService;
   departmentName = "";
+  departmentID = "";
   links: Edge[];
   nodes: Node[];
-  // clusters: ClusterNode[] = clusters;
   clusters: ClusterNode[] = [];
   clusterName = [];
-  // positions: Position[] = positions;
   positions: Position[] = [];
-  // promotions: Promotion[] = promotions;
   promotions: Promotion[] = [];
   selectedPosition: Position;
-  careerPaths: CareerPath[] = careerPaths;
+  careerPaths: CareerPath[] = [];
+  tmpCareerPaths = [];
   private careerMap: IHash = {};
   isLoaded: Boolean = false;
 
   public layoutSettings = {
-    orientation: "BT"
+    orientation: "BT",
+    // ranker: 'longest-path',
+  // ranker: 'network-simplex',
+    // marginX: 0,
+    // marginY: 0,
+    // rankPadding: 50,
+    nodePadding: 800,
   }
-
   layout: String | Layout = 'dagreCluster';
-
   // line interpolation
   curveType: string = 'Bundle';
   curve: any = shape.curveLinear;
-
   draggingEnabled: boolean = false;
   panningEnabled: boolean = false;
-  zoomEnabled: boolean = false;
+  zoomEnabled: boolean = true;
 
   autoZoom: boolean = true;
   autoCenter: boolean = true;
 
-  constructor(private dataService: DataService, private modalService: NgbModal, private route: ActivatedRoute) {
+  constructor(private dataService: DataService, private route: ActivatedRoute) {
     // this.data = dataService;
 
   }
 
-  getPositions(): void {
-    this.nodes = this.positions.map(position => {
-      let color = "";
-      let newNode: Node = {
-        // id: position.position_id,
-        id: position.position_id.toString(),
-        label: position.position_name,
+  getPositions(result): void {
+    this.nodes = result.map(position => {
+      let isMemberEngineering = position["name"].indexOf("Member engineer") != -1;
+      let node: Node = {
+        id: position["id"]+'',
+        label: position["name"],
         dimension: {
-          width: 1000,
-          height: 250
+          width: isMemberEngineering ? 2300 : 1150,
+          height: isMemberEngineering ? 400 : 300
         },
         data: {
-          // customColor: this.careerMap[position.career_path_id].color_code || "#1399A0"
-          customColor: this.getColorByPosition(position.position_name) || "#1399A0"
+          customColor: isMemberEngineering ? "#08427E" : position["careerpathObj"]["color"]
         }
       }
-      return newNode;
+      return node;
     });
-
+    console.log("positions: ", this.nodes)
   }
-  getPromotions(): void {
-    this.links = this.promotions.map(promotion => {
+  getLinks = (result) => {
+    this.links = result.map(link => {
       let newEdge: Edge = {
-        id: 'e' + promotion.promotion_id.toString(),
-        source: promotion.start_position_id.toString(),
-        target: promotion.next_position_id.toString()
+        id: 'e'+link["id"],
+        source: link["source"],
+        target: link["target"]
       }
       return newEdge;
     });
-  }
+    console.log("connections: ", this.links)
 
-  generateHashMap(): void {
-    this.careerPaths.forEach(element => {
-      this.careerMap[element.career_path_id] = element;
+  }
+  generateHashMap(paths): void {
+    let arr = paths.map(path => {
+      let tmp = {};
+      tmp["career_path_id"] = path["id"]+'';
+      tmp["career_path_name"] = path["name"];
+      tmp["color_code"] = path["color"];
+
+      return tmp;
+    });
+    this.careerPaths=arr;
+    this.careerMap = arr.map(path=>{
+      let tmp={};
+      return tmp[path["career_path_id"]] = path;
     });
   }
 
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-      this.departmentName = params['id'];
+      this.departmentID = params['id'];
     });
-
-
-    // to get career path
-
-    this.dataService.getAllPositionDetails().subscribe(data => {
-      data.forEach(position => {
-        let tmp = {};
-        tmp[position["position"]] = position["careerPath"];
-        this.positionCareerPathMap.push(tmp);
-      });
-      console.log("done get all positions details");
-    })
-    /// 
-    this.dataService.getPositions().subscribe(
+    this.dataService.getAllCareerPaths()
+      .subscribe(paths => {
+        this.generateHashMap(paths);
+      })
+    this.dataService.getPositionsByDepartmentID(this.departmentID).subscribe(
       result => {
-        let tmp = [];
-        result.forEach(e => {
-          if (e["departmentName"] == this.departmentName) {
-            tmp.push(e);
+        // convert positions
+        this.getPositions(result);
+        this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(
+          links => {
+            // convert links
+            this.getLinks(links);
+            this.isLoaded = true;
           }
-        })
-        //
-        this.positions = this.getTmpNodeArray(tmp);
-        this.promotions = this.getTmpLinkDataArray(tmp);
-        this.getPositions();
-        this.getPromotions();
-        this.isLoaded = true;
-      },
-      err => console.error(err),
-      () => console.log('done loading positions')
-    );
-    this.generateHashMap();
+        )
+      }
+    )
   }
 
-  openModal(content, id: string) {
+  gotoDetails(id: string) {
     this.selectedPosition = this.positions.find(function (element, index, array) {
       return (element.position_id.toString() === id.toString());
     })
-    this.modalService.open(content, {
-      size: "lg",
-      ariaLabelledBy: "modal-basic-title"
-    });
   }
-  gotoDetails(content, id: string) {
-    this.selectedPosition = this.positions.find(function (element, index, array) {
-      return (element.position_id.toString() === id.toString());
-    })
-    console.log("gotoDetail == id: ", id);
-  }
-
-  getTmpNodeArray(structures) {
-
-    var temp = [];
-    // to reassign obj, remove id,departmentname & domain
-    var newStructure = structures.map(e => {
-      let tmp = {};
-      for (let i in e) {
-        if (i != "id" && i != "departmentName" && i != "domain") {
-          tmp[i] = e[i];
-        }
-      }
-      return tmp;
-    });
-    // to collect clusterName
-    for (let name in newStructure[0]) {
-      this.clusterName.push(name);
-    }
-    // to convert to clusterNode
-    this.convertClusterNode(newStructure);
-    var tmp = [];
-    newStructure.forEach(e => {
-      for (let i in e) {
-        if (e[i] != null && e[i] != undefined && e[i] != "") {
-          tmp.push(e[i]);
-        }
-      }
-
-    })
-    let filtered = [...new Set(tmp)];
-
-    // to convert into arr of obj
-    let result = [];
-    filtered.map((e, i) => {
-      let tmp = {};
-      tmp["position_id"] = e;
-      tmp["position_name"] = e;
-      tmp["position_summary"] = e;
-      // tmp["career_path_id"] = this.mapPositionCareer(e);
-      if (e != "") result.push(tmp);
-    })
-
-    return result;
-
-  }
-
-  getTmpLinkDataArray(structures) {
-    var temp = [];
-    // to reassign obj, remove id,departmentname & domain
-    var newStructure = structures.map(e => {
-      let tmp = {};
-      for (let i in e) {
-        if (i != "id" && i != "departmentName" && i != "domain") {
-          tmp[i] = e[i];
-        }
-      }
-      return tmp;
-    });
-
-    var tmpPair = [];
-    var arr = newStructure.map(e => {
-
-      let tmp = [];
-      for (let i in e) {
-        if (e[i] != null && e[i] != undefined) {
-          tmp.push(e[i]);
-        }
-      }
-
-      //
-      // let index = 0;
-      for (let i = 0; i < tmp.length - 1; i++) {
-        let tmpObj = {};
-        if (tmp[i] == "" || tmp[i + 1] == "") continue;
-        // tmpObj["promotion_id"] = ++index;
-        tmpObj["start_position_id"] = tmp[i];
-        tmpObj["next_position_id"] = tmp[i + 1];
-        tmpPair.push(tmpObj)
-      }
-    })
-    // to convert into new arr of obj
-    // obj: {from: ..., to: ..., color: ...}
-    let keys = ['start_position_id', 'next_position_id'];
-    let filtered = tmpPair.filter(
-      (s => o =>
-        (k => !s.has(k) && s.add(k))
-          (keys.map(k => o[k]).join('|'))
-      )
-        (new Set)
-    );
-    let addedID = filtered.map((e, index) => {
-      e["promotion_id"] = index + 1;
-      return e;
-    })
-    return addedID;
-
-  }
-
-  // getTmpCluster(nodeArray) {
-
-  //   console.log("hardCodeClusters === clusterName : ", this.clusterName);
-  //   let hardCodeClusters = clusters;
-  //   let tmpCluster = [];
-  //   hardCodeClusters.forEach(cluster => {
-  //     let clusterNames = cluster["childNodeIds"];
-  //     nodeArray.forEach(node => {
-  //       let notExisted = tmpCluster.indexOf(cluster) == -1;
-  //       if (clusterNames.indexOf(node["position_name"]) != -1 && notExisted) {
-  //         tmpCluster.push(cluster);
-  //       };
-  //     });
-
-  //   })
-  //   return tmpCluster;
-  // }
-  convertClusterNode(newStructure){
-    // convert into clusterNode
-    // {
-    //     id: 'c1',
-    //     label: 'Level 1',
-    //     childNodeIds: ['Member Engineering'],
-    // }
-    let tmp={};
-    newStructure.forEach(e => {
-      for (let i in e) {
-        if (e[i] != null && e[i] != undefined && e[i] != "") {
-          if(!tmp[i]) tmp[i]=[];
-          tmp[i].push(e[i]);
-        }
-      }
-
-    })
-    let tmpArr=[];
-    for(let level in tmp){
-      let obj={};
-      obj["id"]=level;
-      obj["label"]=level;
-      obj["childNodeIds"]=tmp[level];
-      // this.clusters.push(obj);
-      tmpArr.push(obj);
-    }
-    this.clusters= tmpArr;
-    // console.log("convertClusterNode=== clusters: ",this.clusters)
-  }
-  getColorByPosition(position) {
-    // console.log("getColorByPosition === position : ", position);
-    let colorCode = "";
-    let carrePath = this.positionCareerPathMap.filter(positionObj => positionObj.hasOwnProperty(position))[0][position];
-    colorCode = this.careerPathColorMap.filter(careerpathObj => careerpathObj.hasOwnProperty(carrePath))[0][carrePath];
-    return colorCode;
-  }
-  mapPositionCareer(positionName) {
-    // console.log("mapPositionCareer === positionName : ", positionName);
-    return this.positionCareerPathMap.filter(e => e.hasOwnProperty(positionName))[0][positionName];
-  }
+  
 }

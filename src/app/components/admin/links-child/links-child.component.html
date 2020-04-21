@@ -1,0 +1,9 @@
+<label for="">number of next level</label>
+<input type="number" name="" id="" [(ngModel)]="numberOfNextPosition" (change)="changes()">
+<div *ngFor="let i of arr;let i = index">
+    <label for="">next level</label>
+    <select name="aa" [id]="['select'+positionID+i]">
+        <option *ngFor="let item of positions" [value]="item.id">{{item.name}}</option>
+    </select>
+</div>
+<button (click)="save()">save</button>

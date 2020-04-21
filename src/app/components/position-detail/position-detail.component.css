@@ -1,9 +1,4 @@
-/* .fit-image{
-    width: 100%;
-    object-fit: cover;
-    height: 300px;
-} 
-*/
+
 .fakeimg {
 	height: 200px;
 	background: #aaa;
@@ -11,4 +6,15 @@
 
 h4 {
 	color: #003366;
+}
+
+.details-page{
+    /* height: 101%; */
+    border-radius: .3rem;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.content-block{
+    margin-top:10px;
 }

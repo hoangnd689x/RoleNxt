@@ -140,4 +140,29 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100%;}
+
+.custom-container, app-main{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-child, app-home{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.custom-navbar{
+  display: flex;
+  flex-direction: column;
+}
+.custom-border{
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 1px solid #1e2fe8;
+  background-color: #e9ecef;
+  padding:10px;
+  margin: 20px;
+}

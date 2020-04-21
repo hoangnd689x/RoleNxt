@@ -18,6 +18,8 @@ import { CareerLatticeItComponent } from './components/career-lattice-it/career-
 import { ReversePipePipe } from './reverse-pipe.pipe';
 import { HomeComponent } from './components/home/home.component';
 import { PositionDetailComponent } from './components/position-detail/position-detail.component';
+import { LinksComponent } from './components/admin/links/links.component';
+import { LinksChildComponent } from './components/admin/links-child/links-child.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { PositionDetailComponent } from './components/position-detail/position-d
     ReversePipePipe,
     HomeComponent,
     PositionDetailComponent,
+    LinksComponent,
+    LinksChildComponent,
   ],
   imports: [
     BrowserModule,

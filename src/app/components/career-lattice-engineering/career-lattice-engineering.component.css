@@ -2,6 +2,7 @@ ul.legend {
   margin: 20px;
   list-style-type: none;
   width: fit-content;
+  padding-left: 0;
 }
 
 div.legend {
@@ -12,7 +13,7 @@ div.legend {
 }
 li.legend{
   border: black solid 1px;
-  width: 250px;
+  width: 100px;
 }
 .legend .color-box {
   width: 10px;

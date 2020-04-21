@@ -1,2 +1,4 @@
 <app-login *ngIf="!isLoggedIn"></app-login>
-<app-main *ngIf="isLoggedIn" [isAdmin]="isAdmin"></app-main>
+<div class="bg-container">
+    <app-main class="custom-container" *ngIf="isLoggedIn" [isAdmin]="isAdmin"></app-main>
+</div>
