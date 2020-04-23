@@ -21,6 +21,9 @@ import { PositionDetailComponent } from './components/position-detail/position-d
 import { LinksComponent } from './components/admin/links/links.component';
 import { LinksChildComponent } from './components/admin/links-child/links-child.component';
 
+// import material
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatCardModule} from '@angular/material/card'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,8 @@ import { LinksChildComponent } from './components/admin/links-child/links-child.
     HomeComponent,
     PositionDetailComponent,
     LinksComponent,
-    LinksChildComponent,
+    LinksChildComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,10 @@ import { LinksChildComponent } from './components/admin/links-child/links-child.
     NgbModule,
     NgxGraphModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
