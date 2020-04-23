@@ -3,6 +3,7 @@ ul.legend {
   list-style-type: none;
   width: fit-content;
   padding-left: 0;
+  display: flex;
 }
 
 div.legend {
@@ -27,4 +28,7 @@ g.node rect,text {
 }
 rect:hover{
   cursor: pointer;
+}
+ngx-graph{
+  margin-top: 100px;
 }

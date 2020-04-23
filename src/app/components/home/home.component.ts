@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,8 @@ import { DataService } from 'src/app/data.service';
 })
 export class HomeComponent implements OnInit {
   isLoaded = false;
+  domain = [];
+  result = []; // [{items:[],name:""}]
   departmentColorCode = [
     "#e64179",
     "#f54d27",
@@ -33,6 +36,7 @@ export class HomeComponent implements OnInit {
           department["color"] = this.departmentColorCode[index] || "#555db7";
           this.department.push(department);
         });
+        this.getDomain(result);
         this.isLoaded = true;
       },
       err => {
@@ -40,5 +44,29 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  getDomain(data) {
+    data.forEach(e => {
+      let domain = e["domainObj"]["name"];
+      if (this.domain.indexOf(domain) == -1) this.domain.push(domain);
+    })
+    console.log(this.domain)
+    // convert into [{domain_name:,department:[]},{}]
+    this.result=this.domain.map(domainName => {
+      let tmp = {};
+      tmp["name"] = domainName;
+      tmp["bgImage"] = domainName=="IT"?"url('./assets/IT.jpg')":"url('./assets/Engineering.jpg')";
+      tmp["bgcolor"] = domainName=="IT"?"#fdfd96":"#f0f8ff";
+      tmp["items"] = [];
+      data.forEach(e => {
+        if (e["domainObj"]["name"] == domainName) {
+          tmp["items"].push(e);
+        }
+      })
+      return tmp;
+    })
+    console.log(this.result);
+  }
+
 
 }
