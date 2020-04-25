@@ -3,10 +3,17 @@
     <p>Career Path</p>
     <ul *ngIf="careerPaths" class="legend">
       <li class="legend" *ngFor="let careerPath of careerPaths">
-        <div class="input-color">
-          <div>
-            <div class="color-box" [ngStyle]="{'background-color': careerPath.color_code}"></div>
-            <span>{{careerPath.career_path_name}}</span>
+        <div class="input-color"[ngStyle]="{'background-color': careerPath.color_code}">
+          <div >
+            <!-- <div class="color-box" [ngStyle]="{'background-color': careerPath.color_code}">
+              <input type="checkbox" (click)="getPositionsByCareerPath()"/>
+
+            </div>
+            <span>{{careerPath.career_path_name}}</span> -->
+            <label>
+              <input type="checkbox" name="options" value="{{careerPath.career_path_name}}" (change)="onNgModelChange(careerPath.career_path_id, $event)"/>
+              {{careerPath.career_path_name}}
+          </label>
           </div>
         </div>
       </li>
