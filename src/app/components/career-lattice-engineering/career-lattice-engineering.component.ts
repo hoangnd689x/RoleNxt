@@ -10,6 +10,7 @@ import { Promotion } from 'src/app/classes/promotion';
 import { CareerPath } from 'src/app/classes/career-path';
 import { ActivatedRoute } from '@angular/router';
 import { id } from '@swimlane/ngx-charts/release/utils';
+import { Cluster } from '../model/Cluster';
 // import { Cluster } from 'cluster';
 
 
@@ -37,6 +38,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   linksOrgl: Edge[];
   linksByFilter: Edge[];
   nodes: Node[];
+  clusterFilters: Cluster[];
   clusters: ClusterNode[] = [];
   clusterName = [];
   positions: Position[] = [];
@@ -118,6 +120,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
           this.getLinks(links);
         }
       )
+      this.getClusters(this.resultOrg);
     }else{
       this.getPositionsByCareerPath(this.careerPathIds);
     }
@@ -154,9 +157,27 @@ export class CareerLatticeEngineeringComponent implements OnInit {
           return node;
         }
     });
-    console.log("nodes", this.nodes);
+    
     this.getLinksByFilter(this.nodes);
-    //this.getClusters(this.resultTmp);
+
+    // Get clusters:
+    this.clusterFilters = this.resultTmp.filter(function (node) {
+      for(let i = 0; i < careerIds.length; i++){
+        if(careerIds[i] == node["careerpathObj"]["id"]){
+          return true;
+        }
+      }
+      return false;
+    }).map(position => {
+        if (careerIds.indexOf(position["careerpathObj"]["id"])) {
+          let clu: Cluster = {
+            id: position["id"],
+            cluId: position["clusterID"]
+          }
+          return clu;
+        }
+    });
+    this.getClustersByFilter(this.clusterFilters);
   }
 
   getLinksByFilter(nodes){
@@ -259,7 +280,6 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       let name = element["clusterID"];
       if (clusterNames.indexOf(name) == -1) clusterNames.push(name);
     });
-    console.log("cluster check:", clusterNames);
     ///
     tmpClusters = clusterNames.map(name => {
       let tmp = {};
@@ -274,6 +294,28 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     this.clusters = tmpClusters;
     console.log("clusters: ", this.clusters);
   }
+
+  getClustersByFilter(clusters) {
+    let tmpClusters = [];
+    let clusterNames = [];
+    clusters.forEach(element => {
+      let name = element["cluId"];
+      if (clusterNames.indexOf(name) == -1) clusterNames.push(name);
+    });
+    ///
+    tmpClusters = clusterNames.map(name => {
+      let tmp = {};
+      tmp["id"] = "c" + name;
+      tmp["label"] = "level " + name;
+      tmp["childNodeIds"] = [];
+      clusters.forEach(e => {
+        if (e["cluId"] == name) tmp["childNodeIds"].push(e["id"] + "");
+      });
+      return tmp;
+    })
+    this.clusters = tmpClusters;
+  }
+
   gotoDetails(id: string) {
     this.selectedPosition = this.positions.find(function (element, index, array) {
       return (element.position_id.toString() === id.toString());
