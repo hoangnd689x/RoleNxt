@@ -23,6 +23,8 @@ export class DataService {
   // getAllPositionDetails = () => this.http.get<JSON[]>("http://localhost:8080//orgchartapis/api/getAllPositionDetails/");
   // getPositionDetails = (positionID) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getPosById/"+positionID);
   // getRoleById = (positionID) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getRoleById/"+positionID);
+  // getRolesByPositionId = (positionID) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getRolesByPositionId/"+positionID);
+
   // // post
   // saveLinks = (links) => this.http.post("http://localhost:8080/orgchartapis/api/addCon", links);
 
@@ -35,6 +37,7 @@ export class DataService {
   getAllPositionDetails = () => this.http.get<JSON[]>("http://10.184.93.88:6060//orgchartapis/api/getAllPositionDetails/");
   getPositionDetails = (positionID) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getPosById/"+positionID);
   getRoleById = (positionID) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getRoleById/"+positionID);
+  getRolesByPositionId = (positionID) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getRolesByPositionId/"+positionID);
   // post
   saveLinks = (links) => this.http.post("http://10.184.93.88:6060/orgchartapis/api/addCon", links); 
 }

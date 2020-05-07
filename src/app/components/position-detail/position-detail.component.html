@@ -13,22 +13,22 @@
                 </div>
                 <div class="content-block">
                     <h4>Industrial Role</h4>
-                    <div>{{positionDetail.industrialRole}}</div>
+                    <div [innerHTML]="positionDetail.industrialRle"></div>
                 </div>
                 <div class="content-block">
                     <h4>Entry Criteria</h4>
-                    <div>{{positionDetail.entryCriteria}}</div>
+                    <div [innerHTML]="positionDetail.entryCriteria"></div>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="content-block">
                     <h4>Responsibilities</h4>
-                    <div>{{positionDetail.responsibilities}}</div>
+                    <div [innerHTML]="positionDetail.responsibilities"></div>
                 </div>
                 <div class="content-block">
                     <h4>KRA (key responsible area)</h4>
-                    <div>{{positionDetail.kra}}</div>
+                    <div [innerHTML]="positionDetail.kra"></div>
                 </div>
                 <!-- <div class="content-block">
                     <h4>Scope</h4>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="content-block">
                     <h4>Competencies required</h4>
-                    <div>{{positionDetail.competencyRequires}}</div>
+                    <div [innerHTML]="positionDetail.competencyObj[0].name"></div>
                 </div>
                 <!-- <div class="content-block">
                     <h4>Project Category</h4>
