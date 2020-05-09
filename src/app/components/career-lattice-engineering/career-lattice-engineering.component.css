@@ -1,9 +1,9 @@
 ul.legend {
-  margin: 20px;
+  /* margin: 20px; */
   list-style-type: none;
-  width: fit-content;
-  padding-left: 0;
-  display: flex;
+  /* width: fit-content; */
+  /* padding-left: 0; */
+  /* display: flex; */
 }
 
 div.legend {
@@ -13,7 +13,7 @@ div.legend {
   padding-left: 20px;
 }
 li.legend{
-  border: black solid 1px;
+  /* border: black solid 1px; */
   width: 100px;
 }
 .legend .color-box {

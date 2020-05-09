@@ -1,15 +1,10 @@
-<div *ngIf="isLoaded" class="container-fluid" style="background-color: whitesmoke;" class="custom-child custom-border">
+<div *ngIf="isLoaded" class="container-fluid" class="custom-child">
   <div class="legend" style="position: absolute;">
-    <p>Career Path</p>
+    <p style="margin-left: 38px;">Career Path</p>
     <ul *ngIf="careerPaths" class="legend">
       <li class="legend" *ngFor="let careerPath of careerPaths">
         <div class="input-color"[ngStyle]="{'background-color': careerPath.color_code}">
           <div >
-            <!-- <div class="color-box" [ngStyle]="{'background-color': careerPath.color_code}">
-              <input type="checkbox" (click)="getPositionsByCareerPath()"/>
-
-            </div>
-            <span>{{careerPath.career_path_name}}</span> -->
             <label>
               <input type="checkbox" name="options" value="{{careerPath.career_path_name}}" (change)="onNgModelChange(careerPath.career_path_id, $event)"/>
               {{careerPath.career_path_name}}
@@ -19,35 +14,36 @@
       </li>
     </ul>
   </div>
-  <ngx-graph class="chart-container" [view]=[1200,500] [zoomToFit$]="zoomToFit$" [links]="links"
+  <ngx-graph style="margin: 20px auto auto 15%;" class="chart-container" [view]=[1200,500] [zoomToFit$]="zoomToFit$" [links]="links"
     [nodes]="nodes" [autoCenter]="autoCenter" [autoZoom]="autoZoom" [draggingEnabled]="draggingEnabled"
     [panningEnabled]="panningEnabled" [enableZoom]="zoomEnabled" [layoutSettings]="layoutSettings" [layout]="layout"
     [clusters]="clusters">
+  
     <ng-template #defsTemplate>
-      <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="12" markerHeight="14" orient="auto">
+      <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="12" markerHeight="14" orient="auto" >
         <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
       </svg:marker>
     </ng-template>
     <ng-template #nodeTemplate let-node>
       <svg:g [routerLink]="['/position-details',node.id]" (click)="gotoDetails(node.id)">
-        <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
+        <svg:rect x="0" y="0" [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
           [attr.fill]="node.data.customColor" style="stroke-width:3;stroke:rgb(0,0,0)" />
-        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="50" font-size="5em"
-          [attr.y]="node.dimension.height / 2">
+        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="120" font-size="7em"
+          [attr.y]="node.dimension.height / 2 + 20">
           {{node.label}}
         </svg:text>
       </svg:g>
     </ng-template>
     <ng-template #linkTemplate let-link>
       <svg:g class="edge">
-        <svg:path class="line" stroke-width="3" marker-end="url(#arrow)">
+        <svg:path class="line" stroke-width="6" marker-end="url(#arrow)" >
         </svg:path>
       </svg:g>
     </ng-template>
     <ng-template #clusterTemplate let-cluster>
-      <svg:g>
+      <svg:g style="fill: white;">
         <svg:rect rx="5" ry="5" [attr.width]="10000" [attr.height]="cluster.dimension.height"
-          [attr.fill]="cluster.data.color"/>
+          [attr.fill]="white"/>
       </svg:g>
     </ng-template>
   </ngx-graph>
