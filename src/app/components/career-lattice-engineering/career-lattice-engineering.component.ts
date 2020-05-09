@@ -13,7 +13,6 @@ import { id } from '@swimlane/ngx-charts/release/utils';
 import { Cluster } from '../model/Cluster';
 // import { Cluster } from 'cluster';
 
-
 export interface IHash {
   [id: string]: CareerPath;
 }
@@ -76,7 +75,6 @@ export class CareerLatticeEngineeringComponent implements OnInit {
 
   constructor(private dataService: DataService, private route: ActivatedRoute) {
     // this.data = dataService;
-
   }
 
   getPositions(result): void {
@@ -113,7 +111,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       }
     }
 
-    if(this.careerPathIds.length == 0 || this.careerPathIds.length == this.careerPaths.length){
+    if (this.careerPathIds.length == 0 || this.careerPathIds.length == this.careerPaths.length) {
       this.getPositions(this.resultOrg);
       this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(
         links => {
@@ -121,10 +119,10 @@ export class CareerLatticeEngineeringComponent implements OnInit {
         }
       )
       this.getClusters(this.resultOrg);
-    }else{
+    } else {
       this.getPositionsByCareerPath(this.careerPathIds);
     }
-    
+
   }
   //getPositionsByCareerPath
   getPositionsByCareerPath(careerIds): void {
@@ -132,91 +130,91 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     // create 2 types of result to handle the case click and then unclick all
     this.resultTmp = this.resultOrg;
     this.nodes = this.resultTmp.filter(function (node) {
-      for(let i = 0; i < careerIds.length; i++){
-        if(careerIds[i] == node["careerpathObj"]["id"]){
+      for (let i = 0; i < careerIds.length; i++) {
+        if (careerIds[i] == node["careerpathObj"]["id"]) {
           return true;
         }
       }
 
       return false;
     }).map(position => {
-        if (careerIds.indexOf(position["careerpathObj"]["id"])) {
-          let isMemberEngineering = position["name"].indexOf("Member engineer") != -1;
-          let node: Node = {
-            id: position["id"] + '',
-            label: position["name"],
-            // meta: position["careerpathObj"]["name"],
-            dimension: {
-              width: isMemberEngineering ? 2300 : 1150,
-              height: isMemberEngineering ? 300 : 200
-            },
-            data: {
-              customColor: isMemberEngineering ? "#08427E" : position["careerpathObj"]["color"]
-            }
+      if (careerIds.indexOf(position["careerpathObj"]["id"])) {
+        let isMemberEngineering = position["name"].indexOf("Member engineer") != -1;
+        let node: Node = {
+          id: position["id"] + '',
+          label: position["name"],
+          // meta: position["careerpathObj"]["name"],
+          dimension: {
+            width: isMemberEngineering ? 2300 : 1150,
+            height: isMemberEngineering ? 300 : 200
+          },
+          data: {
+            customColor: isMemberEngineering ? "#08427E" : position["careerpathObj"]["color"]
           }
-          return node;
         }
+        return node;
+      }
     });
-    
+
     this.getLinksByFilter(this.nodes);
 
     // Get clusters:
     this.clusterFilters = this.resultTmp.filter(function (node) {
-      for(let i = 0; i < careerIds.length; i++){
-        if(careerIds[i] == node["careerpathObj"]["id"]){
+      for (let i = 0; i < careerIds.length; i++) {
+        if (careerIds[i] == node["careerpathObj"]["id"]) {
           return true;
         }
       }
       return false;
     }).map(position => {
-        if (careerIds.indexOf(position["careerpathObj"]["id"])) {
-          let clu: Cluster = {
-            id: position["id"],
-            cluId: position["clusterID"]
-          }
-          return clu;
+      if (careerIds.indexOf(position["careerpathObj"]["id"])) {
+        let clu: Cluster = {
+          id: position["id"],
+          cluId: position["clusterID"]
         }
+        return clu;
+      }
     });
     this.getClustersByFilter(this.clusterFilters);
   }
 
-  getLinksByFilter(nodes){
+  getLinksByFilter(nodes) {
     this.linksByFilter = this.linksOrgl;
-      this.links = this.linksByFilter.filter(function (link) {
-        //this.checkLinksExist(nodes, link);
-        
-        let isExist  = false;
-        let isSourceExist  = false;
-        let isTargetExist  = false; 
-        for(let i = 0; i < nodes.length; i++){
-          if(link["source"] == nodes[i].id){
-            isSourceExist = true;
-          }
+    this.links = this.linksByFilter.filter(function (link) {
+      //this.checkLinksExist(nodes, link);
+
+      let isExist = false;
+      let isSourceExist = false;
+      let isTargetExist = false;
+      for (let i = 0; i < nodes.length; i++) {
+        if (link["source"] == nodes[i].id) {
+          isSourceExist = true;
         }
-    
-        for(let i = 0; i < nodes.length; i++){
-          if(link["target"] == nodes[i].id){
-            isTargetExist = true;
-          }
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        if (link["target"] == nodes[i].id) {
+          isTargetExist = true;
         }
-    
-        if(isSourceExist && isTargetExist){
-          isExist = true;
-        }
-        if(isExist){
-          return true;
-        }
-        return false;
-      }).map(link => {
-            let newEdge: Edge = {
-              id: link["id"],
-              source: link["source"],
-              target: link["target"]
-            }
-            return newEdge;
-          
-        });
-      console.log("links filter:",this.links);
+      }
+
+      if (isSourceExist && isTargetExist) {
+        isExist = true;
+      }
+      if (isExist) {
+        return true;
+      }
+      return false;
+    }).map(link => {
+      let newEdge: Edge = {
+        id: link["id"],
+        source: link["source"],
+        target: link["target"]
+      }
+      return newEdge;
+
+    });
+    console.log("links filter:", this.links);
   }
 
   getLinks = (result) => {
@@ -268,10 +266,14 @@ export class CareerLatticeEngineeringComponent implements OnInit {
             // convert links
             this.getLinks(links);
             this.isLoaded = true;
+            //
           }
         )
       }
     )
+  }
+  ngAfterViewInit() {
+    console.log(document.getElementById("c1"));
   }
   getClusters(result) {
     let tmpClusters = [];
@@ -289,10 +291,10 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       result.forEach(e => {
         if (e["clusterID"] == name) tmp["childNodeIds"].push(e["id"] + "");
       })
+     
       return tmp;
     })
     this.clusters = tmpClusters;
-    console.log("clusters: ", this.clusters);
   }
 
   getClustersByFilter(clusters) {
