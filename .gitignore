@@ -16,5 +16,5 @@
 .DS_Store
 
 #build folder
-angular-build/*
-
+/angular-build
+*.war
