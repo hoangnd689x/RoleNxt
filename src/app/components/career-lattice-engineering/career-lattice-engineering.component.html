@@ -46,9 +46,10 @@
     </ng-template>
     <ng-template #clusterTemplate let-cluster>
       <svg:g>
-        <svg:rect rx="5" ry="5" [attr.width]="cluster.dimension.width" [attr.height]="cluster.dimension.height"
-          [attr.fill]="cluster.data.color" />
+        <svg:rect rx="5" ry="5" [attr.width]="10000" [attr.height]="cluster.dimension.height"
+          [attr.fill]="cluster.data.color"/>
       </svg:g>
     </ng-template>
   </ngx-graph>
 </div>
+<!--  [attr.transform]="'translate(' + (0) + ',' + (cluster.y -cluster.dimension.height/2) + ')'" -->

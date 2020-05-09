@@ -20,7 +20,7 @@ export class PositionDetailComponent implements OnInit {
       this.positionID = params['id'];
     });
     // let allPositions = this.getAllPositionDetails();
-    this.dataService.getRoleById(this.positionID).subscribe(data => {
+    this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
       this.positionDetail = data;
       console.log(this.positionDetail)
       this.isLoaded = true;
