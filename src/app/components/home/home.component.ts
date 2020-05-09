@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       let tmp = {};
       tmp["name"] = domainName;
       tmp["bgImage"] = domainName=="IT"?"url('./assets/IT.jpg')":"url('./assets/Engineering.jpg')";
-      tmp["bgcolor"] = domainName=="IT"?"#fdfd96":"#f0f8ff";
+      tmp["bgcolor"] = domainName=="IT"?"rgba(218, 255, 153, 0.27)":"rgba(238, 28, 28, 0.11)";
       tmp["items"] = [];
       data.forEach(e => {
         if (e["domainObj"]["name"] == domainName) {
