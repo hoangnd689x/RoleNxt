@@ -85,8 +85,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
         label: position["name"],
         // meta: position["careerpathObj"]["name"],
         dimension: {
-          width: isMemberEngineering ? 2300 : 1150,
-          height: isMemberEngineering ? 300 : 200
+          width: isMemberEngineering ? 2800 : 1600,
+          height: isMemberEngineering ? 400 : 400
         },
         data: {
           customColor: isMemberEngineering ? "#08427E" : position["careerpathObj"]["color"]
