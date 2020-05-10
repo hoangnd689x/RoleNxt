@@ -72,7 +72,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
 
   careerPathIds: any[] = [];
   isChecked: boolean = true;
-
+  fontSize="7em";
   constructor(private dataService: DataService, private route: ActivatedRoute) {
     // this.data = dataService;
   }
@@ -122,7 +122,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     } else {
       this.getPositionsByCareerPath(this.careerPathIds);
     }
-
+    this.fontSize=this.careerPathIds.length == 0 || this.careerPathIds.length == this.careerPaths.length ?"7em":"5em";
   }
   //getPositionsByCareerPath
   getPositionsByCareerPath(careerIds): void {

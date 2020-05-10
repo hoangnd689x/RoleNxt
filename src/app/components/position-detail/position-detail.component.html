@@ -2,7 +2,8 @@
     <div class="text-center custom-border" style="margin-bottom: 2rem;
         background-color: #e9ecef;
         border-radius: .3rem; margin-bottom: 0">
-        <h3>{{positionDetail.orgObj.name}} - {{positionDetail.positionObj.name}}</h3>
+        <h3>{{positionDetail.orgObj && positionDetail.orgObj.name}} -
+            {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h3>
     </div>
     <div class="custom-border">
         <div class="row">
@@ -43,11 +44,13 @@
 
             <div class="col-md-3">
                 <div class="content-block">
-                    Career progression
+                    <h4>Career progression</h4>
+                    <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
+                        [departmentID]="positionDetail.orgObj && positionDetail.orgObj.id"></career-progression>
                 </div>
                 <div class="content-block">
                     <h4>Competencies required</h4>
-                    <div [innerHTML]="positionDetail.competencyObj[0].name"></div>
+                    <div [innerHTML]="positionDetail.competencyObj && positionDetail.competencyObj[0].name"></div>
                 </div>
                 <!-- <div class="content-block">
                     <h4>Project Category</h4>
