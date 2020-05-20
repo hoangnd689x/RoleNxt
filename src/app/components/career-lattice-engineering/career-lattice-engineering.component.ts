@@ -57,7 +57,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     // marginX: 0,
     // marginY: 0,
     // rankPadding: 50,
-    // nodePadding: 800,
+    nodePadding: 200,
   }
   layout: String | Layout = 'dagreCluster';
   // line interpolation
@@ -246,7 +246,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("careerPathIds: ",this.careerPathIds);
     this.route.params.subscribe(params => {
       this.departmentID = params['id'];
     });

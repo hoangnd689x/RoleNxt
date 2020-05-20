@@ -20,13 +20,14 @@ export class PositionDetailComponent implements OnInit {
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.positionID = params['id'];
+      this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
+        this.positionDetail = data;
+        console.log("go to positionID: ",this.positionID)
+        this.isLoaded = true;
+      })
     });
     // let allPositions = this.getAllPositionDetails();
-    this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
-      this.positionDetail = data;
-      console.log(this.positionDetail)
-      this.isLoaded = true;
-    })
+    
   }
   ngOnDestroy() {
     console.log("Component will be destroyed");
@@ -34,5 +35,8 @@ export class PositionDetailComponent implements OnInit {
   }
   backToPositions(){
     this._location.back();
+  }
+  backToLatticePage(){
+    
   }
 }

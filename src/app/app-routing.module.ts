@@ -24,7 +24,11 @@ const routes: Routes = [
     path: "admin/links/:id", // manage links by department
     component: LinksComponent,
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  {
+    path: "position/it/2", // manage links by department
+    component: CareerLatticeItComponent,
+  }
+  // { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

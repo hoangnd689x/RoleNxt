@@ -67,7 +67,9 @@
             </div>
         </div>
         <div class="row" style="float: right">
-            <button type="button" class="btn btn-primary" (click)="backToPositions();">Back To Previous
+            <button type="button" class="custom-button btn btn-primary" (click)="backToPositions();">Back To Previous
+                Page</button>
+            <button type="button" class="custom-button btn btn-primary" [routerLink]="['/position',positionDetail.orgObj.id]">Back To Lattice
                 Page</button>
         </div>
     </div>

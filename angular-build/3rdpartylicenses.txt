@@ -91,10 +91,6 @@ THE SOFTWARE.
 
 @angular/material/grid-list
 
-@angular/material/icon
-
-@angular/material/tree
-
 @angular/platform-browser
 MIT
 

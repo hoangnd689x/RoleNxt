@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { clusters, positions, promotions } from "../../classes/data-it";
 import { Edge, Node, ClusterNode, Layout } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
@@ -15,77 +15,36 @@ import { Promotion } from 'src/app/classes/promotion';
   styleUrls: ['./career-lattice-it.component.css']
 })
 export class CareerLatticeItComponent implements OnInit {
-
-  name = 'NGX-Graph Demo';
-  data: DataService;
-
-  links: Edge[];
-  nodes: Node[];
-  clusters: ClusterNode[] = clusters;
-  positions: Position[] = positions;
-  promotions: Promotion[] = promotions;
-  selectedPosition: Position;
-
-  public layoutSettings = {
-    orientation: "BT"
-  }
-
-  layout: String | Layout = 'dagreCluster';
-
-  // line interpolation
-  curveType: string = 'Bundle';
-  curve: any = shape.curveLinear;
-
-  draggingEnabled: boolean = false;
-  panningEnabled: boolean = false;
-  zoomEnabled: boolean = false;
-
-  autoZoom: boolean = true;
-  autoCenter: boolean = true;
-
-  constructor(dataService: DataService, private modalService: NgbModal, ) {
-    this.data = dataService;
+  constructor(private router: Router) {
 
   }
-
-  getPositions(): void {
-    this.nodes = this.positions.map(position => {
-      let newNode: Node = {
-        // id: position.position_id,
-        id: position.position_id.toString(),
-        label: position.position_name,
-        dimension:{
-          width: 1000,
-          height:250
-        }
-      }
-      return newNode;
-    });
+  idMap = {
+    CT01: "1",
+    RE_01: "2",
+    RE_04: "3",
+    RE_02: "4",
+    RE_06: "5",
+    RE_05: "6",
+    RE_03: "7",
+    CT_03: "8",
+    RT_01: "9",
+    RT_02: "10",
+    RT_03: "11",
+    CT_05: "12",
+    CT_07: "13",
+    CT_09: "14",
+    BT_01: "15",
+    CT_02: "16",
+    CT_04: "17",
+    CT_06: "18",
+    CT_08: "19"
   }
-  getPromotions(): void {
-    this.links = this.promotions.map(promotion => {
-      let newEdge: Edge = {
-        id: 'e' + promotion.promotion_id.toString(),
-        source: promotion.start_position_id.toString(),
-        target: promotion.next_position_id.toString()
-      }
-      return newEdge;
-    });
-  }
-
   ngOnInit() {
-    this.getPositions();
-
-    this.getPromotions();
+    // document.getElementById("CT01").onclick=this.navigateToLogin;
+  }
+  navigateToDetails(id) {
+    this.router.navigate(['position-details', this.idMap[id]]);
   }
 
-  openModal(content, id: string) {
-    this.selectedPosition = this.positions.find(function (element, index, array) {
-      return (element.position_id.toString() === id.toString());
-    })
-    this.modalService.open(content, {
-      size: "lg",
-      ariaLabelledBy: "modal-basic-title"
-    });
-  }
+
 }
