@@ -187,13 +187,13 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       let isSourceExist = false;
       let isTargetExist = false;
       for (let i = 0; i < nodes.length; i++) {
-        if (link["source"] == nodes[i].id) {
+        if (link["source"]["id"] == nodes[i].id) {
           isSourceExist = true;
         }
       }
 
       for (let i = 0; i < nodes.length; i++) {
-        if (link["target"] == nodes[i].id) {
+        if (link["target"]["id"] == nodes[i].id) {
           isTargetExist = true;
         }
       }
@@ -208,8 +208,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     }).map(link => {
       let newEdge: Edge = {
         id: link["id"],
-        source: link["source"],
-        target: link["target"]
+        source: link["source"]["id"],
+        target: link["target"]["id"]
       }
       return newEdge;
 
@@ -221,8 +221,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     this.links = result.map(link => {
       let newEdge: Edge = {
         id: 'e' + link["id"],
-        source: link["source"],
-        target: link["target"]
+        source: link["source"]["id"],
+        target: link["target"]["id"]
       }
       return newEdge;
     });
