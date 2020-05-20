@@ -3,6 +3,10 @@ import {Location} from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { Competency } from '../model/Competency';
+import { Organization } from '../model/organization';
+import { Domain } from '../model/domain';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-position-detail',
@@ -14,8 +18,13 @@ export class PositionDetailComponent implements OnInit {
   positionDetail: any;
   isLoaded: Boolean = false;
   paramsSubscription : Subscription;
+  competencies: Competency[];
+  competenciesMap: Map<number, Competency> = new Map();
+  orgs: Organization[];
+  domains: Domain[];
+  addForm: FormGroup;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
@@ -27,6 +36,10 @@ export class PositionDetailComponent implements OnInit {
       })
     });
     // let allPositions = this.getAllPositionDetails();
+    this.addForm = this.formBuilder.group({
+      domain: ['-1', Validators.required],
+      org: ['-1']
+    });
     
   }
   ngOnDestroy() {
@@ -38,5 +51,35 @@ export class PositionDetailComponent implements OnInit {
   }
   backToLatticePage(){
     
+  }
+
+  loadCompetencyAndOrg(domainId: string) {
+    console.log(domainId);
+    this.getCompetenciesByDomainId(domainId);
+    this.getOrgByDomainId(domainId);
+  }
+
+  getCompetenciesByDomainId(domainId: string) {
+    this.dataService.getCompetencyByDomainId(domainId).subscribe(data => {
+      this.competencies = data;
+      console.log(this.competencies);
+      this.competencies.forEach(val => {
+        this.competenciesMap.set(val.id, val);
+      });
+    });
+  }
+
+  getOrgByDomainId(domainId: string){
+    this.dataService.getOrgsByDomainId(domainId).subscribe(data => {
+      this.orgs = data;
+      console.log(this.orgs);
+    });
+  }
+
+  getAllDomain() {
+    this.dataService.getAllDomain().subscribe(data => {
+      this.domains = data;
+      console.log(this.domains);
+    });
   }
 }
