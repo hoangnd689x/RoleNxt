@@ -21,8 +21,8 @@ export class PositionDetailComponent implements OnInit {
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.positionID = params['id'];
       this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
-        this.positionDetail = data;
-        console.log("go to positionID: ",this.positionID)
+        this.positionDetail = data[0];
+        console.log("go to positionID: ",this.positionID+"data: ",data[0])
         this.isLoaded = true;
       })
     });

@@ -2,7 +2,7 @@
     <div class="text-center custom-border" style="margin-bottom: 2rem;
         background-color: #e9ecef;
         border-radius: .3rem; margin-bottom: 0">
-        <h3>{{positionDetail.orgObj && positionDetail.orgObj.name}} -
+        <h3>{{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
             {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h3>
     </div>
     <div class="custom-border">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="content-block">
                     <h4>Industrial Role</h4>
-                    <div [innerHTML]="positionDetail.industrialRle"></div>
+                    <div [innerHTML]="positionDetail.industrialRole"></div>
                 </div>
                 <div class="content-block">
                     <h4>Entry Criteria</h4>
@@ -46,7 +46,7 @@
                 <div class="content-block">
                     <h4>Career progression</h4>
                     <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
-                        [departmentID]="positionDetail.orgObj && positionDetail.orgObj.id"></career-progression>
+                        [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id"></career-progression>  
                 </div>
                 <div class="content-block">
                     <h4>Competencies required</h4>
@@ -69,7 +69,7 @@
         <div class="row" style="float: right">
             <button type="button" class="custom-button btn btn-primary" (click)="backToPositions();">Back To Previous
                 Page</button>
-            <button type="button" class="custom-button btn btn-primary" [routerLink]="['/position',positionDetail.orgObj.id]">Back To Lattice
+            <button type="button" class="custom-button btn btn-primary" [routerLink]="['/position',positionDetail.positionObj.organizationObj.id]">Back To Lattice
                 Page</button>
         </div>
     </div>

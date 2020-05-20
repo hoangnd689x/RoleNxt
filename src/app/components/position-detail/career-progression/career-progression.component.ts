@@ -61,11 +61,11 @@ export class CareerProgressionComponent implements OnInit,OnChanges {
   getChildrenBySource(sourceID) {
     let childrenArr = [];
     this.links.forEach(link => {
-      if (link && link["source"] == sourceID) {
+      if (link && link["source"]["id"] == sourceID) {
         let tmp = {
-          id: link["target"],
-          name: this.mapPositionIDToPositionName(link["target"]),
-          color: this.mapPositionIDToColor(link["target"]),
+          id: link["target"]["id"],
+          name: this.mapPositionIDToPositionName(link["target"]["id"]),
+          color: this.mapPositionIDToColor(link["target"]["id"]),
           // children: this.getChildrenBySource(link["target"])
         };
         childrenArr.push(tmp);
@@ -97,7 +97,7 @@ export class CareerProgressionComponent implements OnInit,OnChanges {
   getClusterID(positionID) {
     let id;
     this.positions.forEach(position => {
-      if (position["id"] == positionID) id = position["clusterID"];
+      if (position["id"] == positionID) id = position["cluster"];
     })
     console.log("getClusterID: ",id);
     return id;
