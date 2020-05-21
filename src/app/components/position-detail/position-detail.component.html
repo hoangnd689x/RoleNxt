@@ -37,13 +37,14 @@
                     <ng-template #elseBlockEntr>
                         <ul>
                             <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
+                            <div (click) = "collapseEntr()" class="show-more">Show less <<</div>
                         </ul>
                     </ng-template>
 
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="content-block">
                     <h4>Responsibilities</h4>
                     <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 3; else elseBlockRes">
@@ -56,6 +57,7 @@
                     <ng-template #elseBlockRes>
                         <ul>
                             <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
+                            <div (click) = "collapseRes()" class="show-more">Show less <<</div>
                         </ul>
                     </ng-template>
                     
@@ -73,6 +75,7 @@
                     <ng-template #elseBlock>
                         <ul>
                             <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
+                            <div (click) = "collapseKRA()" class="show-more">Show less <<</div>
                         </ul>
                     </ng-template>
 
@@ -88,7 +91,7 @@
                 </div> -->
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="content-block">
                     <h4>Career progression</h4>
                     <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
@@ -107,6 +110,7 @@
                     <ng-template #elseBlockComp>
                         <ul>
                             <li *ngFor="let comp of positionDetail.competencies">{{comp.name}}</li>
+                            <div (click) = "collapseComp()" class="show-more">Show less << </div>
                         </ul>
                     </ng-template>
 

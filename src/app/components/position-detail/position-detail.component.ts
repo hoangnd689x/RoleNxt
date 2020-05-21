@@ -20,6 +20,7 @@ export class PositionDetailComponent implements OnInit {
   positionDetailEntryCriteria: any;
   positionDetailResponsibilities: any;
   positionDetailKRA: any;
+  positionDetailIndustryRoles: any;
   isLoaded: Boolean = false;
   paramsSubscription: Subscription;
   competencies: Competency[];
@@ -44,10 +45,11 @@ export class PositionDetailComponent implements OnInit {
       this.positionID = params['id'];
       this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
         this.positionDetail = data[0];
-        console.log("position detail:", this.positionDetail.competencies);
+        console.log("position detail:", this.positionDetail);
         this.positionDetailEntryCriteria = data[0].entryCriteria.split("\n");
         this.positionDetailResponsibilities = data[0].responsibilities.split("\n");
         this.positionDetailKRA = data[0].kra.split("\n");
+        this.positionDetailIndustryRoles = data[0].kra.split("\n");;
         this.isLoaded = true;
       })
     });
@@ -84,6 +86,24 @@ export class PositionDetailComponent implements OnInit {
   showMoreEntr(){
     this.isShowMoreEntr = true;
   }
+
+  collapseKRA(){
+    this.isShowMoreKRA = false;
+  }
+
+  collapseRes(){
+    this.isShowMoreRes = false;
+  }
+
+  collapseComp(){
+    this.isShowMoreComp = false;
+  }
+
+  collapseEntr(){
+    this.isShowMoreEntr = false;
+  }
+
+  
 
   loadCompetencyAndOrg(domainId: string) {
     console.log(domainId);
