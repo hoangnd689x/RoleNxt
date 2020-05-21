@@ -44,5 +44,6 @@ export class DataService {
 
   getRoleByDomain(domainId: string, positionId: string ): Observable<Role> {
     return this.http.get<Role>('http://localhost:8080/orgchart/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId)
+    //return this.http.get<Role>(this.baseUrl + '/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId +"&domainDeptId="+ domainDeptId)
   }
 }
