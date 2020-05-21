@@ -10,7 +10,7 @@
 
 
 <div *ngIf="isLoaded">
-  <ngx-graph style="margin: 20px auto auto 12%;" class="chart-container" [view]=[300,200] [zoomToFit$]="zoomToFit$" [links]="edges"
+  <ngx-graph  class="chart-container" (window:resize)="onResize($event)" [view]="view" [zoomToFit$]="zoomToFit$" [links]="edges"
     [nodes]="nodes" [autoCenter]="true" [autoZoom]="true" [draggingEnabled]="false"
     [panningEnabled]="false" [enableZoom]="false" [layoutSettings]="layoutSettings" [layout]="layout"
     [clusters]="clusters">

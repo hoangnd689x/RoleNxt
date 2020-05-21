@@ -51,6 +51,8 @@ export class PositionDetailComponent implements OnInit {
         this.positionDetailKRA = data[0].kra.split("\n");
         this.positionDetailIndustryRoles = data[0].kra.split("\n");;
         this.isLoaded = true;
+      },err=>{
+        this.isLoaded=true;
       })
     });
     // let allPositions = this.getAllPositionDetails();

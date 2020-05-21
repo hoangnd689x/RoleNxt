@@ -23,6 +23,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
   connection = [];
   nodes: Node[];
   edges: Edge[];
+  clusters = [];
   public layoutSettings = {
     orientation: "BT",
   }
@@ -30,7 +31,6 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
   constructor(private dataService: DataService,
     private route: ActivatedRoute,
     private router: Router) {
-    // this.dataSource.data = TREE_DATA;
 
   }
 
@@ -47,11 +47,16 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         this.clusterID = this.getClusterID(this.sourcePositionID);
         this.getAllPositionByCluster(this.clusterID);
         // this.getChildrenBySource(this.sourcePositionID);
-        this.childrenArr = this.getAllChildrenBySource(this.sourcePositionID).split(",");
+        let tmp = this.getAllChildrenBySource(this.sourcePositionID).split(",");
+        this.childrenArr = tmp.filter((node, index) => {
+          return tmp.indexOf(node) === index && node != "";
+        })
         this.nodes = this.getAllNodes();
         this.edges = Array.from(new Set(this.getAllLinks()));
         console.log("hahaha: nodes: ", this.nodes);
         console.log("hahaha: links: ", this.edges);
+        console.log("childrenArr: ", this.childrenArr);
+
         this.isLoaded = true;
       })
     });
@@ -68,11 +73,15 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         this.clusterID = this.getClusterID(this.sourcePositionID);
         this.getAllPositionByCluster(this.clusterID);
         // this.getChildrenBySource(this.sourcePositionID);
-        this.childrenArr = this.getAllChildrenBySource(this.sourcePositionID).split(",");
+        let tmp = this.getAllChildrenBySource(this.sourcePositionID).split(",");
+        this.childrenArr = tmp.filter((node, index) => {
+          return tmp.indexOf(node) === index && node != "";
+        })
         this.nodes = this.getAllNodes();
         this.edges = Array.from(new Set(this.getAllLinks()));
         console.log("hahaha: nodes: ", this.nodes);
         console.log("hahaha: links: ", this.edges);
+        console.log("childrenArr: ", this.childrenArr);
         this.isLoaded = true;
       })
     });
@@ -85,7 +94,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
           id: link["target"]["id"],
           name: this.mapPositionIDToPositionName(link["target"]["id"]),
           color: this.mapPositionIDToColor(link["target"]["id"]),
-          // children: this.getChildrenBySource(link["target"])
+          children: this.getChildrenBySource(link["target"]["id"])
         };
         childrenArr.push(tmp);
         console.log("sourceID: ", sourceID, "has childrenArr: ", childrenArr);
@@ -132,76 +141,26 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     console.log("getAllPositionByCluster:", this.careerProgressionByCluster);
   }
   getAllChildrenBySource(sourceID) {
-    // let childrenArr = [];
-    // this.links.forEach(link => {
-    //   if (link && link["source"]["id"] == sourceID) {
-    //     let node: Node = {
-    //       id: link["target"]["id"],
-    //       label: link["target"]["name"],
-    //       dimension: {
-    //         width: 1600,
-    //         height: 400
-    //       },
-    //       data: {
-    //         customColor: link["source"]["careerpathObj"]["color"]
-    //       }
-    //     };
-    //     childrenArr.push(node);
-    //     console.log("haha children for ", link["target"]["id"], this.getAllChildrenBySource(link["target"]["id"]));
-    //     let childrendNode = this.getAllChildrenBySource(link["target"]["id"]);
-    //     childrendNode.forEach(node => {
-    //       // if (childrenArr.indexOf(node) == -1) childrenArr.push(node);
-    //       let found = false;
-    //       for (let i = 0; i < childrenArr.length; i++) {
-    //         if (childrenArr[i].name == node["name"]) {
-    //           found = true;
-    //           break;
-    //         }
-    //       }
-    //       if(!found) childrenArr.push(node);
-    //     })
-    //   }
-    // })
-    // return childrenArr;
+
     let id = "";
-    let found = false;
+    let s = ",";
     this.links.forEach(link => {
       if (link && link["source"]["id"] == sourceID) {
-        // arr.push(link["target"]["id"]);
         id = link["target"]["id"];
-        found = true;
         this.connection.push(link);
         console.log("source: " + sourceID + " des: " + id + " found")
+        s = s + sourceID + "," + this.getAllChildrenBySource(id) + ",";
       }
     });
-    return found ? sourceID + "," + this.getAllChildrenBySource(id) : sourceID;
+    return s + "," + sourceID + ",";
   }
-
-  // getPositions(result): void {
-  //   this.nodes = result.map(position => {
-  //     let isMemberEngineering = position["name"].indexOf("Member engineer") != -1;
-  //     let node: Node = {
-  //       id: position["id"] + '',
-  //       label: position["name"],
-  //       // meta: position["careerpathObj"]["name"],
-  //       dimension: {
-  //         width: isMemberEngineering ? 2800 : 1600,
-  //         height: isMemberEngineering ? 400 : 400
-  //       },
-  //       data: {
-  //         customColor: isMemberEngineering ? "#08427E" : position["careerpathObj"]["color"]
-  //       }
-  //     }
-  //     return node;
-  //   });
-  // }
   getAllNodes() {
     let arr = this.childrenArr.map(id => {
       let node: Node = {
         id: id,
         label: this.mapPositionIDToPositionName(id),
         dimension: {
-          width: 800,
+          width: 850,
           height: 200
         },
         data: {
@@ -212,15 +171,24 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     });
     return arr;
   }
-  getAllLinks(){
-    return Array.from(new Set(this.connection)).map(conn=>{
-      let edge:Edge={
-        id:"e"+conn["id"],
-        source:conn["source"]["id"],
-        target:conn["target"]["id"],
+  getAllLinks() {
+    return Array.from(new Set(this.connection)).map(conn => {
+      let edge: Edge = {
+        id: "e" + conn["id"],
+        source: conn["source"]["id"],
+        target: conn["target"]["id"],
       }
       return edge;
     })
   }
+
+  view = [500, 300];
+  onResize(event) {
+    console.log(event.target.innerWidth);
+    this.view = [event.target.innerWidth - 900, 280];
+  }
+
+
+
 }
 
