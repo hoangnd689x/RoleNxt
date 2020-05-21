@@ -28,6 +28,12 @@ export class PositionDetailComponent implements OnInit {
   domains: Domain[];
   addForm: FormGroup;
 
+  // show more
+  isShowMoreRes: Boolean = false;
+  isShowMoreKRA: Boolean = false;
+  isShowMoreComp: Boolean = false;
+  isShowMoreEntr: Boolean = false;
+
   constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -61,6 +67,22 @@ export class PositionDetailComponent implements OnInit {
   }
   backToLatticePage() {
 
+  }
+
+  showMoreKRA(){
+    this.isShowMoreKRA = true;
+  }
+
+  showMoreRes(){
+    this.isShowMoreRes = true;
+  }
+
+  showMoreComp(){
+    this.isShowMoreComp = true;
+  }
+
+  showMoreEntr(){
+    this.isShowMoreEntr = true;
   }
 
   loadCompetencyAndOrg(domainId: string) {

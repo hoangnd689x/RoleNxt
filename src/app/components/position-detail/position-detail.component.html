@@ -26,24 +26,56 @@
                 </div>
                 <div class="content-block">
                     <h4>Entry Criteria</h4>
-                    <ul>
-                        <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
-                    </ul>
+
+                    <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr">
+                        <ul>
+                            <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:3; let i=index">{{cri}}</li>
+                            <div (click) = "showMoreEntr()" class="show-more">Show more >></div>
+                        </ul>
+                    </div>
+
+                    <ng-template #elseBlockEntr>
+                        <ul>
+                            <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
+                        </ul>
+                    </ng-template>
+
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="content-block">
                     <h4>Responsibilities</h4>
-                    <ul>
-                        <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
-                    </ul>
+                    <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 3; else elseBlockRes">
+                        <ul>
+                            <li *ngFor="let res of positionDetailResponsibilities | slice:0:3; let i=index">{{res}}</li>
+                            <div (click) = "showMoreRes()" class="show-more">Show more >></div>
+                        </ul>
+                    </div>
+
+                    <ng-template #elseBlockRes>
+                        <ul>
+                            <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
+                        </ul>
+                    </ng-template>
+                    
                 </div>
                 <div class="content-block">
                     <h4>KRA (key responsible area)</h4>
-                    <ul>
-                        <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
-                    </ul>
+
+                    <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 3; else elseBlock">
+                        <ul>
+                            <li *ngFor="let kra of positionDetailKRA | slice:0:3; let i=index">{{kra}}</li>
+                            <div (click) = "showMoreKRA()" class="show-more">Show more >></div>
+                        </ul>
+                    </div>
+
+                    <ng-template #elseBlock>
+                        <ul>
+                            <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
+                        </ul>
+                    </ng-template>
+
                 </div>
                 <!-- <div class="content-block">
                     <h4>Scope</h4>
@@ -64,9 +96,20 @@
                 </div>
                 <div class="content-block">
                     <h4>Competencies required</h4>
-                    <ul>
-                        <li *ngFor="let com of positionDetail.competencies">{{com.name}}</li>
-                    </ul>
+
+                    <div *ngIf="!isShowMoreComp && positionDetail.competencies.length > 3; else elseBlockComp">
+                        <ul>
+                            <li *ngFor="let comp of positionDetail.competencies | slice:0:3; let i=index">{{comp.name}}</li>
+                            <div (click) = "showMoreComp()" class="show-more">Show more >></div>
+                        </ul>
+                    </div>
+
+                    <ng-template #elseBlockComp>
+                        <ul>
+                            <li *ngFor="let comp of positionDetail.competencies">{{comp.name}}</li>
+                        </ul>
+                    </ng-template>
+
                 </div>
                 <!-- <div class="content-block">
                     <h4>Project Category</h4>
