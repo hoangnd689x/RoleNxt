@@ -31,3 +31,11 @@ section {
     justify-content: center;
     width: 120px;
   }
+
+
+  g.node rect,text {
+    cursor: pointer;
+  }
+  rect:hover{
+    cursor: pointer;
+  }
