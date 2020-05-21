@@ -1,5 +1,5 @@
-import { Component, OnInit,OnDestroy  } from '@angular/core';
-import {Location} from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -7,6 +7,7 @@ import { Competency } from '../model/Competency';
 import { Organization } from '../model/organization';
 import { Domain } from '../model/domain';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Role } from '../model/role';
 
 @Component({
   selector: 'app-position-detail',
@@ -16,8 +17,11 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class PositionDetailComponent implements OnInit {
   positionID = "";
   positionDetail: any;
+  positionDetailEntryCriteria: any;
+  positionDetailResponsibilities: any;
+  positionDetailKRA: any;
   isLoaded: Boolean = false;
-  paramsSubscription : Subscription;
+  paramsSubscription: Subscription;
   competencies: Competency[];
   competenciesMap: Map<number, Competency> = new Map();
   orgs: Organization[];
@@ -27,11 +31,17 @@ export class PositionDetailComponent implements OnInit {
   constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
+    this.getAllDomain();
+
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.positionID = params['id'];
       this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
-        this.positionDetail = data;
-        console.log("go to positionID: ",this.positionID)
+        this.positionDetail = data[0];
+        console.log("position detail:", this.positionDetail.competencies);
+        this.positionDetailEntryCriteria = data[0].entryCriteria.split("\n");
+        this.positionDetailResponsibilities = data[0].responsibilities.split("\n");
+        this.positionDetailKRA = data[0].kra.split("\n");
         this.isLoaded = true;
       })
     });
@@ -40,17 +50,17 @@ export class PositionDetailComponent implements OnInit {
       domain: ['-1', Validators.required],
       org: ['-1']
     });
-    
+
   }
   ngOnDestroy() {
     console.log("Component will be destroyed");
     this.paramsSubscription.unsubscribe();
   }
-  backToPositions(){
+  backToPositions() {
     this._location.back();
   }
-  backToLatticePage(){
-    
+  backToLatticePage() {
+
   }
 
   loadCompetencyAndOrg(domainId: string) {
@@ -69,7 +79,7 @@ export class PositionDetailComponent implements OnInit {
     });
   }
 
-  getOrgByDomainId(domainId: string){
+  getOrgByDomainId(domainId: string) {
     this.dataService.getOrgsByDomainId(domainId).subscribe(data => {
       this.orgs = data;
       console.log(this.orgs);
@@ -79,7 +89,25 @@ export class PositionDetailComponent implements OnInit {
   getAllDomain() {
     this.dataService.getAllDomain().subscribe(data => {
       this.domains = data;
-      console.log(this.domains);
+      console.log("All domains:", this.domains);
+    });
+  }
+
+  changeDetailByDomain(domainId, positionId) {
+    this.positionDetailEntryCriteria = [];
+    this.positionDetailResponsibilities = [];
+    this.positionDetailKRA = [];
+    this.positionDetail.competencies = [];
+    this.dataService.getRoleByDomain(domainId, positionId).subscribe(data => {
+      if(data.activate == true){
+        this.positionDetail = data;
+        console.log("data", data);
+        this.positionDetailEntryCriteria = data.entryCriteria.split("\n");
+        this.positionDetailResponsibilities = data.responsibilities.split("\n");
+        this.positionDetailKRA = data.kra.split("\n");
+      }
+      
+      this.isLoaded = true;
     });
   }
 }
