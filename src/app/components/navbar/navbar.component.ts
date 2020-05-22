@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { DataService } from "src/app/data.service";
 import { HttpClient } from "@angular/common/http";
+import { TitleService } from 'src/app/shared/title.service';
 
 @Component({
   selector: "app-navbar",
@@ -13,20 +14,31 @@ export class NavbarComponent implements OnInit {
   headers: any;
   username: string;
   signInStatus: string;
-  title = "Career Lattice";
+  title;
 
   constructor(
     private route: ActivatedRoute,
     private dataservice: DataService,
-    private http: HttpClient
+    private http: HttpClient,
+    private titleservice: TitleService
   ) {
     this.data = dataservice;
+    this.title=this.titleservice.getTitle();
+      // .subscribe(title => {
+      //   this.title = title;
+      //   console.log("title: ",title);
+      // })
   }
 
   ngOnInit() {
     this.data.loginDetails.subscribe(x => {
       this.username = x["username"];
     });
+    this.title=this.titleservice.getTitle()
+      // .subscribe(title => {
+      //   this.title = title;
+      //   console.log("title: ",title);
+      // })
   }
 
   signUserOut() {

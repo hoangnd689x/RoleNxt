@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { element } from 'protractor';
+import { TitleService } from 'src/app/shared/title.service';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +26,9 @@ export class HomeComponent implements OnInit {
   ]
   department = [];
 
-  constructor(private dataService: DataService) {
-
+  constructor(private dataService: DataService,
+    private titleservice: TitleService) {
+      this.titleservice.updateTitle("Role Nxt");
   }
 
   ngOnInit() {
