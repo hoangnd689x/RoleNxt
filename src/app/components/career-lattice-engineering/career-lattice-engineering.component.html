@@ -14,7 +14,7 @@
       </li>
     </ul>
   </div>
-  <ngx-graph style="margin: 20px auto auto 15%;" class="chart-container" [view]=[1200,500] [zoomToFit$]="zoomToFit$" [links]="links"
+  <ngx-graph style="margin: 20px auto auto 12%;" class="chart-container" [view]=[1200,500] [zoomToFit$]="zoomToFit$" [links]="links"
     [nodes]="nodes" [autoCenter]="autoCenter" [autoZoom]="autoZoom" [draggingEnabled]="draggingEnabled"
     [panningEnabled]="panningEnabled" [enableZoom]="zoomEnabled" [layoutSettings]="layoutSettings" [layout]="layout"
     [clusters]="clusters">
@@ -28,7 +28,7 @@
       <svg:g [routerLink]="['/position-details',node.id]" (click)="gotoDetails(node.id)">
         <svg:rect x="0" y="0" [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
           [attr.fill]="node.data.customColor" style="stroke-width:3;stroke:rgb(0,0,0)" />
-        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="120" font-size="7em"
+        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="120" [attr.font-size]="fontSize"
           [attr.y]="node.dimension.height / 2 + 20">
           {{node.label}}
         </svg:text>

@@ -3,41 +3,47 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Position } from './classes/position';
 import { Promotion } from './classes/promotion';
 import { domain, port } from "../environments/environment";
+import { Observable } from 'rxjs';
+import { Competency } from './components/model/Competency';
+import { Organization } from './components/model/organization';
+import { Domain } from './components/model/domain';
+import { Role } from './components/model/role';
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
-
+  // barUrl="http://localhost:8080/orgchartapis";
+  baseUrl="http://10.184.93.88:6060/orgchart";
   constructor(private http: HttpClient) { }
 
   loginDetails = this.http.get<JSON>("api/user-details");
   positions = this.http.get<Position[]>("api/positions");
   promotions = this.http.get<Promotion[]>("api/promotions");
+  getPositionsByDepartmentID = (departmentID: String) => this.http.get<JSON[]>(this.baseUrl+"/api/position/get-by-org/" + departmentID);
+  getLinksByDepartmentID = (departmentID: String) => this.http.get<JSON[]>(this.baseUrl+"/api/connection/get-by-org/" + departmentID);
+  getDepartment = () => this.http.get<JSON[]>(this.baseUrl+"/api/org/get-all/");
+  getCluster = () => this.http.get<JSON[]>(this.baseUrl+"/api/role/get-all");
+  getAllCareerPaths = () => this.http.get<JSON[]>(this.baseUrl+"/api/career-path/get-all");
+  getAllPositionDetails = () => this.http.get<JSON[]>(this.baseUrl+"/api/position/get-all");
+  getPositionDetails = (positionID) => this.http.get<JSON[]>(this.baseUrl+"/api/position/get-by-id/"+positionID);
+  getRoleById = (positionID) => this.http.get<JSON[]>(this.baseUrl+"/api/role/get-by-id/"+positionID);
+  getRolesByPositionId = (positionID) => this.http.get<Role[]>(this.baseUrl+"/api/role/get-by-position/"+positionID);
+  saveLinks = (links) => this.http.post(this.baseUrl+"/api/addCon", links);
 
-  // local
-  // getPositionsByDepartmentID = (departmentID: String) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getPositionsByOrgId/" + departmentID);
-  // getLinksByDepartmentID = (departmentID: String) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getAllConnectionsByDepartmentID/" + departmentID);
-  // getDepartment = () => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getAllOrgs/");
-  // getCluster = () => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getAllStructures/");
-  // getAllCareerPaths = () => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getAllCPs/");
-  // getAllPositionDetails = () => this.http.get<JSON[]>("http://localhost:8080//orgchartapis/api/getAllPositionDetails/");
-  // getPositionDetails = (positionID) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getPosById/"+positionID);
-  // getRoleById = (positionID) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getRoleById/"+positionID);
-  // getRolesByPositionId = (positionID) => this.http.get<JSON[]>("http://localhost:8080/orgchartapis/api/getRolesByPositionId/"+positionID);
+  getCompetencyByDomainId(id: string): Observable<Competency[]> {
+    return this.http.get<Competency[]>(this.baseUrl+'/api/competency/get-by-domain/' + id);
+  }
 
-  // // post
-  // saveLinks = (links) => this.http.post("http://localhost:8080/orgchartapis/api/addCon", links);
+  getOrgsByDomainId(domainId: string) : Observable<Organization[]> {
+    return this.http.get<Organization[]>(this.baseUrl+'/api/org/get-by-domain/'+domainId);
+  }
 
-  // // Q
-  getPositionsByDepartmentID = (departmentID: String) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getPositionsByOrgId/" + departmentID);
-  getLinksByDepartmentID = (departmentID: String) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getAllConnectionsByDepartmentID/" + departmentID);
-  getDepartment = () => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getAllOrgs/");
-  getCluster = () => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getAllStructures/");
-  getAllCareerPaths = () => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getAllCPs/");
-  getAllPositionDetails = () => this.http.get<JSON[]>("http://10.184.93.88:6060//orgchartapis/api/getAllPositionDetails/");
-  getPositionDetails = (positionID) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getPosById/"+positionID);
-  getRoleById = (positionID) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getRoleById/"+positionID);
-  getRolesByPositionId = (positionID) => this.http.get<JSON[]>("http://10.184.93.88:6060/orgchartapis/api/getRolesByPositionId/"+positionID);
-  // post
-  saveLinks = (links) => this.http.post("http://10.184.93.88:6060/orgchartapis/api/addCon", links); 
+  getAllDomain(): Observable<Domain[]> {
+    return this.http.get<Domain[]>(this.baseUrl+'/api/domain/get-all')
+  }
+
+  getRoleByDomain(domainId: string, positionId: string ): Observable<Role> {
+    return this.http.get<Role>('http://localhost:8080/orgchart/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId)
+    //return this.http.get<Role>(this.baseUrl + '/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId +"&domainDeptId="+ domainDeptId)
+  }
 }

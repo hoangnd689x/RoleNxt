@@ -1,0 +1,45 @@
+<!-- <section *ngIf="isLoaded">
+  <div *ngIf="careerProgression.length>0" class="example-button-row">
+    <button mat-button *ngFor="let role of careerProgression" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.color, 'width': '200px','color':'white'}">{{role.name}}</button>
+    <div *ngIf="careerProgressionByCluster.length>0">
+      <button mat-button *ngFor="let role of careerProgressionByCluster" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.careerpathObj.color, 'width': '200px','color':'white'}">{{role.name}}</button>
+    </div> 
+</div>
+
+</section> -->
+
+
+<div *ngIf="isLoaded">
+  <ngx-graph  class="chart-container" (window:resize)="onResize($event)" [view]="view" [zoomToFit$]="zoomToFit$" [links]="edges"
+    [nodes]="nodes" [autoCenter]="true" [autoZoom]="true" [draggingEnabled]="false"
+    [panningEnabled]="false" [enableZoom]="false" [layoutSettings]="layoutSettings" [layout]="layout"
+    [clusters]="clusters">
+  
+    <ng-template #defsTemplate>
+      <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="5" markerHeight="14" orient="auto" >
+        <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
+      </svg:marker>
+    </ng-template>
+    <ng-template #nodeTemplate let-node>
+      <svg:g [routerLink]="['/position-details',node.id]">
+        <svg:rect x="0" y="0" [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
+          [attr.fill]="node.data.customColor" style="stroke-width:3;stroke:rgb(0,0,0)" />
+        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="120" font-size="4em"
+          [attr.y]="node.dimension.height / 2 + 20">
+          {{node.label}}
+        </svg:text>
+      </svg:g>
+    </ng-template>
+    <ng-template #linkTemplate let-link>
+      <svg:g class="edge">
+        <svg:path class="line" stroke-width="6" marker-end="url(#arrow)" >
+        </svg:path>
+      </svg:g>
+    </ng-template>
+    <ng-template #clusterTemplate let-cluster>
+      <svg:g style="fill: white;">
+        <svg:rect rx="5" ry="5" [attr.width]="10000" [attr.height]="cluster.dimension.height"/>
+      </svg:g>
+    </ng-template>
+  </ngx-graph>
+</div>

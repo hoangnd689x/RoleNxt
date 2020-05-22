@@ -18,3 +18,13 @@ h4 {
 .content-block{
     margin-top:10px;
 }
+
+.custom-button{
+    width: 200px;
+    margin-right: 20px;
+}
+
+.show-more{
+    color: cornflowerblue;
+    cursor: pointer;
+}

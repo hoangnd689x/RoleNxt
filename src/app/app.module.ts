@@ -23,7 +23,10 @@ import { LinksChildComponent } from './components/admin/links-child/links-child.
 
 // import material
 import {MatGridListModule} from '@angular/material/grid-list'; 
-import {MatCardModule} from '@angular/material/card'; 
+import {MatCardModule} from '@angular/material/card';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon'; 
+import { CareerProgressionComponent } from './components/position-detail/career-progression/career-progression.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +40,8 @@ import {MatCardModule} from '@angular/material/card';
     HomeComponent,
     PositionDetailComponent,
     LinksComponent,
-    LinksChildComponent
+    LinksChildComponent,
+    CareerProgressionComponent
 
   ],
   imports: [
@@ -51,8 +55,9 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatButtonModule,
     MatGridListModule,
-    MatCardModule
-
+    MatCardModule,
+    MatTreeModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

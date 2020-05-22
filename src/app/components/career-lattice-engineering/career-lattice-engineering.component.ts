@@ -57,7 +57,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     // marginX: 0,
     // marginY: 0,
     // rankPadding: 50,
-    // nodePadding: 800,
+    nodePadding: 200,
   }
   layout: String | Layout = 'dagreCluster';
   // line interpolation
@@ -72,14 +72,14 @@ export class CareerLatticeEngineeringComponent implements OnInit {
 
   careerPathIds: any[] = [];
   isChecked: boolean = true;
-
+  fontSize="7em";
   constructor(private dataService: DataService, private route: ActivatedRoute) {
     // this.data = dataService;
   }
 
   getPositions(result): void {
     this.nodes = result.map(position => {
-      let isMemberEngineering = position["name"].indexOf("Member engineer") != -1;
+      let isMemberEngineering = position["name"].indexOf("Member") != -1;
       let node: Node = {
         id: position["id"] + '',
         label: position["name"],
@@ -110,7 +110,6 @@ export class CareerLatticeEngineeringComponent implements OnInit {
         }
       }
     }
-
     if (this.careerPathIds.length == 0 || this.careerPathIds.length == this.careerPaths.length) {
       this.getPositions(this.resultOrg);
       this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(
@@ -122,11 +121,11 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     } else {
       this.getPositionsByCareerPath(this.careerPathIds);
     }
-
+    this.fontSize=this.careerPathIds.length == 0 || this.careerPathIds.length == this.careerPaths.length ?"7em":"5em";
   }
   //getPositionsByCareerPath
   getPositionsByCareerPath(careerIds): void {
-
+    console.log("getPositionsByCareerPath: careerIds="+careerIds)
     // create 2 types of result to handle the case click and then unclick all
     this.resultTmp = this.resultOrg;
     this.nodes = this.resultTmp.filter(function (node) {
@@ -170,7 +169,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       if (careerIds.indexOf(position["careerpathObj"]["id"])) {
         let clu: Cluster = {
           id: position["id"],
-          cluId: position["clusterID"]
+          cluId: position["cluster"]
         }
         return clu;
       }
@@ -221,8 +220,8 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     this.links = result.map(link => {
       let newEdge: Edge = {
         id: 'e' + link["id"],
-        source: link["source"],
-        target: link["target"]
+        source: link["source"]["id"],
+        target: link["target"]["id"]
       }
       return newEdge;
     });
@@ -246,7 +245,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("careerPathIds: ",this.careerPathIds);
     this.route.params.subscribe(params => {
       this.departmentID = params['id'];
     });
@@ -279,7 +278,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     let tmpClusters = [];
     let clusterNames = [];
     result.forEach(element => {
-      let name = element["clusterID"];
+      let name = element["cluster"];
       if (clusterNames.indexOf(name) == -1) clusterNames.push(name);
     });
     ///
@@ -289,7 +288,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       tmp["label"] = "level " + name;
       tmp["childNodeIds"] = [];
       result.forEach(e => {
-        if (e["clusterID"] == name) tmp["childNodeIds"].push(e["id"] + "");
+        if (e["cluster"] == name) tmp["childNodeIds"].push(e["id"] + "");
       })
      
       return tmp;
@@ -301,7 +300,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     let tmpClusters = [];
     let clusterNames = [];
     clusters.forEach(element => {
-      let name = element["cluId"];
+      let name = element["cluster"];
       if (clusterNames.indexOf(name) == -1) clusterNames.push(name);
     });
     ///
@@ -311,7 +310,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       tmp["label"] = "level " + name;
       tmp["childNodeIds"] = [];
       clusters.forEach(e => {
-        if (e["cluId"] == name) tmp["childNodeIds"].push(e["id"] + "");
+        if (e["cluster"] == name) tmp["childNodeIds"].push(e["id"] + "");
       });
       return tmp;
     })
