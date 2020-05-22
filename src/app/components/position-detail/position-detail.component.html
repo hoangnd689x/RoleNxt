@@ -3,9 +3,12 @@
         background-color: #e9ecef;
         border-radius: .3rem; margin-bottom: 0">
         <div class="row">
-            <div class="col-md-2" *ngFor="let domain of domains">
-                <button class="btn btn-success" style="width: 100%;"
-                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id)">{{domain.name}}</button>
+            <div class="col-md-2">
+                <!-- <button class="btn btn-success" style="width: 100%;"
+                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id)">{{domain.name}}</button> -->
+                    <button class="btn btn-success"style="margin-left:10px;">CC</button>
+                    <button class="btn btn-success"style="margin-left:10px;">CM</button>
+                    <button class="btn btn-success"style="margin-left:10px;">PS</button>
             </div>
 
             <div class="col-md-6">
