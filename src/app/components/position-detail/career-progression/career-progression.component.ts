@@ -37,16 +37,15 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
   ngOnInit() {
     console.log("sourcePositionID: ", this.sourcePositionID);
     console.log("departmentID: ", this.departmentID);
+    this.connection=[];
     this.isLoaded = false;
     this.dataService.getPositionsByDepartmentID(this.departmentID).subscribe(result => {
       this.positions = result;
       this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(result => {
         this.links = result;
-        // this.careerProgression = this.getChildrenBySource(this.sourcePositionID);
         console.log(this.careerProgression);
         this.clusterID = this.getClusterID(this.sourcePositionID);
         this.getAllPositionByCluster(this.clusterID);
-        // this.getChildrenBySource(this.sourcePositionID);
         let tmp = this.getAllChildrenBySource(this.sourcePositionID).split(",");
         this.childrenArr = tmp.filter((node, index) => {
           return tmp.indexOf(node) === index && node != "";
@@ -63,16 +62,18 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     console.log("on change")
+    // reset data
+    this.nodes = [];
+    this.edges = [];
+    this.connection=[];
     this.isLoaded = false;
     this.dataService.getPositionsByDepartmentID(this.departmentID).subscribe(result => {
       this.positions = result;
       this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(result => {
         this.links = result;
-        // this.careerProgression = this.getChildrenBySource(this.sourcePositionID);
         console.log(this.careerProgression);
         this.clusterID = this.getClusterID(this.sourcePositionID);
         this.getAllPositionByCluster(this.clusterID);
-        // this.getChildrenBySource(this.sourcePositionID);
         let tmp = this.getAllChildrenBySource(this.sourcePositionID).split(",");
         this.childrenArr = tmp.filter((node, index) => {
           return tmp.indexOf(node) === index && node != "";
@@ -141,7 +142,6 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     console.log("getAllPositionByCluster:", this.careerProgressionByCluster);
   }
   getAllChildrenBySource(sourceID) {
-
     let id = "";
     let s = ",";
     this.links.forEach(link => {
@@ -184,7 +184,6 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
 
   view = [500, 300];
   onResize(event) {
-    console.log(event.target.innerWidth);
     this.view = [event.target.innerWidth - 900, 280];
   }
 
