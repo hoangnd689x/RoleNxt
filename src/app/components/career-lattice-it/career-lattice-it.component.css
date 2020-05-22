@@ -27,3 +27,8 @@ g.node rect,text {
   rect:hover{
     cursor: pointer;
   }
+  .title{
+    color: #EA0016;
+    font-size: 30px;
+    font-weight: bolder;
+  }
