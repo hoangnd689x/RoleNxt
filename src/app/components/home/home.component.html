@@ -9,6 +9,8 @@
         <div class="example-button-row">
           <a *ngFor="let department of item.items" [routerLink]="['position',department.id]" mat-raised-button
             [ngStyle]="{'background-color': department.color}">{{department.name}}</a>
+            <a *ngIf="item.name=='IT'" [routerLink]="['position/it',2]" mat-raised-button
+            [ngStyle]="{'background-color': 'red'}">ETI</a>
         </div>
       </mat-card-content>
     </mat-card>

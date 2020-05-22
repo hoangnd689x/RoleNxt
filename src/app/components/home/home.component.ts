@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
       tmp["bgcolor"] = domainName=="IT"?"rgba(218, 255, 153, 0.27)":"rgba(238, 28, 28, 0.11)";
       tmp["items"] = [];
       data.forEach(e => {
-        if (e["domainObj"]["name"] == domainName) {
+        if (e["domainObj"]["name"] == domainName && e["name"]!="ETI") {
           tmp["items"].push(e);
         }
       })
