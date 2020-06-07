@@ -4,11 +4,11 @@
         border-radius: .3rem; margin-bottom: 0">
         <div class="row">
             <div class="col-md-2">
-                <!-- <button class="btn btn-success" style="width: 100%;"
-                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id)">{{domain.name}}</button> -->
-                    <button class="btn btn-success"style="margin-left:10px;">CC</button>
+                 <button *ngFor="let domain of domainDept" class="btn btn-success" style="width: 100%;"
+                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id)">{{domain.name}}</button>
+                    <!-- <button class="btn btn-success"style="margin-left:10px;">CC</button>
                     <button class="btn btn-success"style="margin-left:10px;">CM</button>
-                    <button class="btn btn-success"style="margin-left:10px;">PS</button>
+                    <button class="btn btn-success"style="margin-left:10px;">PS</button> -->
             </div>
 
             <div class="col-md-6">
@@ -34,15 +34,15 @@
                         <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr2">
                             <ul>
                                 <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:3; let i=index">{{cri}}</li>
-                                <div (click)="showMoreEntr()" class="show-more">Show more >></div>
+                                <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more ++</button>
                             </ul>
                         </div>
     
                         <ng-template #elseBlockEntr2>
-                            <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr1">
+                            <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr1">  
                                 <ul>
                                     <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
-                                    <div (click)="collapseEntr()" class="show-more">Show less << </div>
+                                    <button (click)="collapseEntr()" class="btn btn-light btn-sm">less -- </button>
                                 </ul>
                             </div>
                             
@@ -65,14 +65,14 @@
                         <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 3; else elseBlockRes2">
                             <ul>
                                 <li *ngFor="let res of positionDetailResponsibilities | slice:0:3; let i=index">{{res}}</li>
-                                <div (click)="showMoreRes()" class="show-more">Show more >></div>
+                                <button (click)="showMoreRes()" class="btn btn-light btn-sm">more ++</button>
                             </ul>
                         </div>
     
                         <ng-template #elseBlockRes2>
                             <ul>
                                 <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
-                                <div (click)="collapseRes()" class="show-more">Show less <<</div>
+                                <button (click)="collapseRes()" class="btn btn-light btn-sm">less --</button>
                             </ul>
                         </ng-template>
                     </div>
@@ -91,14 +91,14 @@
                         <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 3; else elseBlock2">
                             <ul>
                                 <li *ngFor="let kra of positionDetailKRA | slice:0:3; let i=index">{{kra}}</li>
-                                <div (click)="showMoreKRA()" class="show-more">Show more >></div>
+                                <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more ++</button>
                             </ul>
                         </div>
     
                         <ng-template #elseBlock2>
                             <ul>
                                 <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
-                                <div (click)="collapseKRA()" class="show-more">Show less <<</div>
+                                <button (click)="collapseKRA()" class="btn btn-light btn-sm">less --</button>
                             </ul>
                         </ng-template>
                     </div>
@@ -135,14 +135,14 @@
                             <ul>
                                 <li *ngFor="let comp of positionDetail.competencies | slice:0:3; let i=index">
                                     {{comp.name}}</li>
-                                <div (click)="showMoreComp()" class="show-more">Show more >></div>
+                                <button (click)="showMoreComp()" class="btn btn-light btn-sm">more ++</button>
                             </ul>
                         </div>
 
                         <ng-template #elseBlockComp2>
                             <ul>
                                 <li *ngFor="let comp of positionDetail.competencies">{{comp.name}}</li>
-                                <div (click)="collapseComp()" class="show-more">Show less <<</div>
+                                <button (click)="collapseComp()" class="btn btn-light btn-sm">less --</button>
                             </ul>
                         </ng-template>
                     </div>
@@ -168,10 +168,10 @@
                 </div> -->
             </div>
         </div>
-        <div class="row" style="float: right">
-            <button type="button" class="custom-button btn btn-primary" (click)="backToPositions();">Back To Previous
+        <div class="row" style="float: right; margin-right:1px;">
+            <button type="button" class="btn btn-info" (click)="backToPositions();">Back To Previous
                 Page</button>
-            <button type="button" class="custom-button btn btn-primary"
+            <button type="button" class="btn btn-info" style="margin-left:5px;"
                 [routerLink]="['/position',positionDetail.positionObj.organizationObj.id]">Back To Lattice
                 Page</button>
         </div>

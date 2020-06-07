@@ -8,12 +8,13 @@ import { Competency } from './components/model/Competency';
 import { Organization } from './components/model/organization';
 import { Domain } from './components/model/domain';
 import { Role } from './components/model/role';
+import { DomainDept } from './components/model/DomainDept';
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
-  // barUrl="http://localhost:8080/orgchartapis";
-  baseUrl="http://10.184.93.88:6060/orgchart";
+  //baseUrl="http://localhost:8080/orgchartapis";
+   baseUrl="http://10.184.93.88:6060/orgchart";
   constructor(private http: HttpClient) { }
 
   loginDetails = this.http.get<JSON>("api/user-details");
@@ -38,12 +39,12 @@ export class DataService {
     return this.http.get<Organization[]>(this.baseUrl+'/api/org/get-by-domain/'+domainId);
   }
 
-  getAllDomain(): Observable<Domain[]> {
-    return this.http.get<Domain[]>(this.baseUrl+'/api/domain/get-all')
+  getDomainsByPosition(positionId: string): Observable<DomainDept[]> {
+    return this.http.get<DomainDept[]>(this.baseUrl+'/api/department-domain/get-by-position/'+ positionId)
   }
 
   getRoleByDomain(domainId: string, positionId: string ): Observable<Role> {
-    return this.http.get<Role>('http://localhost:8080/orgchart/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId)
+    return this.http.get<Role>(this.baseUrl+'/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId)
     //return this.http.get<Role>(this.baseUrl + '/api/role/get-by-domain-position?domainId=' + domainId + "&positionId="+ positionId +"&domainDeptId="+ domainDeptId)
   }
 }

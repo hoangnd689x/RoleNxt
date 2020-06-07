@@ -8,6 +8,7 @@ import { Organization } from '../model/organization';
 import { Domain } from '../model/domain';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Role } from '../model/role';
+import { DomainDept } from '../model/DomainDept';
 
 @Component({
   selector: 'app-position-detail',
@@ -26,7 +27,7 @@ export class PositionDetailComponent implements OnInit {
   competencies: Competency[];
   competenciesMap: Map<number, Competency> = new Map();
   orgs: Organization[];
-  domains: Domain[];
+  domainDept: DomainDept[];
   addForm: FormGroup;
 
   // show more
@@ -39,7 +40,7 @@ export class PositionDetailComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getAllDomain();
+    this.getDomainsByPosition();
 
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.positionID = params['id'];
@@ -130,10 +131,11 @@ export class PositionDetailComponent implements OnInit {
     });
   }
 
-  getAllDomain() {
-    this.dataService.getAllDomain().subscribe(data => {
-      this.domains = data;
-      console.log("All domains:", this.domains);
+  getDomainsByPosition() {
+    console.log("here====");
+    this.dataService.getDomainsByPosition(this.positionID).subscribe(data => {
+      this.domainDept = data;
+      console.log("All domains:", this.domainDept);
     });
   }
 
@@ -154,4 +156,5 @@ export class PositionDetailComponent implements OnInit {
       this.isLoaded = true;
     });
   }
+
 }
