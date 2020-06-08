@@ -4,9 +4,9 @@
         border-radius: .3rem; margin-bottom: 0">
         <div class="row">
             <div class="col-md-2">
-                 <button *ngFor="let domain of domainDept" class="btn btn-success" style="width: 100%;"
+                <button *ngFor="let domain of domainDept" class="btn btn-success" style="margin-left:10px;"
                     (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id)">{{domain.name}}</button>
-                    <!-- <button class="btn btn-success"style="margin-left:10px;">CC</button>
+                <!-- <button class="btn btn-success"style="margin-left:10px;">CC</button>
                     <button class="btn btn-success"style="margin-left:10px;">CM</button>
                     <button class="btn btn-success"style="margin-left:10px;">PS</button> -->
             </div>
@@ -31,22 +31,22 @@
                 <div class="content-block">
                     <h4>Entry Criteria</h4>
 
-                        <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr2">
+                    <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr2">
+                        <ul>
+                            <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:3; let i=index">{{cri}}</li>
+                            <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more</button>
+                        </ul>
+                    </div>
+
+                    <ng-template #elseBlockEntr2>
+                        <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr1">
                             <ul>
-                                <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:3; let i=index">{{cri}}</li>
-                                <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more ++</button>
+                                <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
+                                <button (click)="collapseEntr()" class="btn btn-light btn-sm">less </button>
                             </ul>
                         </div>
-    
-                        <ng-template #elseBlockEntr2>
-                            <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr1">  
-                                <ul>
-                                    <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
-                                    <button (click)="collapseEntr()" class="btn btn-light btn-sm">less -- </button>
-                                </ul>
-                            </div>
-                            
-                        </ng-template>
+
+                    </ng-template>
 
                     <ng-template #elseBlockEntr1>
                         <ul>
@@ -64,15 +64,16 @@
                     <div *ngIf="positionDetailResponsibilities.length > 3; else elseBlockRes1">
                         <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 3; else elseBlockRes2">
                             <ul>
-                                <li *ngFor="let res of positionDetailResponsibilities | slice:0:3; let i=index">{{res}}</li>
-                                <button (click)="showMoreRes()" class="btn btn-light btn-sm">more ++</button>
+                                <li *ngFor="let res of positionDetailResponsibilities | slice:0:3; let i=index">{{res}}
+                                </li>
+                                <button (click)="showMoreRes()" class="btn btn-light btn-sm">more</button>
                             </ul>
                         </div>
-    
+
                         <ng-template #elseBlockRes2>
                             <ul>
                                 <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
-                                <button (click)="collapseRes()" class="btn btn-light btn-sm">less --</button>
+                                <button (click)="collapseRes()" class="btn btn-light btn-sm">less</button>
                             </ul>
                         </ng-template>
                     </div>
@@ -86,28 +87,30 @@
                 </div>
                 <div class="content-block">
                     <h4>KRA (key responsible area)</h4>
-
-                    <div *ngIf="positionDetailKRA.length > 3; else elseBlock1">
-                        <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 3; else elseBlock2">
-                            <ul>
-                                <li *ngFor="let kra of positionDetailKRA | slice:0:3; let i=index">{{kra}}</li>
-                                <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more ++</button>
-                            </ul>
+                    <div *ngIf="positionDetailKRA">
+                        <div *ngIf="positionDetailKRA.length > 3; else elseBlock1">
+                            <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 3; else elseBlock2">
+                                <ul>
+                                    <li *ngFor="let kra of positionDetailKRA | slice:0:3; let i=index">{{kra}}</li>
+                                    <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more</button>
+                                </ul>
+                            </div>
+    
+                            <ng-template #elseBlock2>
+                                <ul>
+                                    <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
+                                    <button (click)="collapseKRA()" class="btn btn-light btn-sm">less</button>
+                                </ul>
+                            </ng-template>
                         </div>
     
-                        <ng-template #elseBlock2>
+                        <ng-template #elseBlock1>
                             <ul>
                                 <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
-                                <button (click)="collapseKRA()" class="btn btn-light btn-sm">less --</button>
                             </ul>
                         </ng-template>
                     </div>
 
-                    <ng-template #elseBlock1>
-                        <ul>
-                            <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
-                        </ul>
-                    </ng-template>
 
                 </div>
                 <!-- <div class="content-block">
@@ -130,28 +133,31 @@
                 </div>
                 <div class="content-block">
                     <h4>Competencies required</h4>
-                    <div *ngIf="positionDetail.competencies.length > 3; else elseBlockComp1">
-                        <div *ngIf="!isShowMoreComp && positionDetail.competencies.length > 3; else elseBlockComp2">
-                            <ul>
-                                <li *ngFor="let comp of positionDetail.competencies | slice:0:3; let i=index">
-                                    {{comp.name}}</li>
-                                <button (click)="showMoreComp()" class="btn btn-light btn-sm">more ++</button>
-                            </ul>
+                    <div *ngIf="positionDetail.competencies">
+                        <div *ngIf="positionDetailCompetencies.length > 3; else elseBlockComp1">
+                            <div *ngIf="!isShowMoreComp && positionDetailCompetencies.length > 3; else elseBlockComp2">
+                                <ul>
+                                    <li *ngFor="let comp of positionDetailCompetencies | slice:0:3; let i=index">
+                                        {{comp}}</li>
+                                    <button (click)="showMoreComp()" class="btn btn-light btn-sm">more</button>
+                                </ul>
+                            </div>
+
+                            <ng-template #elseBlockComp2>
+                                <ul>
+                                    <li *ngFor="let comp of positionDetailCompetencies">{{comp}}</li>
+                                    <button (click)="collapseComp()" class="btn btn-light btn-sm">less</button>
+                                </ul>
+                            </ng-template>
                         </div>
 
-                        <ng-template #elseBlockComp2>
+                        <ng-template #elseBlockComp1>
                             <ul>
-                                <li *ngFor="let comp of positionDetail.competencies">{{comp.name}}</li>
-                                <button (click)="collapseComp()" class="btn btn-light btn-sm">less --</button>
+                                <li *ngFor="let comp of positionDetailCompetencies">{{comp}}</li>
                             </ul>
                         </ng-template>
                     </div>
 
-                    <ng-template #elseBlockComp1>
-                        <ul>
-                            <li *ngFor="let comp of positionDetail.competencies">{{comp.name}}</li>
-                        </ul>
-                    </ng-template>
 
                 </div>
                 <!-- <div class="content-block">

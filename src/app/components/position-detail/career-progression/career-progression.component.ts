@@ -35,15 +35,15 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log("sourcePositionID: ", this.sourcePositionID);
-    console.log("departmentID: ", this.departmentID);
+    // console.log("sourcePositionID: ", this.sourcePositionID);
+    // console.log("departmentID: ", this.departmentID);
     this.isLoaded = false;
     this.dataService.getPositionsByDepartmentID(this.departmentID).subscribe(result => {
       this.positions = result;
       this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(result => {
         this.links = result;
         // this.careerProgression = this.getChildrenBySource(this.sourcePositionID);
-        console.log(this.careerProgression);
+        // console.log(this.careerProgression);
         this.clusterID = this.getClusterID(this.sourcePositionID);
         this.getAllPositionByCluster(this.clusterID);
         // this.getChildrenBySource(this.sourcePositionID);
@@ -53,23 +53,21 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         })
         this.nodes = this.getAllNodes();
         this.edges = Array.from(new Set(this.getAllLinks()));
-        console.log("hahaha: nodes: ", this.nodes);
-        console.log("hahaha: links: ", this.edges);
-        console.log("childrenArr: ", this.childrenArr);
+        // console.log("childrenArr: ", this.childrenArr);
 
         this.isLoaded = true;
       })
     });
   }
   ngOnChanges() {
-    console.log("on change")
+    // console.log("on change")
     this.isLoaded = false;
     this.dataService.getPositionsByDepartmentID(this.departmentID).subscribe(result => {
       this.positions = result;
       this.dataService.getLinksByDepartmentID(this.departmentID).subscribe(result => {
         this.links = result;
         // this.careerProgression = this.getChildrenBySource(this.sourcePositionID);
-        console.log(this.careerProgression);
+        // console.log(this.careerProgression);
         this.clusterID = this.getClusterID(this.sourcePositionID);
         this.getAllPositionByCluster(this.clusterID);
         // this.getChildrenBySource(this.sourcePositionID);
@@ -79,9 +77,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         })
         this.nodes = this.getAllNodes();
         this.edges = Array.from(new Set(this.getAllLinks()));
-        console.log("hahaha: nodes: ", this.nodes);
-        console.log("hahaha: links: ", this.edges);
-        console.log("childrenArr: ", this.childrenArr);
+        // console.log("childrenArr: ", this.childrenArr);
         this.isLoaded = true;
       })
     });
@@ -97,7 +93,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
           children: this.getChildrenBySource(link["target"]["id"])
         };
         childrenArr.push(tmp);
-        console.log("sourceID: ", sourceID, "has childrenArr: ", childrenArr);
+        // console.log("sourceID: ", sourceID, "has childrenArr: ", childrenArr);
       }
     })
     return childrenArr;
@@ -127,7 +123,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     this.positions.forEach(position => {
       if (position["id"] == positionID) id = position["cluster"];
     })
-    console.log("getClusterID: ", id);
+    // console.log("getClusterID: ", id);
     return id;
   }
   // get all position by cluster
@@ -138,7 +134,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
       if (position["clusterID"] == clusterID && !isCurrentPosition) positions.push(position);
     })
     this.careerProgressionByCluster = positions;
-    console.log("getAllPositionByCluster:", this.careerProgressionByCluster);
+    // console.log("getAllPositionByCluster:", this.careerProgressionByCluster);
   }
   getAllChildrenBySource(sourceID) {
 
@@ -148,7 +144,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
       if (link && link["source"]["id"] == sourceID) {
         id = link["target"]["id"];
         this.connection.push(link);
-        console.log("source: " + sourceID + " des: " + id + " found")
+        // console.log("source: " + sourceID + " des: " + id + " found")
         s = s + sourceID + "," + this.getAllChildrenBySource(id) + ",";
       }
     });
@@ -184,7 +180,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
 
   view = [500, 300];
   onResize(event) {
-    console.log(event.target.innerWidth);
+    // console.log(event.target.innerWidth);
     this.view = [event.target.innerWidth - 900, 280];
   }
 

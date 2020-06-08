@@ -21,10 +21,11 @@ export class PositionDetailComponent implements OnInit {
   positionDetailEntryCriteria: any;
   positionDetailResponsibilities: any;
   positionDetailKRA: any;
+  positionDetailCompetencies: any;
   positionDetailIndustryRoles: any;
   isLoaded: Boolean = false;
   paramsSubscription: Subscription;
-  competencies: Competency[];
+  competencies: any;
   competenciesMap: Map<number, Competency> = new Map();
   orgs: Organization[];
   domainDept: DomainDept[];
@@ -40,22 +41,22 @@ export class PositionDetailComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getDomainsByPosition();
 
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.positionID = params['id'];
       this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
         this.positionDetail = data[0];
-        console.log("position detail:", this.positionDetail);
         this.positionDetailEntryCriteria = data[0].entryCriteria.split("\n");
         this.positionDetailResponsibilities = data[0].responsibilities.split("\n");
         this.positionDetailKRA = data[0].kra.split("\n");
-        this.positionDetailIndustryRoles = data[0].kra.split("\n");;
+        this.positionDetailCompetencies = data[0].competencies.split("\n");
+        this.positionDetailIndustryRoles = data[0].kra.split("\n");
         this.isLoaded = true;
-      },err=>{
-        this.isLoaded=true;
+      }, err => {
+        this.isLoaded = true;
       })
     });
+    this.getDomainsByPosition();
     // let allPositions = this.getAllPositionDetails();
     this.addForm = this.formBuilder.group({
       domain: ['-1', Validators.required],
@@ -74,39 +75,39 @@ export class PositionDetailComponent implements OnInit {
 
   }
 
-  showMoreKRA(){
+  showMoreKRA() {
     this.isShowMoreKRA = true;
   }
 
-  showMoreRes(){
+  showMoreRes() {
     this.isShowMoreRes = true;
   }
 
-  showMoreComp(){
+  showMoreComp() {
     this.isShowMoreComp = true;
   }
 
-  showMoreEntr(){
+  showMoreEntr() {
     this.isShowMoreEntr = true;
   }
 
-  collapseKRA(){
+  collapseKRA() {
     this.isShowMoreKRA = false;
   }
 
-  collapseRes(){
+  collapseRes() {
     this.isShowMoreRes = false;
   }
 
-  collapseComp(){
+  collapseComp() {
     this.isShowMoreComp = false;
   }
 
-  collapseEntr(){
+  collapseEntr() {
     this.isShowMoreEntr = false;
   }
 
-  
+
 
   loadCompetencyAndOrg(domainId: string) {
     console.log(domainId);
@@ -132,7 +133,6 @@ export class PositionDetailComponent implements OnInit {
   }
 
   getDomainsByPosition() {
-    console.log("here====");
     this.dataService.getDomainsByPosition(this.positionID).subscribe(data => {
       this.domainDept = data;
       console.log("All domains:", this.domainDept);
@@ -144,17 +144,27 @@ export class PositionDetailComponent implements OnInit {
     this.positionDetailResponsibilities = [];
     this.positionDetailKRA = [];
     this.positionDetail.competencies = [];
-    this.dataService.getRoleByDomain(domainId, positionId).subscribe(data => {
-      if(data.activate == true){
-        this.positionDetail = data;
-        console.log("data", data);
-        this.positionDetailEntryCriteria = data.entryCriteria.split("\n");
-        this.positionDetailResponsibilities = data.responsibilities.split("\n");
-        this.positionDetailKRA = data.kra.split("\n");
+    // this.dataService.getRoleByDomain(domainId, positionId).subscribe(data => {
+    //   if (data.activate == true) {
+    //     this.positionDetail = data;
+    //     console.log("data", data);
+    //     this.positionDetailEntryCriteria = data.entryCriteria.split("\n");
+    //     this.positionDetailResponsibilities = data.responsibilities.split("\n");
+    //     this.positionDetailKRA = data.kra.split("\n");
+    //   }
+
+    //   // this.isLoaded = true;
+    // });
+
+    for(let i=0; i < this.domainDept.length; i++){
+      if(domainId == this.domainDept[i].id){
+        this.positionDetailEntryCriteria = this.domainDept[i].entryCriteria.split("\n");
+        this.positionDetailResponsibilities = this.domainDept[i].responsibilities.split("\n");
+        this.positionDetailKRA = this.domainDept[i].kra.split("\n");
+        this.positionDetailCompetencies = this.domainDept[i].competencies.split("\n");
       }
-      
-      this.isLoaded = true;
-    });
+    }
+
   }
 
 }

@@ -1,3 +1,6 @@
+
+import { Position } from './Position';
+
 export class DomainDept {
     id: number;
     positionObj: Position;
@@ -5,4 +8,5 @@ export class DomainDept {
     competencies: string;
     responsibilities: string;
     entryCriteria: string;
+    kra: string;
 }

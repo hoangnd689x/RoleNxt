@@ -125,7 +125,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   }
   //getPositionsByCareerPath
   getPositionsByCareerPath(careerIds): void {
-    console.log("getPositionsByCareerPath: careerIds="+careerIds)
+    // console.log("getPositionsByCareerPath: careerIds="+careerIds)
     // create 2 types of result to handle the case click and then unclick all
     this.resultTmp = this.resultOrg;
     this.nodes = this.resultTmp.filter(function (node) {
@@ -213,7 +213,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       return newEdge;
 
     });
-    console.log("links filter:", this.links);
+    // console.log("links filter:", this.links);
   }
 
   getLinks = (result) => {
@@ -225,7 +225,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
       }
       return newEdge;
     });
-    console.log("links: ", this.links)
+    // console.log("links: ", this.links)
     this.linksOrgl = this.links;
   }
   generateHashMap(paths): void {
@@ -245,7 +245,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("careerPathIds: ",this.careerPathIds);
+    // console.log("careerPathIds: ",this.careerPathIds);
     this.route.params.subscribe(params => {
       this.departmentID = params['id'];
     });
@@ -256,7 +256,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     this.dataService.getPositionsByDepartmentID(this.departmentID).subscribe(
       result => {
         // convert positions
-        console.log("results:", result);
+        // console.log("results:", result);
         this.resultOrg = result;
         this.getPositions(result);
         this.getClusters(result);
@@ -272,7 +272,7 @@ export class CareerLatticeEngineeringComponent implements OnInit {
     )
   }
   ngAfterViewInit() {
-    console.log(document.getElementById("c1"));
+    // console.log(document.getElementById("c1"));
   }
   getClusters(result) {
     let tmpClusters = [];
