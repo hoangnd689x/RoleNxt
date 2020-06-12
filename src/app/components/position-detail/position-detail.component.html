@@ -125,7 +125,7 @@
             </div>
 
             <div class="col-md-5">
-                <div class="content-block">
+                <div *ngIf="!isMemberEngineering" class="content-block">
                     <h4>Career progression</h4>
                     <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
                         [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id">

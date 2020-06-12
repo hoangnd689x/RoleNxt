@@ -37,6 +37,8 @@ export class PositionDetailComponent implements OnInit {
   isShowMoreComp: Boolean = false;
   isShowMoreEntr: Boolean = false;
 
+  // check if member engineering
+  isMemberEngineering: Boolean = false;
   constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class PositionDetailComponent implements OnInit {
       this.positionID = params['id'];
       this.dataService.getRolesByPositionId(this.positionID).subscribe(data => {
         this.positionDetail = data[0];
+        this.isMemberEngineering=data[0].positionObj["name"].indexOf("Member Engineer")!=-1;
         this.positionDetailEntryCriteria = data[0].entryCriteria.split("\n");
         this.positionDetailResponsibilities = data[0].responsibilities.split("\n");
         this.positionDetailKRA = data[0].kra.split("\n");
