@@ -168,10 +168,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100
 }
 .bg-container{
   height: 100%;
-  background-image: url('./assets/home-background.png');
+  background-image: url('./assets/Home.jpg');
   background-attachment: fixed;
  background-position: center;
  background-repeat: no-repeat;
  background-size: cover;
   
+}
+
+app-career-lattice-it{
+  background-color: aliceblue;
 }
