@@ -1,4 +1,4 @@
-<mat-grid-list class="bg-container" *ngIf="isLoaded" cols="2" rowHeight="1:1">
+<!-- <mat-grid-list class="bg-container" *ngIf="isLoaded" cols="2" rowHeight="1:1">
   <mat-grid-tile *ngFor="let item of result">
     <mat-card class="example-card" [ngStyle]="{'background-color': item.bgcolor}">
       <mat-card-header>
@@ -15,4 +15,12 @@
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+<div  class="bg-container" style="padding-left: 85px; padding-top: 85px;">
+    <div *ngFor="let item of result" style="margin-top: 40px">
+        <div><b>{{item.name}}</b></div>
+        <a *ngFor="let department of item.items" [routerLink]="['position',department.id]" mat-raised-button
+          [ngStyle]="{'background-color': department.color}">{{department.name}}</a>
+        <a *ngIf="item.name=='IT'" [routerLink]="['position/it',2]" [ngStyle]="{'background-color': 'red'}" mat-raised-button>ETI</a>
+      </div>
+</div>
