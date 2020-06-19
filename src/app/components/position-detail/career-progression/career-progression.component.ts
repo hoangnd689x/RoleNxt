@@ -135,18 +135,28 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     this.careerProgressionByCluster = positions;
     // console.log("getAllPositionByCluster:", this.careerProgressionByCluster);
   }
-  getAllChildrenBySource(sourceID) {
-    let id = "";
-    let s = ",";
+  // getAllChildrenBySource(sourceID) {
+  //   let id = "";
+  //   let s = ",";
+  //   this.links.forEach(link => {
+  //     if (link && link["source"]["id"] == sourceID) {
+  //       id = link["target"]["id"];
+  //       this.connection.push(link);
+  //       s = s + sourceID + "," + this.getAllChildrenBySource(id) + ",";
+  //     }
+  //   });
+  //   return s + "," + sourceID + ",";
+  // }
+  getAllChildrenBySource(sourceID){
+    let s =sourceID;
     this.links.forEach(link => {
       if (link && link["source"]["id"] == sourceID) {
-        id = link["target"]["id"];
+        let id = link["target"]["id"];
         this.connection.push(link);
-        // console.log("source: " + sourceID + " des: " + id + " found")
-        s = s + sourceID + "," + this.getAllChildrenBySource(id) + ",";
+        s=s+","+id;
       }
     });
-    return s + "," + sourceID + ",";
+    return s;
   }
   getAllNodes() {
     let arr = this.childrenArr.map(id => {
