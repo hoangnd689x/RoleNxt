@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:12.7-alpine AS build
+FROM node:10.21.0 AS build
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm install

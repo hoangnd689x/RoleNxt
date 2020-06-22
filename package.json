@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "nodemon server.js",
-    "build": "ng build --prod --base-href /ferolenxt/ & cd angular-build & jar cvf ferolenxt.war .",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
