@@ -28,3 +28,8 @@ h4 {
     color: cornflowerblue;
     cursor: pointer;
 }
+
+.btn:focus {
+    background-color: rgb(4, 82, 37);
+    color: white;
+  }
