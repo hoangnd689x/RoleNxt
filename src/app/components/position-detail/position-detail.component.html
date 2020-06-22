@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-2">
                 <button *ngFor="let domain of domainDept" class="btn btn-success" style="margin-left:10px;"
-                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id)">{{domain.name}}</button>
+                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id);selectedItemId = domain.id" [ngClass]="{'active': selectedItemId === domain.id}">{{domain.name}}</button>
                 <!-- <button class="btn btn-success"style="margin-left:10px;">CC</button>
                     <button class="btn btn-success"style="margin-left:10px;">CM</button>
                     <button class="btn btn-success"style="margin-left:10px;">PS</button> -->

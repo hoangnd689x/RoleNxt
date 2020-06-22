@@ -30,7 +30,7 @@ export class PositionDetailComponent implements OnInit {
   orgs: Organization[];
   domainDept: DomainDept[];
   addForm: FormGroup;
-
+  selectedItemId:String = null;
   // show more
   isShowMoreRes: Boolean = false;
   isShowMoreKRA: Boolean = false;
