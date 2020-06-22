@@ -12,12 +12,12 @@
             </div>
 
             <div class="col-md-6">
-                <h3>{{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
-                    {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h3>
+                <h5>{{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
+                    {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h5>
             </div>
         </div>
     </div>
-    <div class="custom-border">
+    <div class="custom-border" style="font-size: 0.8em;">
         <div class="row">
             <div class="col-md-3">
                 <div class="content-block">
@@ -25,11 +25,11 @@
                         src="https://www.nicepng.com/png/detail/772-7726577_refrubished-employee-icon-admin-assets-upload-id.png" />
                 </div>
                 <div class="content-block">
-                    <h4>Industrial Role</h4>
+                    <h6>Industrial Role</h6>
                     <div [innerHTML]="positionDetail.industrialRole"></div>
                 </div>
                 <div class="content-block">
-                    <h4>Entry Criteria</h4>
+                    <h6>Entry Criteria</h6>
 
                     <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr2">
                         <ul>
@@ -59,12 +59,12 @@
 
             <div class="col-md-4">
                 <div class="content-block">
-                    <h4>Responsibilities</h4>
+                    <h6>Responsibilities</h6>
 
-                    <div *ngIf="positionDetailResponsibilities.length > 3; else elseBlockRes1">
-                        <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 3; else elseBlockRes2">
+                    <div *ngIf="positionDetailResponsibilities.length > 2; else elseBlockRes1">
+                        <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 2; else elseBlockRes2">
                             <ul>
-                                <li *ngFor="let res of positionDetailResponsibilities | slice:0:3; let i=index">{{res}}
+                                <li *ngFor="let res of positionDetailResponsibilities | slice:0:2; let i=index">{{res}}
                                 </li>
                                 <button (click)="showMoreRes()" class="btn btn-light btn-sm">more</button>
                             </ul>
@@ -86,7 +86,7 @@
 
                 </div>
                 <div class="content-block">
-                    <h4>KRA (key responsible area)</h4>
+                    <h6>KRA (key responsible area)</h6>
                     <div *ngIf="positionDetailKRA">
                         <div *ngIf="positionDetailKRA.length > 3; else elseBlock1">
                             <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 3; else elseBlock2">
@@ -115,24 +115,24 @@
                 </div>
                 <!-- <div class="content-block">
                     <h4>Scope</h4>
-                    <h5>{{positionDetail.scope}}</h5>
+                    <h6>{{positionDetail.scope}}</h6>
                 </div>
 
                 <div class="content-block">
                     <h4>Domain</h4>
-                    <h5>{{positionDetail.domain}}</h5>
+                    <h6>{{positionDetail.domain}}</h6>
                 </div> -->
             </div>
 
             <div class="col-md-5">
                 <div *ngIf="!isMemberEngineering" class="content-block">
-                    <h4>Career progression</h4>
+                    <h6>Career progression</h6>
                     <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
                         [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id">
                     </career-progression>
                 </div>
                 <div class="content-block">
-                    <h4>Competencies required</h4>
+                    <h6>Competencies required</h6>
                     <div *ngIf="positionDetail.competencies">
                         <div *ngIf="positionDetailCompetencies.length > 3; else elseBlockComp1">
                             <div *ngIf="!isShowMoreComp && positionDetailCompetencies.length > 3; else elseBlockComp2">
@@ -162,15 +162,15 @@
                 </div>
                 <!-- <div class="content-block">
                     <h4>Project Category</h4>
-                    <h5>{{positionDetail.projectCategory}}</h5>
+                    <h6>{{positionDetail.projectCategory}}</h6>
                 </div>
                 <div class="content-block">
                     <h4>Domain Roles</h4>
-                    <h5>{{positionDetail.domainRoles}}</h5>
+                    <h6>{{positionDetail.domainRoles}}</h6>
                 </div>
                 <div class="content-block">
                     <h4>Career path</h4>
-                    <h5>{{positionDetail.careerPath}}</h5>
+                    <h6>{{positionDetail.careerPath}}</h6>
                 </div> -->
             </div>
         </div>

@@ -186,9 +186,9 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     })
   }
 
-  view = [500, 300];
+  view = [530, 120];
   onResize(event) {
-    this.view = [event.target.innerWidth - 900, 280];
+    this.view = [event.target.innerWidth - 800, 300];
   }
 
 }
