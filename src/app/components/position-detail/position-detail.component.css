@@ -4,7 +4,7 @@
 	background: #aaa;
 }
 
-h6 {
+h5 {
 	color: #003366;
 }
 
@@ -34,3 +34,70 @@ h6 {
     color: white;
     box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);
   }
+  .col-md-4{
+      padding: 0 30px 0 30px;
+  }
+  .next-title{
+    margin-top: 30px;
+  }
+p{
+    margin-bottom: 0.7em;
+}
+ul{
+    list-style: disclosure-closed;
+}
+/** show mỏe **/
+
+  
+  .btn-more {
+    cursor: pointer;
+    top: 0;
+    float: right;
+  }
+  /* .btn-more:before,
+.btn-more:after{
+  position: absolute;
+} */
+
+.btn-more:before {
+  /* content: 'More'; */
+  color: #03a87c !important;
+  fill: #03a87c !important;
+}
+
+.btn-more:after {
+  /* content: '●●●'; */
+  content: '⇣⇣⇣';
+  right: 10px;
+  margin-left: 5px;
+  animation: sudo .85s linear infinite alternate;
+}
+
+@keyframes sudo { 
+  from { 
+    transform: translateY(-2px); 
+  }
+  to { 
+    transform: translateY(2px); 
+  }   
+}
+
+.btn-less {
+    cursor: pointer;
+    top: 0;
+    float: right;
+  }
+
+.btn-less:before{
+  /* content: 'Less'; */
+  left: 10px;
+  color: #03a87c !important;
+  fill: #03a87c !important;
+}
+
+.btn-less:after{
+  content: '⇡⇡⇡';
+  right: 10px;
+  margin-left: 5px;
+  animation: sudo .85s linear infinite alternate;
+}
