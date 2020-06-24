@@ -165,7 +165,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         label: this.mapPositionIDToPositionName(id),
         dimension: {
           width: 850,
-          height: 200
+          height: 300
         },
         data: {
           customColor: this.mapPositionIDToColor(id)
@@ -186,9 +186,9 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
     })
   }
 
-  view = [530, 120];
+  view = [330, 120];
   onResize(event) {
-    this.view = [event.target.innerWidth - 800, 300];
+    this.view = [event.target.innerWidth - 400, 300];
   }
 
 }

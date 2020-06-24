@@ -1,48 +1,79 @@
 <div class="container-fluid details-page" *ngIf="isLoaded">
-    <div class="text-center custom-border" style="margin-bottom: 2rem;
-        background-color: #e9ecef;
-        border-radius: .3rem; margin-bottom: 0">
+    <div class="text-center" style="margin-bottom: 0">
         <div class="row">
-            <div class="col-md-2">
-                <button *ngFor="let domain of domainDept" class="btn btn-success" style="margin-left:10px;"
-                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id);selectedItemId = domain.id" [ngClass]="{'active': selectedItemId === domain.id}">{{domain.name}}</button>
-                <!-- <button class="btn btn-success"style="margin-left:10px;">CC</button>
-                    <button class="btn btn-success"style="margin-left:10px;">CM</button>
-                    <button class="btn btn-success"style="margin-left:10px;">PS</button> -->
+            <div class="col-md-5" style="text-align: left;">
+                <button *ngFor="let domain of domainDept" class="btn btn-success"
+                    style="margin-left:10px;font-size: 0.7em;"
+                    (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id);selectedItemId = domain.id"
+                    [ngClass]="{'active': selectedItemId === domain.id}">{{domain.name}}</button>
+                <span style="font-size: 1.25rem;margin-bottom: 0;font-weight: bold;"> - Career Lattice</span>
             </div>
-
-            <div class="col-md-6">
-                <h5>{{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
+            <div class="col-md-7"></div>
+        </div>
+        <div class="row" style="margin-left: -5px;">
+            <div class="col-md-5" style="text-align: left;">
+                <h5 style="color: rgb(175, 30, 122);font-weight: bold;margin-bottom: 0;">
+                    {{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
                     {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h5>
             </div>
+            <div class="col-md-7"></div>
         </div>
     </div>
     <div class="custom-border" style="font-size: 0.8em;">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="content-block">
                     <img class="fakeimg img-responsive fit-image"
                         src="https://www.nicepng.com/png/detail/772-7726577_refrubished-employee-icon-admin-assets-upload-id.png" />
                 </div>
+                <div *ngIf="!isMemberEngineering" class="content-block">
+                    <h5 class="next-title">Career progression</h5>
+                    <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
+                        [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id">
+                    </career-progression>
+                </div>
+            </div>
+
+            <div class="col-md-4">
                 <div class="content-block">
-                    <h6>Industrial Role</h6>
-                    <div [innerHTML]="positionDetail.industrialRole"></div>
+                    <h5>Responsibilities</h5>
+
+                    <div *ngIf="positionDetailResponsibilities.length > 2; else elseBlockRes1">
+                        <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 2; else elseBlockRes2">
+                            <p *ngFor="let res of positionDetailResponsibilities | slice:0:2; let i=index">{{res}}
+                            </p>
+                            <label (click)="showMoreRes()" class="btn-more"  title="show more"></label>
+                        </div>
+
+                        <ng-template #elseBlockRes2>
+                            <p *ngFor="let res of positionDetailResponsibilities">{{res}}</p>
+                            <!-- <button (click)="collapseRes()" class="btn btn-light btn-sm">less</button> -->
+                            <label (click)="collapseRes()" class="btn-less" title="show less"></label>
+                        </ng-template>
+                    </div>
+
+                    <ng-template #elseBlockRes1>
+                        <p *ngFor="let res of positionDetailResponsibilities">{{res}}</p>
+                    </ng-template>
+
                 </div>
                 <div class="content-block">
-                    <h6>Entry Criteria</h6>
+                    <h5 class="next-title">Entry Criteria</h5>
 
-                    <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr2">
+                    <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 2; else elseBlockEntr2">
                         <ul>
-                            <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:3; let i=index">{{cri}}</li>
-                            <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more</button>
+                            <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:2; let i=index">{{cri}}</li>
+                            <!-- <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more</button> -->
+                            <label (click)="showMoreEntr()" class="btn-more"  title="show more" ></label>
                         </ul>
                     </div>
 
                     <ng-template #elseBlockEntr2>
-                        <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 3; else elseBlockEntr1">
+                        <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 2; else elseBlockEntr1">
                             <ul>
                                 <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
-                                <button (click)="collapseEntr()" class="btn btn-light btn-sm">less </button>
+                                <!-- <button (click)="collapseEntr()" class="btn btn-light btn-sm">less </button> -->
+                                <label (click)="collapseEntr()" class="btn-less" title="show less">less </label>
                             </ul>
                         </div>
 
@@ -55,55 +86,27 @@
                     </ng-template>
 
                 </div>
-            </div>
-
-            <div class="col-md-4">
                 <div class="content-block">
-                    <h6>Responsibilities</h6>
-
-                    <div *ngIf="positionDetailResponsibilities.length > 2; else elseBlockRes1">
-                        <div *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 2; else elseBlockRes2">
-                            <ul>
-                                <li *ngFor="let res of positionDetailResponsibilities | slice:0:2; let i=index">{{res}}
-                                </li>
-                                <button (click)="showMoreRes()" class="btn btn-light btn-sm">more</button>
-                            </ul>
-                        </div>
-
-                        <ng-template #elseBlockRes2>
-                            <ul>
-                                <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
-                                <button (click)="collapseRes()" class="btn btn-light btn-sm">less</button>
-                            </ul>
-                        </ng-template>
-                    </div>
-
-                    <ng-template #elseBlockRes1>
-                        <ul>
-                            <li *ngFor="let res of positionDetailResponsibilities">{{res}}</li>
-                        </ul>
-                    </ng-template>
-
-                </div>
-                <div class="content-block">
-                    <h6>KRA (key responsible area)</h6>
+                    <h5 class="next-title">KRA (key responsible area)</h5>
                     <div *ngIf="positionDetailKRA">
-                        <div *ngIf="positionDetailKRA.length > 3; else elseBlock1">
-                            <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 3; else elseBlock2">
+                        <div *ngIf="positionDetailKRA.length > 2; else elseBlock1">
+                            <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 2; else elseBlock2">
                                 <ul>
-                                    <li *ngFor="let kra of positionDetailKRA | slice:0:3; let i=index">{{kra}}</li>
-                                    <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more</button>
+                                    <li *ngFor="let kra of positionDetailKRA | slice:0:2; let i=index">{{kra}}</li>
+                                    <!-- <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more</button> -->
+                                    <label (click)="showMoreKRA()" class=" btn-more"  title="show more" ></label>
                                 </ul>
                             </div>
-    
+
                             <ng-template #elseBlock2>
                                 <ul>
                                     <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
-                                    <button (click)="collapseKRA()" class="btn btn-light btn-sm">less</button>
+                                    <!-- <button (click)="collapseKRA()" class="btn btn-light btn-sm">less</button> -->
+                                    <label (click)="collapseKRA()" class=" btn-less" title="show less"></label>
                                 </ul>
                             </ng-template>
                         </div>
-    
+
                         <ng-template #elseBlock1>
                             <ul>
                                 <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
@@ -115,38 +118,38 @@
                 </div>
                 <!-- <div class="content-block">
                     <h4>Scope</h4>
-                    <h6>{{positionDetail.scope}}</h6>
+                    <h5>{{positionDetail.scope}}</h5>
                 </div>
 
                 <div class="content-block">
                     <h4>Domain</h4>
-                    <h6>{{positionDetail.domain}}</h6>
+                    <h5>{{positionDetail.domain}}</h5>
                 </div> -->
             </div>
 
-            <div class="col-md-5">
-                <div *ngIf="!isMemberEngineering" class="content-block">
-                    <h6>Career progression</h6>
-                    <career-progression [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
-                        [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id">
-                    </career-progression>
+            <div class="col-md-4">
+                <div class="content-block">
+                    <h5>Industrial Role</h5>
+                    <div [innerHTML]="positionDetail.industrialRole"></div>
                 </div>
                 <div class="content-block">
-                    <h6>Competencies required</h6>
+                    <h5 class="next-title">Competencies required</h5>
                     <div *ngIf="positionDetail.competencies">
                         <div *ngIf="positionDetailCompetencies.length > 3; else elseBlockComp1">
                             <div *ngIf="!isShowMoreComp && positionDetailCompetencies.length > 3; else elseBlockComp2">
                                 <ul>
                                     <li *ngFor="let comp of positionDetailCompetencies | slice:0:3; let i=index">
                                         {{comp}}</li>
-                                    <button (click)="showMoreComp()" class="btn btn-light btn-sm">more</button>
+                                    <!-- <button (click)="showMoreComp()" class="btn btn-light btn-sm">more</button> -->
+                                    <label (click)="showMoreComp()" class="btn-more"  title="show more" ></label>
                                 </ul>
                             </div>
 
                             <ng-template #elseBlockComp2>
                                 <ul>
                                     <li *ngFor="let comp of positionDetailCompetencies">{{comp}}</li>
-                                    <button (click)="collapseComp()" class="btn btn-light btn-sm">less</button>
+                                    <!-- <button (click)="collapseComp()" class="btn btn-light btn-sm">less</button> -->
+                                    <label (click)="collapseComp()" class="btn-less" title="show less">less</label>
                                 </ul>
                             </ng-template>
                         </div>
@@ -162,25 +165,24 @@
                 </div>
                 <!-- <div class="content-block">
                     <h4>Project Category</h4>
-                    <h6>{{positionDetail.projectCategory}}</h6>
+                    <h5>{{positionDetail.projectCategory}}</h5>
                 </div>
                 <div class="content-block">
                     <h4>Domain Roles</h4>
-                    <h6>{{positionDetail.domainRoles}}</h6>
+                    <h5>{{positionDetail.domainRoles}}</h5>
                 </div>
                 <div class="content-block">
                     <h4>Career path</h4>
-                    <h6>{{positionDetail.careerPath}}</h6>
+                    <h5>{{positionDetail.careerPath}}</h5>
                 </div> -->
             </div>
         </div>
-        <div class="row" style="float: right; margin-right:1px;">
+        <!-- <div class="row" style="float: right; margin-right:1px;">
             <button type="button" class="btn btn-info" (click)="backToPositions();">Back To Previous
                 Page</button>
             <button type="button" class="btn btn-info" style="margin-left:5px;"
                 [routerLink]="['/position',positionDetail.positionObj.organizationObj.id]">Back To Lattice
                 Page</button>
-        </div>
+        </div> -->
     </div>
-
 </div>

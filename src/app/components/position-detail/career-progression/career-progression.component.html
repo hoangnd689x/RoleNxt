@@ -24,7 +24,7 @@
       <svg:g [routerLink]="['/position-details',node.id]">
         <svg:rect x="0" y="0" [attr.width]="node.dimension.width" [attr.height]="node.dimension.height"
           [attr.fill]="node.data.customColor" style="stroke-width:3;stroke:rgb(0,0,0)" />
-        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="120" font-size="4em"
+        <svg:text style="fill: white;" alignment-baseline="central" [attr.x]="120" font-size="5em"
           [attr.y]="node.dimension.height / 2 + 20">
           {{node.label}}
         </svg:text>
