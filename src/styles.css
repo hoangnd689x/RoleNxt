@@ -169,11 +169,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100
 .bg-container{
   height: 100%;
   background-image: url('./assets/Home.jpg');
-  background-attachment: fixed;
- background-position: center;
  background-repeat: no-repeat;
  background-size: cover;
-  
+ min-width: 100%;
+  background-repeat: no-repeat;
 }
 
 app-career-lattice-it{

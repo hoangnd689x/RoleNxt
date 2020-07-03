@@ -16,11 +16,11 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list> -->
-<div  class="bg-container" style="padding-left: 85px; padding-top: 85px;">
-    <div *ngFor="let item of result" style="margin-top: 40px">
+<div  class="bg-container" style="padding-left: 105px; padding-top: 20px;">
+    <div *ngFor="let item of result" style="margin-top: 40px;max-width: 255px">
         <div><b>{{item.name}}</b></div>
         <a *ngFor="let department of item.items" [routerLink]="['position',department.id]" mat-raised-button
-          [ngStyle]="{'background-color': department.color}">{{department.name}}</a>
-        <a *ngIf="item.name=='IT'" [routerLink]="['position/it',2]" [ngStyle]="{'background-color': 'red'}" mat-raised-button>ETI</a>
+        [ngStyle]="{'background-color': department.color,'margin-top': '10px','color': 'white'}">{{department.name}}</a>
+        <a *ngIf="item.name=='IT'" [routerLink]="['position/it',2]" [ngStyle]="{'background-color': '#50237e','margin-top': '10px','color': 'white'}" mat-raised-button>ETI</a>
       </div>
 </div>

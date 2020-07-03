@@ -12,13 +12,13 @@ export class HomeComponent implements OnInit {
   domain = [];
   result = []; // [{items:[],name:""}]
   departmentColorCode = [
-    "#e64179",
-    "#f54d27",
-    "#f3a394",
-    "#fbc76e",
-    "#555db7",
-    "#cd79f2",
-    "#7221ca",
+    "#b90276",
+    "#50237e",
+    "#005693",
+    "#008ed0",
+    "#00a9b0",
+    "#78be20",
+    "#006249",
     "#cecaee",
     "#3140b3",
     "#fc4411",
