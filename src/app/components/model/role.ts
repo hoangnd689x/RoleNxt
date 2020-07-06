@@ -1,6 +1,7 @@
 import { Domain } from './domain';
 import { Competency } from './Competency';
 import { Organization } from './organization';
+import { Position } from './Position';
 
 export class Role {
     id: number;

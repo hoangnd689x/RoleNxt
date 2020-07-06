@@ -29,7 +29,7 @@ h5 {
     cursor: pointer;
 }
 
-.active {
+.active2 {
     background-color: rgb(4, 82, 37);
     color: white;
     box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);

@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Position } from './classes/position';
 import { Promotion } from './classes/promotion';
 import { domain, port } from "../environments/environment";
 import { Observable } from 'rxjs';
@@ -9,6 +8,7 @@ import { Organization } from './components/model/organization';
 import { Domain } from './components/model/domain';
 import { Role } from './components/model/role';
 import { DomainDept } from './components/model/DomainDept';
+import { Position } from './components/model/Position';
 @Injectable({
   providedIn: "root"
 })
@@ -21,6 +21,7 @@ export class DataService {
   positions = this.http.get<Position[]>("api/positions");
   promotions = this.http.get<Promotion[]>("api/promotions");
   getPositionsByDepartmentID = (departmentID: String) => this.http.get<JSON[]>(this.baseUrl+"/api/position/get-by-org/" + departmentID);
+  getPositionObjsByDepartmentID = (departmentID: String) => this.http.get<Position[]>(this.baseUrl+"/api/position/get-by-org/" + departmentID);
   getLinksByDepartmentID = (departmentID: String) => this.http.get<JSON[]>(this.baseUrl+"/api/connection/get-by-org/" + departmentID);
   getDepartment = () => this.http.get<JSON[]>(this.baseUrl+"/api/org/get-all/");
   getCluster = () => this.http.get<JSON[]>(this.baseUrl+"/api/role/get-all");

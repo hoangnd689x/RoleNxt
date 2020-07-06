@@ -9,6 +9,7 @@ import { Domain } from '../model/domain';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Role } from '../model/role';
 import { DomainDept } from '../model/DomainDept';
+import { Position } from '../model/Position';
 
 @Component({
   selector: 'app-position-detail',
@@ -37,6 +38,13 @@ export class PositionDetailComponent implements OnInit {
   isShowMoreComp: Boolean = false;
   isShowMoreEntr: Boolean = false;
 
+  // create tabs
+  listTabs: string[] = ['Career Map','Comparison'];
+  selectedTab = this.listTabs[0];
+
+  listPosition: Position[];
+  depId: any;
+
   // check if member engineering
   isMemberEngineering: Boolean = false;
   constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location, private formBuilder: FormBuilder) { }
@@ -55,6 +63,14 @@ export class PositionDetailComponent implements OnInit {
         this.positionDetailCompetencies = data[0].competencies.split("\n");
         this.positionDetailIndustryRoles = data[0].kra.split("\n");
         this.isLoaded = true;
+
+        // get depId to select all Postions for tab2
+        this.depId = data[0].positionObj.organizationObj.id;
+        this.dataService.getPositionObjsByDepartmentID(this.depId).subscribe(data => {
+          this.listPosition = data;
+          this.isLoaded = true;
+        })
+
       }, err => {
         this.isLoaded = true;
       })
