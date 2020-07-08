@@ -65,7 +65,7 @@ export class PositionDetailComponent implements OnInit {
         this.isLoaded = true;
 
         // get depId to select all Postions for tab2
-        this.depId = data[0].positionObj.organizationObj.id;
+        this.depId = data[0].positionObj["organizationObj"]["id"];
         this.dataService.getPositionObjsByDepartmentID(this.depId).subscribe(data => {
           this.listPosition = data;
           this.isLoaded = true;

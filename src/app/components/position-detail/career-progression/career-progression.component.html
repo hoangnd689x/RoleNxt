@@ -1,16 +1,15 @@
-<!-- <section *ngIf="isLoaded">
+<section *ngIf="isLoaded">
   <div *ngIf="careerProgression.length>0" class="example-button-row">
     <button mat-button *ngFor="let role of careerProgression" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.color, 'width': '200px','color':'white'}">{{role.name}}</button>
-    <div *ngIf="careerProgressionByCluster.length>0">
+    <!-- for same level -->
+    <!-- <div *ngIf="careerProgressionByCluster.length>0">
       <button mat-button *ngFor="let role of careerProgressionByCluster" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.careerpathObj.color, 'width': '200px','color':'white'}">{{role.name}}</button>
-    </div> 
+    </div>  -->
 </div>
+</section>
 
-</section> -->
-
-
-<div *ngIf="isLoaded">
-  <ngx-graph  class="chart-container" (window:resize)="onResize($event)" [view]="view" [links]="edges"
+<!-- <div *ngIf="isLoaded">
+  <ngx-graph  class="chart-container"[view]="view" [links]="edges"
     [nodes]="nodes" [autoCenter]="true" [autoZoom]="true" [draggingEnabled]="false"
     [panningEnabled]="false" [enableZoom]="false" [layoutSettings]="layoutSettings" [layout]="layout"
     [clusters]="clusters">
@@ -42,4 +41,4 @@
       </svg:g>
     </ng-template>
   </ngx-graph>
-</div>
+</div> -->

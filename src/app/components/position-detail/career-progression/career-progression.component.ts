@@ -51,6 +51,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         })
         this.nodes = this.getAllNodes();
         this.edges = Array.from(new Set(this.getAllLinks()));
+        this.careerProgression = Array.from(new Set(this.getChildrenBySource(this.sourcePositionID)));
         // console.log("childrenArr: ", this.childrenArr);
 
         this.isLoaded = true;
@@ -76,7 +77,7 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
         })
         this.nodes = this.getAllNodes();
         this.edges = Array.from(new Set(this.getAllLinks()));
-        // console.log("childrenArr: ", this.childrenArr);
+        console.log("childrenArr: ", this.childrenArr);
         this.isLoaded = true;
       })
     });
@@ -187,9 +188,5 @@ export class CareerProgressionComponent implements OnInit, OnChanges {
   }
 
   view = [330, 120];
-  onResize(event) {
-    this.view = [event.target.innerWidth - 400, 300];
-  }
-
 }
 
