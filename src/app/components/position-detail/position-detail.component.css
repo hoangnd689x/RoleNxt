@@ -67,7 +67,8 @@ ul{
 
 .btn-more:after {
   /* content: '●●●'; */
-  content: '⇣⇣⇣';
+  /* content: '⇣⇣⇣'; */
+  content: '...';
   right: 10px;
   margin-left: 5px;
   animation: sudo .85s linear infinite alternate;
@@ -96,7 +97,8 @@ ul{
 }
 
 .btn-less:after{
-  content: '⇡⇡⇡';
+  /* content: '⇡⇡⇡'; */
+  content: '...';
   right: 10px;
   margin-left: 5px;
   animation: sudo .85s linear infinite alternate;
