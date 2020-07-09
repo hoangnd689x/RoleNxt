@@ -1,0 +1,31 @@
+.nav-tabs{
+    margin-top: -20px;
+    height: 35px;
+}
+
+.nav-tabs>li.active{
+    border: none;
+    height: 35px;
+    margin-left:105px;
+}
+
+.nav-tabs>li.active>a{
+    height: 35px;
+    font-family: Arial;
+    font-weight: bold;
+    color: #008ecf;
+    border: none ;
+    border-bottom: 2px solid #008ecf;
+    
+}
+
+.nav-tabs>li>a{
+    height: 35px;
+    font-family: Arial;
+    font-weight: bold;
+    
+}
+
+.nav-tabs>li:hover{
+    cursor: pointer;
+}

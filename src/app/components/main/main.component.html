@@ -1,4 +1,25 @@
 <app-navbar class="custom-navbar"></app-navbar>
-<main role="main" class="custom-child">
-  <router-outlet></router-outlet>
-</main>
+
+  <ul class="nav nav-tabs">
+      <li *ngFor="let mytab of listTabs; let first = first;" role="presentation" class="{{mytab}}" [class.active]="selectedTab===mytab">
+        <a (click)="selectedTab = mytab" data-toggle="tab">{{mytab}}</a>
+      </li> 
+      <!-- <li role="presentation" class="career-map" [class.active]="'Career Map'">
+        <a (click)="selectedTab = 'Career Map'" data-toggle="tab">Career Map</a>
+      </li>
+
+      <li role="presentation" class="comparison" [class.active]="'Comparison'">
+        <a (click)="selectedTab = 'Comparison'" data-toggle="tab">Comparison</a>
+      </li> -->
+  </ul>
+  
+  <div class="tab-content">
+    <div *ngIf="selectedTab === 'Career Map'" role="tabpanel" class="tab-pane active" id="one">
+      <main role="main" class="custom-child">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+    <div *ngIf="selectedTab === 'Comparison'" role="tabpanel" class="tab-pane active" id="two"></div>
+  </div>  
+
+

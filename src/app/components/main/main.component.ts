@@ -22,6 +22,10 @@ export class MainComponent {
 
   data: DataService;
 
+    // create tabs
+    listTabs: string[] = ['Career Map','Comparison'];
+    selectedTab = this.listTabs[0];
+
   constructor(dataService: DataService, private modalService: NgbModal) {
     this.data = dataService;
   }
