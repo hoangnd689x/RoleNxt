@@ -1,5 +1,9 @@
+@font-face {
+  font-family: BoschSans-Regular;
+  src: url('assets/bosch-font/OTF/BoschSans-Regular.otf') format("opentype");
+}
 * {
-  font-family: "Open Sans", sans-serif, "Arial";
+  font-family: "BoschSans-Regular";
 }
 
 .mainContent {

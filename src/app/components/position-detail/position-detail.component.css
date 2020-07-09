@@ -4,8 +4,8 @@
 	background: #aaa;
 }
 
-h5 {
-	color: #003366;
+h4 {
+	color: #005691;
 }
 
 .details-page{
@@ -45,14 +45,16 @@ p{
 }
 ul{
     list-style: disclosure-closed;
+    padding-left: 13px;
 }
 /** show mỏe **/
 
   
   .btn-more {
     cursor: pointer;
-    top: 0;
+    top: -10px;
     float: right;
+    position: relative;
   }
   .btn-more:hover {
   box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);

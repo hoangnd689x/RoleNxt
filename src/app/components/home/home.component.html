@@ -1,22 +1,4 @@
-<!-- <mat-grid-list class="bg-container" *ngIf="isLoaded" cols="2" rowHeight="1:1">
-  <mat-grid-tile *ngFor="let item of result">
-    <mat-card class="example-card" [ngStyle]="{'background-color': item.bgcolor}">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': item.bgImage}"></div>
-        <mat-card-title>{{item.name}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="custom-card-content">
-        <div class="example-button-row">
-          <a *ngFor="let department of item.items" [routerLink]="['position',department.id]" mat-raised-button
-            [ngStyle]="{'background-color': department.color}">{{department.name}}</a>
-            <a *ngIf="item.name=='IT'" [routerLink]="['position/it',2]" mat-raised-button
-            [ngStyle]="{'background-color': 'red'}">ETI</a>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list> -->
-<div  class="bg-container" style="padding-left: 105px; padding-top: 20px;">
+<div  class="bg-container" style="padding-left: 178px; padding-top: 20px;">
     <div *ngFor="let item of result" style="margin-top: 40px;max-width: 255px">
         <div><b>{{item.name}}</b></div>
         <a *ngFor="let department of item.items" [routerLink]="['position',department.id]" mat-raised-button
