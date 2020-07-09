@@ -54,6 +54,10 @@ ul{
     top: 0;
     float: right;
   }
+  .btn-more:hover {
+  box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);
+  border-radius: 2px;
+  }
   /* .btn-more:before,
 .btn-more:after{
   position: absolute;
@@ -70,7 +74,6 @@ ul{
   /* content: '⇣⇣⇣'; */
   content: '...';
   right: 10px;
-  margin-left: 5px;
   animation: sudo .85s linear infinite alternate;
 }
 
@@ -88,7 +91,10 @@ ul{
     top: 0;
     float: right;
   }
-
+  .btn-less:hover {
+    box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);
+    border-radius: 2px;
+    }
 .btn-less:before{
   /* content: 'Less'; */
   left: 10px;
@@ -100,6 +106,5 @@ ul{
   /* content: '⇡⇡⇡'; */
   content: '...';
   right: 10px;
-  margin-left: 5px;
   animation: sudo .85s linear infinite alternate;
 }
