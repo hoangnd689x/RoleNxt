@@ -6,7 +6,7 @@
 .nav-tabs>li.active{
     border: none;
     height: 35px;
-    margin-left:105px;
+    
 }
 
 .nav-tabs>li.active>a{
@@ -27,5 +27,24 @@
 }
 
 .nav-tabs>li:hover{
+    cursor: pointer;
+}
+
+.Career{
+    margin-left:173px;
+}
+
+hr{
+    height:1px;
+    border-width:0;
+    color: #0092CB;
+    background-color:#0092CB;
+}
+
+select>option{
+    background-color: white;
+    cursor: pointer;
+}
+select{
     cursor: pointer;
 }
