@@ -1,6 +1,6 @@
 <section *ngIf="isLoaded">
   <div *ngIf="careerProgression.length>0" class="example-button-row">
-    <button mat-button *ngFor="let role of careerProgression" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.color, 'width': '200px','color':'white'}">{{role.name}}</button>
+    <button class="rb-button rb-button--primary" *ngFor="let role of careerProgression" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.color, 'width': '129px','color':'white','margin-right':'5px'}">{{role.name}}</button>
     <!-- for same level -->
     <!-- <div *ngIf="careerProgressionByCluster.length>0">
       <button mat-button *ngFor="let role of careerProgressionByCluster" [routerLink]="['/position-details',role.id]" [ngStyle]="{'background-color': role.careerpathObj.color, 'width': '200px','color':'white'}">{{role.name}}</button>
