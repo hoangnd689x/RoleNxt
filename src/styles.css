@@ -183,3 +183,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100
 /* app-career-lattice-it{
   background-color: aliceblue;
 } */
+.rb-button{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity cubic-bezier(0.38, 0.04, 0.35, 0.96) 600ms;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-decoration: none;
+  font-weight: 300;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-right: 16px;
+  padding-left: 16px;
+  height: 48px;
+  font-size: 16px;
+ }
+ .rb-button--primary{
+  border-color: #005691;
+  background-color: #005691;
+  color: #fff;
+ }
+ .rb-button--primary:hover {
+  border-color: #7fc6e7;
+  background-color: #7fc6e7;
+}

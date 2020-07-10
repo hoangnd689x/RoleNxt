@@ -1,184 +1,181 @@
-
 <div class="tab-content" style="padding-left: 155px;padding-right: 143px;">
-        <div class="container-fluid details-page" *ngIf="isLoaded" style="margin-top: 10px;">
-            <div class="text-center" style="margin-bottom: 0">
-                <div class="row">
-                    <div class="col-md-5" style="text-align: left;">
-                        <button *ngFor="let domain of domainDept" class="btn btn-success"
-                            style="margin-left:10px;font-size: 0.7em;"
-                            (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id);selectedItemId = domain.id"
-                            [ngClass]="{'active2': selectedItemId === domain.id}">{{domain.name}}</button>
-                        <span style="font-size: 1.25rem;margin-bottom: 0;font-weight: bold;"> - Career Lattice</span>
-                    </div>
-                    <div class="col-md-7"></div>
+    <div class="container-fluid details-page" *ngIf="isLoaded" style="margin-top: 10px;">
+        <div class="text-center" style="margin-bottom: 0">
+            <div class="row">
+                <div class="col-md-5" style="text-align: left;">
+                    <button *ngFor="let domain of domainDept" class="rb-button rb-button--primary"
+                        style="margin-left:10px;font-size: 0.7em;width:10px;height:15px"
+                        (click)="changeDetailByDomain(domain.id,positionDetail.positionObj.id);selectedItemId = domain.id"
+                        [ngClass]="{'active2': selectedItemId === domain.id}">{{domain.name}}</button>
+                    <span style="font-size: 1.25rem;margin-bottom: 0;font-weight: bold;"> - Career Lattice</span>
                 </div>
-                <div class="row" style="margin-left: -5px;">
-                    <div class="col-md-5" style="text-align: left;">
-                        <h4 style="color: rgb(175, 30, 122);font-weight: bold;margin-bottom: 0;">
-                            {{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
-                            {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h4>
-                    </div>
-                    <div class="col-md-7"></div>
-                </div>
+                <div class="col-md-7"></div>
             </div>
-            <div class="custom-border" style="font-size: 0.8em;">
-                <div class="row">
-                    <div class="col-md-4" style="padding-left: 15px;">
-                        <div class="content-block">
-                            <img class="fakeimg img-responsive fit-image" style="width: 77%;"
-                                src="./assets/dev-details.png" />
-                        </div>
-                        <div *ngIf="!isMemberEngineering" class="content-block">
-                            <h4 class="next-title">Career progression</h4>
-                            <career-progression
-                                [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
-                                [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id">
-                            </career-progression>
-                        </div>
+            <div class="row" style="margin-left: -5px;">
+                <div class="col-md-5" style="text-align: left;">
+                    <h4 style="color: rgb(175, 30, 122);font-weight: bold;margin-bottom: 0;">
+                        {{positionDetail.positionObj && positionDetail.positionObj.organizationObj.name}} -
+                        {{positionDetail.positionObj&&positionDetail.positionObj.name}}</h4>
+                </div>
+                <div class="col-md-7"></div>
+            </div>
+        </div>
+        <div class="custom-border" style="font-size: 0.8em;">
+            <div class="row">
+                <div class="col-md-4" style="padding-left: 15px;">
+                    <div class="content-block">
+                        <img class="fakeimg img-responsive fit-image" style="width: 98%;height: 178px;"
+                            src="./assets/dev-details.png" />
                     </div>
+                    <div *ngIf="!isMemberEngineering" class="content-block">
+                        <h4 class="next-title">Career progression</h4>
+                        <career-progression
+                            [sourcePositionID]="positionDetail.positionObj &&positionDetail.positionObj.id"
+                            [departmentID]="positionDetail.positionObj && positionDetail.positionObj.organizationObj.id">
+                        </career-progression>
+                    </div>
+                </div>
 
-                    <div class="col-md-4" style="text-align: justify;">
-                        <div class="content-block">
-                            <h4>Responsibilities</h4>
+                <div class="col-md-4" style="text-align: justify;">
+                    <div class="content-block">
+                        <h4>Responsibilities</h4>
 
-                            <div *ngIf="positionDetailResponsibilities.length > 2; else elseBlockRes1">
-                                <div
-                                    *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 2; else elseBlockRes2">
-                                    <p *ngFor="let res of positionDetailResponsibilities | slice:0:2; let i=index">
-                                        {{res}}
-                                    </p>
-                                    <label (click)="showMoreRes()" class="btn-more" title="show more"></label>
-                                </div>
-
-                                <ng-template #elseBlockRes2>
-                                    <p *ngFor="let res of positionDetailResponsibilities">{{res}}</p>
-                                    <!-- <button (click)="collapseRes()" class="btn btn-light btn-sm">less</button> -->
-                                    <label (click)="collapseRes()" class="btn-less" title="show less"></label>
-                                </ng-template>
+                        <div *ngIf="positionDetailResponsibilities.length > 2; else elseBlockRes1">
+                            <div
+                                *ngIf="!isShowMoreRes && positionDetailResponsibilities.length > 2; else elseBlockRes2">
+                                <p *ngFor="let res of positionDetailResponsibilities | slice:0:2; let i=index">
+                                    {{res}}
+                                </p>
+                                <label (click)="showMoreRes()" class="btn-more" title="show more"></label>
                             </div>
 
-                            <ng-template #elseBlockRes1>
+                            <ng-template #elseBlockRes2>
                                 <p *ngFor="let res of positionDetailResponsibilities">{{res}}</p>
+                                <!-- <button (click)="collapseRes()" class="btn btn-light btn-sm">less</button> -->
+                                <label (click)="collapseRes()" class="btn-less" title="show less"></label>
                             </ng-template>
-
                         </div>
-                        <div class="content-block">
-                            <h4 class="next-title">Scope</h4>
+
+                        <ng-template #elseBlockRes1>
+                            <p *ngFor="let res of positionDetailResponsibilities">{{res}}</p>
+                        </ng-template>
+
+                    </div>
+                    <div class="content-block">
+                        <h4 class="next-title">Scope</h4>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="next-title">Entry Criteria</h4>
+
+                        <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 2; else elseBlockEntr2">
+                            <ul>
+                                <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:2; let i=index">{{cri}}
+                                </li>
+                                <!-- <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more</button> -->
+                                <label (click)="showMoreEntr()" class="btn-more" title="show more"></label>
+                            </ul>
                         </div>
-                        <div class="content-block">
-                            <h4 class="next-title">Entry Criteria</h4>
 
-                            <div *ngIf="!isShowMoreEntr && positionDetailEntryCriteria.length > 2; else elseBlockEntr2">
-                                <ul>
-                                    <li *ngFor="let cri of positionDetailEntryCriteria | slice:0:2; let i=index">{{cri}}
-                                    </li>
-                                    <!-- <button (click)="showMoreEntr()" class="btn btn-light btn-sm">more</button> -->
-                                    <label (click)="showMoreEntr()" class="btn-more" title="show more"></label>
-                                </ul>
-                            </div>
-
-                            <ng-template #elseBlockEntr2>
-                                <div
-                                    *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 2; else elseBlockEntr1">
-                                    <ul>
-                                        <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
-                                        <!-- <button (click)="collapseEntr()" class="btn btn-light btn-sm">less </button> -->
-                                        <label (click)="collapseEntr()" class="btn-less" title="show less"> </label>
-                                    </ul>
-                                </div>
-
-                            </ng-template>
-
-                            <ng-template #elseBlockEntr1>
+                        <ng-template #elseBlockEntr2>
+                            <div *ngIf="isShowMoreEntr && positionDetailEntryCriteria.length > 2; else elseBlockEntr1">
                                 <ul>
                                     <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
+                                    <!-- <button (click)="collapseEntr()" class="btn btn-light btn-sm">less </button> -->
+                                    <label (click)="collapseEntr()" class="btn-less" title="show less"> </label>
                                 </ul>
-                            </ng-template>
+                            </div>
 
-                        </div>
-                        <div class="content-block">
-                            <h4 class="next-title">KRA</h4>
-                            <div *ngIf="positionDetailKRA">
-                                <div *ngIf="positionDetailKRA.length > 2; else elseBlock1">
-                                    <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 2; else elseBlock2">
-                                        <ul>
-                                            <li *ngFor="let kra of positionDetailKRA | slice:0:2; let i=index">{{kra}}
-                                            </li>
-                                            <!-- <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more</button> -->
-                                            <label (click)="showMoreKRA()" class=" btn-more" title="show more"></label>
-                                        </ul>
-                                    </div>
+                        </ng-template>
 
-                                    <ng-template #elseBlock2>
-                                        <ul>
-                                            <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
-                                            <!-- <button (click)="collapseKRA()" class="btn btn-light btn-sm">less</button> -->
-                                            <label (click)="collapseKRA()" class=" btn-less" title="show less"></label>
-                                        </ul>
-                                    </ng-template>
+                        <ng-template #elseBlockEntr1>
+                            <ul>
+                                <li *ngFor="let cri of positionDetailEntryCriteria">{{cri}}</li>
+                            </ul>
+                        </ng-template>
+
+                    </div>
+                    <div class="content-block">
+                        <h4 class="next-title">KRA</h4>
+                        <div *ngIf="positionDetailKRA">
+                            <div *ngIf="positionDetailKRA.length > 2; else elseBlock1">
+                                <div *ngIf="!isShowMoreKRA && positionDetailKRA.length > 2; else elseBlock2">
+                                    <ul>
+                                        <li *ngFor="let kra of positionDetailKRA | slice:0:2; let i=index">{{kra}}
+                                        </li>
+                                        <!-- <button (click)="showMoreKRA()" class="btn btn-light btn-sm">more</button> -->
+                                        <label (click)="showMoreKRA()" class=" btn-more" title="show more"></label>
+                                    </ul>
                                 </div>
 
-                                <ng-template #elseBlock1>
+                                <ng-template #elseBlock2>
                                     <ul>
                                         <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
+                                        <!-- <button (click)="collapseKRA()" class="btn btn-light btn-sm">less</button> -->
+                                        <label (click)="collapseKRA()" class=" btn-less" title="show less"></label>
                                     </ul>
                                 </ng-template>
                             </div>
 
-
+                            <ng-template #elseBlock1>
+                                <ul>
+                                    <li *ngFor="let kra of positionDetailKRA">{{kra}}</li>
+                                </ul>
+                            </ng-template>
                         </div>
+
+
                     </div>
+                </div>
 
-                    <div class="col-md-4" style="text-align: justify;">
-                        <div class="content-block">
-                            <h4>Industry Role</h4>
-                            <div [innerHTML]="positionDetail.industrialRole"></div>
-                        </div>
-                        <div class="content-block">
-                            <h4 class="next-title">Competencies required</h4>
-                            <div *ngIf="positionDetail.competencies">
-                                <div *ngIf="positionDetailCompetencies.length > 3; else elseBlockComp1">
-                                    <div
-                                        *ngIf="!isShowMoreComp && positionDetailCompetencies.length > 3; else elseBlockComp2">
-                                        <ul>
-                                            <li
-                                                *ngFor="let comp of positionDetailCompetencies | slice:0:3; let i=index">
-                                                {{comp}}</li>
-                                            <label (click)="showMoreComp()" class="btn-more" title="show more"></label>
-                                        </ul>
-                                    </div>
-
-                                    <ng-template #elseBlockComp2>
-                                        <ul>
-                                            <li *ngFor="let comp of positionDetailCompetencies">{{comp}}</li>
-                                            <label (click)="collapseComp()" class="btn-less" title="show less"></label>
-                                        </ul>
-                                    </ng-template>
+                <div class="col-md-4" style="text-align: justify;">
+                    <div class="content-block">
+                        <h4>Industry Role</h4>
+                        <div [innerHTML]="positionDetail.industrialRole"></div>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="next-title">Competencies required</h4>
+                        <div *ngIf="positionDetail.competencies">
+                            <div *ngIf="positionDetailCompetencies.length > 3; else elseBlockComp1">
+                                <div
+                                    *ngIf="!isShowMoreComp && positionDetailCompetencies.length > 3; else elseBlockComp2">
+                                    <ul>
+                                        <li *ngFor="let comp of positionDetailCompetencies | slice:0:3; let i=index">
+                                            {{comp}}</li>
+                                        <label (click)="showMoreComp()" class="btn-more" title="show more"></label>
+                                    </ul>
                                 </div>
 
-                                <ng-template #elseBlockComp1>
+                                <ng-template #elseBlockComp2>
                                     <ul>
                                         <li *ngFor="let comp of positionDetailCompetencies">{{comp}}</li>
+                                        <label (click)="collapseComp()" class="btn-less" title="show less"></label>
                                     </ul>
                                 </ng-template>
                             </div>
 
+                            <ng-template #elseBlockComp1>
+                                <ul>
+                                    <li *ngFor="let comp of positionDetailCompetencies">{{comp}}</li>
+                                </ul>
+                            </ng-template>
+                        </div>
 
-                        </div>
-                        <div class="content-block">
-                            <h4>Projects</h4>
-                            <div></div>
-                        </div>
-                        <div class="content-block">
-                            <h4>Domain Role</h4>
-                            <div></div>
-                        </div>
-                        <div class="content-block">
-                            <h4>Career path</h4>
-                            <div></div>
-                        </div>
+
+                    </div>
+                    <div class="content-block">
+                        <h4>Projects</h4>
+                        <p></p>
+                    </div>
+                    <div class="content-block">
+                        <h4>Domain Role</h4>
+                        <p></p>
+                    </div>
+                    <div class="content-block">
+                        <h4>Career path</h4>
+                        <p></p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>

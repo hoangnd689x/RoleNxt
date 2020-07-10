@@ -1,6 +1,5 @@
 section {
     display: table;
-    margin: 8px;
   }
   
   .example-label {
@@ -15,8 +14,6 @@ section {
   }
   
   .example-button-row button {
-    display: table-cell;
-    margin-right: 8px;
     margin-top:8px
   }
   
@@ -39,4 +36,3 @@ section {
   rect:hover{
     cursor: pointer;
   }
- 
